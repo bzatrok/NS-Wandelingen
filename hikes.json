@@ -1,0 +1,1263 @@
+[
+  {
+    "id": "afde748e-f781-4eb1-8eb3-5bf578d75cbd",
+    "slug": "twentse-beken",
+    "title": "NS-wandeling Twentse beken",
+    "shortTitle": "Twentse beken",
+    "description": "Deze wandeling van station Almelo naar station Borne voert je door het schilderachtige Hart van Twente, met zijn kronkelende beken, historische havezaten en charmante dorpskernen. Een wandeling vol rust, natuur en historie.",
+    "location": "Van station Almelo naar station Borne",
+    "distanceKm": 17.2,
+    "distanceText": "17,2 km",
+    "provinces": [
+      "overijssel"
+    ],
+    "types": [
+      "landgoederen",
+      "stadenomgeving",
+      "waterlandenrivieren"
+    ],
+    "suitableFor": [
+      "honden"
+    ],
+    "pavedPercentage": 40,
+    "image": "https://www.ns.nl/binaries/_ht_1584370772659/tegel/content/gallery/ns-nl/dagjeuit-hero-afbeeldingen/wandelingen/ns-wandeling-twentse-beken.jpg",
+    "nsUrl": "https://www.ns.nl/dagje-uit/wandelen/twentse-beken.html",
+    "wandelnetId": "1334",
+    "wandelnetUrl": "https://www.wandelnet.nl/wandelroute/1334/Twentse-beken",
+    "gpxUrl": "https://wandelnet.api.routemaker.nl/content/gpx/wandelnet/1334.gpx",
+    "gpxFile": "gpx/twentse-beken.gpx"
+  },
+  {
+    "id": "20c3bab8-f8a9-4fc5-b227-071d8f8000c6",
+    "slug": "tussen-lek-en-linge",
+    "title": "NS-wandeling Tussen Lek en Linge",
+    "shortTitle": "Tussen Lek en Linge",
+    "description": "Tussen de Lek en de Linge ligt een onbekend stukje Nederland dat vrijwel niemand kent, met natuurgebieden zoals Vretstrooi en Leidsche Hoeven. Een gemiste kans, want je kunt er in alle rust wandelen over onverharde paden. Ook het bekendere landgoed Mariënwaerdt heeft de wandelaar veel te bieden. Een verrassende route!",
+    "location": "Van station Culemborg naar station Beesd",
+    "distanceKm": 14.5,
+    "distanceText": "14,5 km",
+    "provinces": [
+      "gelderland"
+    ],
+    "types": [
+      "landgoederen",
+      "stadenomgeving",
+      "waterlandenrivieren"
+    ],
+    "suitableFor": [],
+    "pavedPercentage": 40,
+    "image": "https://www.ns.nl/binaries/_ht_1584370551358/tegel/content/gallery/ns-nl/dagjeuit-hero-afbeeldingen/wandelingen/ns-wandeling-tussen-lek-en-linge.jpg",
+    "nsUrl": "https://www.ns.nl/dagje-uit/wandelen/tussen-lek-en-linge.html",
+    "wandelnetId": "1333",
+    "wandelnetUrl": "https://www.wandelnet.nl/wandelroute/1333/Tussen-Lek-en-Linge",
+    "gpxUrl": "https://wandelnet.api.routemaker.nl/content/gpx/wandelnet/1333.gpx",
+    "gpxFile": "gpx/tussen-lek-en-linge.gpx"
+  },
+  {
+    "id": "8efd2ffd-a0b2-4796-9e07-d4c75363cf58",
+    "slug": "valkenburg-aan-de-geul",
+    "title": "NS-wandeling Valkenburg aan de Geul",
+    "shortTitle": "Valkenburg aan de Geul",
+    "description": "Waar vroeger het snelwegverkeer dwars door Maastricht raasde, wandel je nu in alle rust via de Groene Loper – een groen lint van voet- en fietspaden – de stad uit. Na een uurtje sta je in de Limburgse heuvels. Via bossen, akkers, een oude mergelgroeve en het idyllische Geuldal bereik je Valkenburg aan de Geul, in 2019 uitgeroepen tot wandelgemeente van het jaar.",
+    "location": "Van station Maastricht naar station Valkenburg of Schin op Geul.",
+    "distanceKm": 13.0,
+    "distanceText": "13 of 17 km",
+    "provinces": [
+      "limburg"
+    ],
+    "types": [
+      "bos",
+      "landgoederen",
+      "boerenland",
+      "stadenomgeving"
+    ],
+    "suitableFor": [
+      "honden"
+    ],
+    "pavedPercentage": 50,
+    "image": "https://www.ns.nl/binaries/_ht_1584369797072/tegel/content/gallery/ns-nl/dagjeuit-hero-afbeeldingen/wandelingen/ns-wandeling-valkenburg-aan-de-geul.jpg",
+    "nsUrl": "https://www.ns.nl/dagje-uit/wandelen/valkenburg-aan-de-geul.html",
+    "wandelnetId": "1337",
+    "wandelnetUrl": "https://www.wandelnet.nl/wandelroute/1337/Valkenburg-aan-de-Geul",
+    "gpxUrl": "https://wandelnet.api.routemaker.nl/content/gpx/wandelnet/1337.gpx",
+    "gpxFile": "gpx/valkenburg-aan-de-geul.gpx"
+  },
+  {
+    "id": "57a260fe-e4d4-41f3-ba64-2bd10d541981",
+    "slug": "duinen-van-zoutelande",
+    "title": "NS-wandeling Duinen van Zoutelande",
+    "shortTitle": "Duinen van Zoutelande",
+    "description": "Bløf wist het al: aan de Zeeuwse kust is het goed vertoeven. ‘Ik ben blij dat je hier bent’, zo luidt de tekst van de single ‘Zoutelande’. Struinen over het strand, steile duinen beklimmen en je verwonderen over grote schepen die af en aan varen over de Westerschelde. Ga je ook naar Walcheren?",
+    "location": "Van station Vlissingen via Zoutelande naar Westkapelle",
+    "distanceKm": 13.0,
+    "distanceText": "13 of 19 km",
+    "provinces": [
+      "zeeland"
+    ],
+    "types": [
+      "duinenenstrand",
+      "heideenzand",
+      "stadenomgeving"
+    ],
+    "suitableFor": [
+      "honden"
+    ],
+    "pavedPercentage": 50,
+    "image": "https://www.ns.nl/binaries/_ht_1584370251068/tegel/content/gallery/ns-nl/dagjeuit-hero-afbeeldingen/wandelingen/ns-wandeling-duinen-van-zoutelande.jpg",
+    "nsUrl": "https://www.ns.nl/dagje-uit/wandelen/duinen-van-zoutelande.html",
+    "wandelnetId": "1329",
+    "wandelnetUrl": "https://www.wandelnet.nl/wandelroute/1329/Duinen-van-Zoutelande",
+    "gpxUrl": "https://wandelnet.api.routemaker.nl/content/gpx/wandelnet/1329.gpx",
+    "gpxFile": "gpx/duinen-van-zoutelande.gpx"
+  },
+  {
+    "id": "6a0488fe-f431-4315-bec0-260bb438c6c9",
+    "slug": "blauwe-kamer-rhenen",
+    "title": "NS-wandeling Blauwe Kamer Rhenen",
+    "shortTitle": "Blauwe Kamer Rhenen",
+    "description": "Een aaneenschakeling van hoogtepunten: de weidse uiterwaarden van de Nederrijn, natuurgebied de Blauwe Kamer en de Grebbeberg. Nog tijd en energie over? Knoop er dan een extra rondje aan vast door de historische binnenstad van Rhenen. Wat een veelzijdige route.",
+    "location": "Rondwandeling vanaf station Rhenen.",
+    "distanceKm": 10.5,
+    "distanceText": "10,5 tot 17,5 km",
+    "provinces": [
+      "utrecht"
+    ],
+    "types": [
+      "bos",
+      "stadenomgeving",
+      "waterlandenrivieren"
+    ],
+    "suitableFor": [
+      "honden"
+    ],
+    "pavedPercentage": 35,
+    "image": "https://www.ns.nl/binaries/_ht_1575970487706/tegel/content/gallery/ns-nl/dagjeuit-hero-afbeeldingen/wandelingen/blauwe-kamer.jpg",
+    "nsUrl": "https://www.ns.nl/dagje-uit/wandelen/blauwe-kamer-rhenen.html",
+    "wandelnetId": "677",
+    "wandelnetUrl": "https://www.wandelnet.nl/wandelroute/677/Blauwe-Kamer-Rhenen",
+    "gpxUrl": "https://wandelnet.api.routemaker.nl/content/gpx/wandelnet/677.gpx",
+    "gpxFile": "gpx/blauwe-kamer-rhenen.gpx"
+  },
+  {
+    "id": "aa9668dd-4d72-4511-a6b2-258dc0509b86",
+    "slug": "krickenbecker-seen",
+    "title": "NS-wandeling Krickenbecker Seen",
+    "shortTitle": "Krickenbecker Seen",
+    "description": "Een dagje Duitsland? Met deze NS-wandeling is het zo geregeld. Vanaf het eerste station over de grens, Kaldenkirchen, is het maar een paar kilometer lopen naar natuurgebied Krickenbecker Seen. Vier meren in de vorm van een klaverblad, waar het riviertje de Nette dwars doorheen stroomt. Een paradijs voor waterliefhebbers en wandelaars.",
+    "location": "Van station Kaldenkirchen naar station Venlo",
+    "distanceKm": 14.0,
+    "distanceText": "14 of 16,5 km",
+    "provinces": [
+      "limburg"
+    ],
+    "types": [
+      "heideenzand",
+      "waterlandenrivieren"
+    ],
+    "suitableFor": [
+      "honden"
+    ],
+    "pavedPercentage": 70,
+    "image": "https://www.ns.nl/binaries/_ht_1553092773947/tegel/content/gallery/ns-nl/dagjeuit-hero-afbeeldingen/wandelingen/voetbrug-met-wandelaars-over-de-nette-ten-o.-van-leuth-5.jpg",
+    "nsUrl": "https://www.ns.nl/dagje-uit/wandelen/krickenbecker-seen.html",
+    "wandelnetId": "1084",
+    "wandelnetUrl": "https://www.wandelnet.nl/wandelroute/1084/Krickenbecker-Seen",
+    "gpxUrl": "https://wandelnet.api.routemaker.nl/content/gpx/wandelnet/1084.gpx",
+    "gpxFile": "gpx/krickenbecker-seen.gpx"
+  },
+  {
+    "id": "26fd05f6-afb8-48bf-a99b-6be016182a63",
+    "slug": "gein-en-vecht",
+    "title": "NS-wandeling Gein en Vecht",
+    "shortTitle": "NS-wandeling Gein en Vecht",
+    "description": "Twee idyllische rivieren in één route: het Gein en de Vecht. Ze hebben veel gemeen. Ze slingeren door een oer-Hollands landschap dat bolstaat van cultuur en historie. Langs hun oevers pronken prachtige eeuwenoude buitenhuizen. Veel schilders en dichters deden er inspiratie op. Maar ook wandelend is er veel te ontdekken en te genieten.",
+    "location": "Van station Abcoude naar station Weesp",
+    "distanceKm": 6.0,
+    "distanceText": "6 tot 14 km",
+    "provinces": [
+      "noordholland",
+      "utrecht"
+    ],
+    "types": [
+      "boerenland",
+      "stadenomgeving",
+      "waterlandenrivieren"
+    ],
+    "suitableFor": [
+      "honden"
+    ],
+    "pavedPercentage": 85,
+    "image": "https://www.ns.nl/binaries/_ht_1579794499092/tegel/content/gallery/ns-nl/dagjeuit-hero-afbeeldingen/wandelingen/ns-wandeling-gein-en-vecht.jpg",
+    "nsUrl": "https://www.ns.nl/dagje-uit/wandelen/gein-en-vecht.html",
+    "wandelnetId": "1087",
+    "wandelnetUrl": "https://www.wandelnet.nl/wandelroute/1087/Gein-en-Vecht",
+    "gpxUrl": "https://wandelnet.api.routemaker.nl/content/gpx/wandelnet/1087.gpx",
+    "gpxFile": "gpx/gein-en-vecht.gpx"
+  },
+  {
+    "id": "5a99abe0-619c-4ecf-82fc-3ae9d49b7a97",
+    "slug": "helderse-duinen",
+    "title": "NS-wandeling Helderse Duinen",
+    "shortTitle": "Helderse Duinen",
+    "description": "Wandelen in en rond Den Helder?! Jazeker. Wie naar de kop van Noord-Holland reist, wordt beloond met een verrassend veelzijdige route. Van slingerpaadjes door de duinen tot kaarsrechte dijk langs de zee. Onderweg kom je langs robuuste forten, musea, een vuurtoren en eindig je in de binnenstad met volop horeca.",
+    "location": "Van station Den Helder Zuid naar station Den Helder.",
+    "distanceKm": 9.5,
+    "distanceText": "9,5 tot 15,5 km",
+    "provinces": [
+      "noordholland"
+    ],
+    "types": [
+      "duinenenstrand",
+      "heideenzand",
+      "stadenomgeving"
+    ],
+    "suitableFor": [
+      "honden"
+    ],
+    "pavedPercentage": 33,
+    "image": "https://www.ns.nl/binaries/_ht_1551787668809/tegel/content/gallery/ns-nl/dagjeuit-hero-afbeeldingen/wandelingen/fort-erfprins-tussen-huisduinen-en-den-helder.jpg",
+    "nsUrl": "https://www.ns.nl/dagje-uit/wandelen/helderse-duinen.html",
+    "wandelnetId": "1085",
+    "wandelnetUrl": "https://www.wandelnet.nl/wandelroute/1085/Helderse-Duinen",
+    "gpxUrl": "https://wandelnet.api.routemaker.nl/content/gpx/wandelnet/1085.gpx",
+    "gpxFile": "gpx/helderse-duinen.gpx"
+  },
+  {
+    "id": "4b7cfdc5-c479-47b6-87d2-877b4e29e69c",
+    "slug": "overijsselse-buitenplaatsen",
+    "title": "Overijsselse Buitenplaatsen",
+    "shortTitle": "NS-wandeling Overijsselse Buitenplaatsen",
+    "description": "Ten oosten van Zwolle ligt een landelijke omgeving waar je heerlijk kunt wandelen. Weidse vergezichten, groepjes bomen en statige landhuizen wisselen elkaar af. De wandelmogelijkheden zijn legio. Deze route volgt niet alleen een paar trajecten van twee prachtige Lange-Afstand-Wandelpaden, maar ook delen van het wandelnetwerk.",
+    "location": "Van station Dalfsen naar station Zwolle.",
+    "distanceKm": 17.5,
+    "distanceText": "17,5 km",
+    "provinces": [
+      "overijssel"
+    ],
+    "types": [
+      "bos",
+      "heideenzand"
+    ],
+    "suitableFor": [
+      "honden"
+    ],
+    "pavedPercentage": 35,
+    "image": "https://www.ns.nl/binaries/_ht_1522055693382/tegel/content/gallery/ns-nl/dagjeuit-hero-afbeeldingen/wandelingen/ns-wandeling-overijsselse-buitenplaatsen_hero.jpg",
+    "nsUrl": "https://www.ns.nl/dagje-uit/wandelen/overijsselse-buitenplaatsen.html",
+    "wandelnetId": "665",
+    "wandelnetUrl": "https://www.wandelnet.nl/wandelroute/665/Overijsselse-Buitenplaatsen",
+    "gpxUrl": "https://wandelnet.api.routemaker.nl/content/gpx/wandelnet/665.gpx",
+    "gpxFile": "gpx/overijsselse-buitenplaatsen.gpx"
+  },
+  {
+    "id": "9ca59d6a-f2fd-4152-bd86-b4ddfb9b33cf",
+    "slug": "hart-van-het-groene-woud",
+    "title": "Hart van Het Groene Woud",
+    "shortTitle": "NS-wandeling Hart van Het Groene Woud",
+    "description": "Alle tekenen van bewoning zijn voorbij het dorpje Lennisheuvel op slag verdwenen. Al wandelend langs een beekje, door stille bossen en landgoederen kom je helemaal tot rust. Met wat geluk sta je in natuurgebied De Scheeken misschien wel oog in oog met een edelhert. Maar ook zonder zo'n 'wilde' ontmoeting is deze wandeling beslist de moeite waard.",
+    "location": "Van station Boxtel naar station Best",
+    "distanceKm": 14.5,
+    "distanceText": "14,5 km",
+    "provinces": [
+      "noordbrabant"
+    ],
+    "types": [
+      "bos",
+      "landgoederen"
+    ],
+    "suitableFor": [
+      "honden"
+    ],
+    "pavedPercentage": 25,
+    "image": "https://www.ns.nl/binaries/_ht_1522055707121/tegel/content/gallery/ns-nl/dagjeuit-hero-afbeeldingen/wandelingen/ns-wandeling-hart-van-het-groene-woud_hero.jpg",
+    "nsUrl": "https://www.ns.nl/dagje-uit/wandelen/hart-van-het-groene-woud.html",
+    "wandelnetId": "1086",
+    "wandelnetUrl": "https://www.wandelnet.nl/wandelroute/1086/Hart-van-het-Groene-Woud",
+    "gpxUrl": "https://wandelnet.api.routemaker.nl/content/gpx/wandelnet/1086.gpx",
+    "gpxFile": "gpx/hart-van-het-groene-woud.gpx"
+  },
+  {
+    "id": "e2ef9e7a-5417-4ce1-8145-8658ae73c0cd",
+    "slug": "schiedam-jeneverstad",
+    "title": "Schiedam Jeneverstad",
+    "shortTitle": "NS-wandeling Schiedam Jeneverstad",
+    "description": "Parken, weilanden, sloten en kanalen overheersen de eerste helft van deze route. Terwijl je midden in het Groene Hart bent! Maar in Schiedam stort je je in het stadsgedruis. Wist je dat Schiedam stad van de jenever is? De route staat hier bol van de alcohol! \r\nVia de havens en een oude spoorlijn loop je naar het centrum van Rotterdam.",
+    "location": "Van station Delft Campus via Schiedam naar Rotterdam",
+    "distanceKm": 8.0,
+    "distanceText": "8 tot 19 km",
+    "provinces": [
+      "zuidholland"
+    ],
+    "types": [
+      "stadenomgeving"
+    ],
+    "suitableFor": [
+      "honden"
+    ],
+    "pavedPercentage": 75,
+    "image": "https://www.ns.nl/binaries/_ht_1522055713433/tegel/content/gallery/ns-nl/dagjeuit-hero-afbeeldingen/wandelingen/ns-wandeling-schiedam-jeneverstad_hero.jpg",
+    "nsUrl": "https://www.ns.nl/dagje-uit/wandelen/schiedam-jeneverstad.html",
+    "wandelnetId": "661",
+    "wandelnetUrl": "https://www.wandelnet.nl/wandelroute/661/Schiedam-Jeneverstad",
+    "gpxUrl": "https://wandelnet.api.routemaker.nl/content/gpx/wandelnet/661.gpx",
+    "gpxFile": "gpx/schiedam-jeneverstad.gpx"
+  },
+  {
+    "id": "ec31e930-7d50-438b-9fac-d9b3c81f9c31",
+    "slug": "uiterwaarden-van-cortenoever",
+    "title": "Uiterwaarden van Cortenoever",
+    "shortTitle": "NS-wandeling Uiterwaarden van Cortenoever",
+    "description": "Cortenoever is een piepklein plaatsje in de gemeente Brummen. Hier beginnen de uiterwaarden van de IJssel, een natuurgebied van Staatsbosbeheer. Vanaf de oude dijk kijk je zó de uiterwaarden in. Je kunt de route verlengen met een Laarzenpad van 4 km, dwars door een natuurreservaat. Houd wel rekening met het broedseizoen!",
+    "location": "Van station Brummen naar station Zutphen.",
+    "distanceKm": 14.0,
+    "distanceText": "14 of 17,5 km",
+    "provinces": [
+      "gelderland"
+    ],
+    "types": [
+      "stadenomgeving"
+    ],
+    "suitableFor": [
+      "honden"
+    ],
+    "pavedPercentage": 65,
+    "image": "https://www.ns.nl/binaries/_ht_1579865671950/tegel/content/gallery/ns-nl/dagjeuit-hero-afbeeldingen/wandelingen/ns-wandeling-uiterwaarden-van-cortenoever_hero.jpg",
+    "nsUrl": "https://www.ns.nl/dagje-uit/wandelen/uiterwaarden-van-cortenoever.html",
+    "wandelnetId": "660",
+    "wandelnetUrl": "https://www.wandelnet.nl/wandelroute/660/Uiterwaarden-van-Cortenoever",
+    "gpxUrl": "https://wandelnet.api.routemaker.nl/content/gpx/wandelnet/660.gpx",
+    "gpxFile": "gpx/uiterwaarden-van-cortenoever.gpx"
+  },
+  {
+    "id": "49c88571-2e33-42aa-93b4-ba42ada3f4ad",
+    "slug": "waterlinie-culemborg",
+    "title": "NS-wandeling Waterlinie Culemborg",
+    "shortTitle": "Forten en bunkers van de Hollandse Waterlinie",
+    "description": "Forten, bunkers en ‘inundatiekanalen’, je komt het onderweg allemaal tegen. Ze maken deel uit van de Nieuwe Hollandse Waterlinie, een verdedigingslinie uit vroeger tijden. Tip: loop deze route in het voorjaar of de zomer! Dan kun je met de Liniepont de Lek oversteken, of door uiterwaardengebied de Steenwaard struinen.",
+    "location": "Van station Houten Castellum naar station Culemborg",
+    "distanceKm": 7.0,
+    "distanceText": "7 tot 17 km",
+    "provinces": [
+      "gelderland",
+      "utrecht"
+    ],
+    "types": [
+      "waterlandenrivieren"
+    ],
+    "suitableFor": [],
+    "pavedPercentage": 50,
+    "image": "https://www.ns.nl/binaries/_ht_1490275019009/tegel/content/gallery/ns-nl/dagjeuit-hero-afbeeldingen/wandelingen/ns-wandeling-waterlinie-culemborg-hero.jpg",
+    "nsUrl": "https://www.ns.nl/dagje-uit/wandelen/waterlinie-culemborg.html",
+    "wandelnetId": "659",
+    "wandelnetUrl": "https://www.wandelnet.nl/wandelroute/659/Waterlinie-Culemborg",
+    "gpxUrl": "https://wandelnet.api.routemaker.nl/content/gpx/wandelnet/659.gpx",
+    "gpxFile": "gpx/waterlinie-culemborg.gpx"
+  },
+  {
+    "id": "1c6ebeb7-73c4-40bc-afc0-a3befce1e9b0",
+    "slug": "hierdense-poort",
+    "title": "NS-wandeling Hierdense Poort",
+    "shortTitle": "Bossen en heidevelden bij de Hierdense Poort",
+    "description": "Tussen Nunspeet en Harderwijk ligt een afwisselend gebied waar je heerlijk kunt wandelen. Door dichte bossen, lange heidevelden en dwars over het uitgestrekte Hulshorsterzand. Via landgoed De Essenburgh met gelijknamig kasteel en molen De Hoop loop je naar de Vischpoort, waarachter het historische centrum van Harderwijk op je ligt te wachten.",
+    "location": "Van station Nunspeet naar station Harderwijk.",
+    "distanceKm": 20.0,
+    "distanceText": "10 tot 20 km",
+    "provinces": [
+      "gelderland"
+    ],
+    "types": [
+      "bos",
+      "heideenzand",
+      "boerenland"
+    ],
+    "suitableFor": [
+      "honden"
+    ],
+    "pavedPercentage": 60,
+    "image": "https://www.ns.nl/binaries/_ht_1490273799761/tegel/content/gallery/ns-nl/dagjeuit-hero-afbeeldingen/wandelingen/ns-wandeling-hierdens-poort-hero.jpg",
+    "nsUrl": "https://www.ns.nl/dagje-uit/wandelen/hierdense-poort.html",
+    "wandelnetId": "670",
+    "wandelnetUrl": "https://www.wandelnet.nl/wandelroute/670/Hierdense-Poort",
+    "gpxUrl": "https://wandelnet.api.routemaker.nl/content/gpx/wandelnet/670.gpx",
+    "gpxFile": "gpx/hierdense-poort.gpx"
+  },
+  {
+    "id": "0bb14db6-1b64-40d5-b052-0d1ddb4b6af7",
+    "slug": "limburgs-plateau",
+    "title": "NS-wandeling Limburgs Plateau",
+    "shortTitle": "Landweggetjes op het Limburgse Plateau",
+    "description": "Idyllische landweggetjes, slingerende bospaden en holle wegen leiden je door een prachtig glooiend Limburgs landschap, dat wordt afgewisseld met her en der verspreid liggende kleine dorpjes. Je eindigt in het gezellige centrum van Sittard met veel culturele bezienswaardigheden.",
+    "location": "Van station Spaubeek naar station Sittard",
+    "distanceKm": 11.0,
+    "distanceText": "6,5 tot 11 km",
+    "provinces": [
+      "limburg"
+    ],
+    "types": [
+      "bos",
+      "boerenland"
+    ],
+    "suitableFor": [
+      "honden"
+    ],
+    "pavedPercentage": 50,
+    "image": "https://www.ns.nl/binaries/_ht_1490266310361/tegel/content/gallery/ns-nl/dagjeuit-hero-afbeeldingen/wandelingen/ns-wandeling-limburgs-plateau-hero.jpg",
+    "nsUrl": "https://www.ns.nl/dagje-uit/wandelen/limburgs-plateau.html",
+    "wandelnetId": "667",
+    "wandelnetUrl": "https://www.wandelnet.nl/wandelroute/667/Limburgs-Plateau",
+    "gpxUrl": "https://wandelnet.api.routemaker.nl/content/gpx/wandelnet/667.gpx",
+    "gpxFile": "gpx/limburgs-plateau.gpx"
+  },
+  {
+    "id": "c00d71bf-b348-4a66-a5b4-b3080be17d0d",
+    "slug": "eiland-van-dordrecht",
+    "title": "NS-wandeling Eiland van Dordrecht",
+    "shortTitle": "Door het oude stadscentrum van Dordrecht",
+    "description": "Deze korte wandeling biedt je volop de gelegenheid om het sfeervolle, oude stadshart van Dordrecht te leren kennen. Je start in het groen, met rust en ruimte alom. Maar de stad komt steeds dichterbij. En, waar je ook bent, het water is nooit ver weg.",
+    "location": "Wandel van station Dordrecht Stadspolders naar station Dordrecht.",
+    "distanceKm": 10.0,
+    "distanceText": "10 km",
+    "provinces": [
+      "zuidholland"
+    ],
+    "types": [
+      "stadenomgeving",
+      "waterlandenrivieren"
+    ],
+    "suitableFor": [
+      "honden"
+    ],
+    "pavedPercentage": 75,
+    "image": "https://www.ns.nl/binaries/_ht_1579867987253/tegel/content/gallery/ns-nl/dagjeuit-hero-afbeeldingen/wandelingen/ns-wandeling-eiland-van-dordrecht-hero.jpg",
+    "nsUrl": "https://www.ns.nl/dagje-uit/wandelen/eiland-van-dordrecht.html",
+    "wandelnetId": "673",
+    "wandelnetUrl": "https://www.wandelnet.nl/wandelroute/673/Eiland-van-Dordrecht",
+    "gpxUrl": "https://wandelnet.api.routemaker.nl/content/gpx/wandelnet/673.gpx",
+    "gpxFile": "gpx/eiland-van-dordrecht.gpx"
+  },
+  {
+    "id": "2aa60baa-83fc-424d-8b3f-bc56562addb4",
+    "slug": "kennermerduinen",
+    "title": "NS-wandeling Kennemerduinen",
+    "shortTitle": "Kennemerduinen en Zandvoort aan Zee",
+    "description": "Wat is er nou fijner dan wandelen door de duinen? Ontdek eerst de afwisselende landgoederen Duin- en Kruidberg en Midden Herenduin. Daarna kun je kiezen om over het strand te wandelen of via de Kennemerduinen. Hier wisselen bos, struweel en duingras elkaar af.",
+    "location": "Van station Santpoort Noord naar Overveen of Zandvoort",
+    "distanceKm": 14.5,
+    "distanceText": "14,5 of 16 km",
+    "provinces": [
+      "noordholland"
+    ],
+    "types": [
+      "duinenenstrand",
+      "landgoederen"
+    ],
+    "suitableFor": [],
+    "pavedPercentage": null,
+    "image": "https://www.ns.nl/binaries/_ht_1479202493752/tegel/content/gallery/ns-nl/dagjeuit-hero-afbeeldingen/wandelingen/ns-wandeling-kennemerduinen-hero.jpg",
+    "nsUrl": "https://www.ns.nl/dagje-uit/wandelen/kennermerduinen.html",
+    "wandelnetId": "116",
+    "wandelnetUrl": "https://www.wandelnet.nl/wandelroute/116/Kennemerduinen",
+    "gpxUrl": "https://wandelnet.api.routemaker.nl/content/gpx/wandelnet/116.gpx",
+    "gpxFile": "gpx/kennermerduinen.gpx"
+  },
+  {
+    "id": "4ec583d8-49e1-4e6e-8f33-8669bc731465",
+    "slug": "strabrechtse-heide",
+    "title": "NS-wandeling Strabrechtse Heide",
+    "shortTitle": "Op de grote stille Strabrechtse Heide",
+    "description": "Via het riviertje De Kleine Dommel loop je Geldrop uit om in een prachtig natuurgebied te belanden. Het beekdal van de Kleine Dommel gaat hier geleidelijk over in de Strabrechtse Heide. Ofwel: ‘de grote stille heide’. Aan het eind voert de wandelroute je langs het kasteel van Heeze.",
+    "location": "Van station Geldrop naar Heeze",
+    "distanceKm": 13.0,
+    "distanceText": "13 of 17 km",
+    "provinces": [
+      "noordbrabant"
+    ],
+    "types": [
+      "heideenzand",
+      "landgoederen"
+    ],
+    "suitableFor": [],
+    "pavedPercentage": 45,
+    "image": "https://www.ns.nl/binaries/_ht_1579868587825/tegel/content/gallery/ns-nl/dagjeuit-hero-afbeeldingen/wandelingen/ns-wandeling-strabrechtse-heide-hero.jpg",
+    "nsUrl": "https://www.ns.nl/dagje-uit/wandelen/strabrechtse-heide.html",
+    "wandelnetId": "125",
+    "wandelnetUrl": "https://www.wandelnet.nl/wandelroute/125/Strabrechtse-Heide",
+    "gpxUrl": "https://wandelnet.api.routemaker.nl/content/gpx/wandelnet/125.gpx",
+    "gpxFile": "gpx/strabrechtse-heide.gpx"
+  },
+  {
+    "id": "b9779b5e-7e76-494b-a656-605e1753c703",
+    "slug": "wezepsche-heide",
+    "title": "NS-wandeling Wezepsche Heide",
+    "shortTitle": "In het spoor van de Hanze over de Wezepsche Heide",
+    "description": "De historische binnensteden van Zwolle en Hattem zijn zeer de moeite waard. Ga je mee naar deze verrassende Hanzesteden? De wandelroute erheen leidt je door het bos, over de heide en langs de IJssel.",
+    "location": "Van station Wezep naar Zwolle.",
+    "distanceKm": 7.5,
+    "distanceText": "7,5 tot 16 km",
+    "provinces": [
+      "overijssel"
+    ],
+    "types": [
+      "heideenzand",
+      "stadenomgeving",
+      "waterlandenrivieren"
+    ],
+    "suitableFor": [
+      "honden"
+    ],
+    "pavedPercentage": null,
+    "image": "https://www.ns.nl/binaries/_ht_1479156631268/tegel/content/gallery/ns-nl/dagjeuit-hero-afbeeldingen/wandelingen/ns-wandeling-wezepsche-heide-hero.jpg",
+    "nsUrl": "https://www.ns.nl/dagje-uit/wandelen/wezepsche-heide.html",
+    "wandelnetId": "658",
+    "wandelnetUrl": "https://www.wandelnet.nl/wandelroute/658/Wezepsche-Heide-Zwolle",
+    "gpxUrl": "https://wandelnet.api.routemaker.nl/content/gpx/wandelnet/658.gpx",
+    "gpxFile": "gpx/wezepsche-heide.gpx"
+  },
+  {
+    "id": "4de2a514-7bab-42b4-8e21-96d11776f35b",
+    "slug": "den-haag",
+    "title": "NS-wandeling Den Haag",
+    "shortTitle": "Door chique Den Haag naar de Scheveningse kust",
+    "description": "Loop je mee dwars door chique Den Haag naar de Scheveningse kust? Bewonder onderweg monumentale panden en prachtige parken, ga even een museum in of shop in karakteristieke winkeltjes. Aan het eind van de wandeling kun je heerlijk genieten van het strand.",
+    "location": "Stadswandeling vanaf station Den Haag Centraal",
+    "distanceKm": 8.0,
+    "distanceText": "8 of 19 km",
+    "provinces": [
+      "zuidholland"
+    ],
+    "types": [
+      "duinenenstrand",
+      "stadenomgeving"
+    ],
+    "suitableFor": [
+      "honden"
+    ],
+    "pavedPercentage": null,
+    "image": "https://www.ns.nl/binaries/_ht_1579875598473/tegel/content/gallery/ns-nl/dagjeuit-hero-afbeeldingen/wandelingen/ns-wandeling-den-haag-hero.jpg",
+    "nsUrl": "https://www.ns.nl/dagje-uit/wandelen/den-haag.html",
+    "wandelnetId": "675",
+    "wandelnetUrl": "https://www.wandelnet.nl/wandelroute/675/Den-Haag",
+    "gpxUrl": "https://wandelnet.api.routemaker.nl/content/gpx/wandelnet/675.gpx",
+    "gpxFile": "gpx/den-haag.gpx"
+  },
+  {
+    "id": "1eb6c3f1-1b1e-4199-bd0d-dc32d2e574b3",
+    "slug": "utrechtse-heuvelrug",
+    "title": "NS-wandeling Utrechtse Heuvelrug",
+    "shortTitle": "NS-wandeling Utrechtse Heuvelrug",
+    "description": "Op de Utrechtse Heuvelrug is het heerlijk wandelen. In het landgoed Bornia wisselen bos, heide en zandverstuivingen elkaar af. Het dorp Austerlitz kun je eigenlijk niet voorbij lopen; hier kun je heerlijk lunchen.",
+    "location": "Van station Driebergen-Zeist naar Maarn.",
+    "distanceKm": 8.0,
+    "distanceText": "8 of 15 km",
+    "provinces": [
+      "utrecht"
+    ],
+    "types": [
+      "bos",
+      "heideenzand"
+    ],
+    "suitableFor": [
+      "honden"
+    ],
+    "pavedPercentage": null,
+    "image": "https://www.ns.nl/binaries/_ht_1479132765446/tegel/content/gallery/ns-nl/dagjeuit-hero-afbeeldingen/wandelingen/ns-wandeling-utrechtse-heuvelrug-hero.jpg",
+    "nsUrl": "https://www.ns.nl/dagje-uit/wandelen/utrechtse-heuvelrug.html",
+    "wandelnetId": "126",
+    "wandelnetUrl": "https://www.wandelnet.nl/wandelroute/126/Utrechtse-Heuvelrug",
+    "gpxUrl": "https://wandelnet.api.routemaker.nl/content/gpx/wandelnet/126.gpx",
+    "gpxFile": "gpx/utrechtse-heuvelrug.gpx"
+  },
+  {
+    "id": "4f1e097e-fe44-42dd-bd5a-aff41ebe033a",
+    "slug": "warnsborn",
+    "title": "NS-wandeling Warnsborn",
+    "shortTitle": "Beleef de historie op landgoed Warnsborn",
+    "description": "Van Park Sonsbeek, het Nederlands Watermuseum en een historische waterradmolen tot de indrukwekkende Airborne begraafplaats. Neem voor deze wandeling vooral een hele dag de tijd, want met zoveel bezienswaardigheden onderweg wil je geen haast hebben. Je wandelt ook over de landgoederen Warnsborn, Vijverberg en Lichtenbeek.",
+    "location": "Van station Arnhem naar Oosterbeek of Wolfheze.",
+    "distanceKm": 11.0,
+    "distanceText": "11 of 20 km",
+    "provinces": [
+      "gelderland"
+    ],
+    "types": [
+      "bos",
+      "landgoederen"
+    ],
+    "suitableFor": [
+      "honden"
+    ],
+    "pavedPercentage": 23,
+    "image": "https://www.ns.nl/binaries/_ht_1479131693574/tegel/content/gallery/ns-nl/dagjeuit-hero-afbeeldingen/wandelingen/ns-wandeling-warnsborn--hero.jpg",
+    "nsUrl": "https://www.ns.nl/dagje-uit/wandelen/warnsborn.html",
+    "wandelnetId": "130",
+    "wandelnetUrl": "https://www.wandelnet.nl/wandelroute/130/Warnsborn",
+    "gpxUrl": "https://wandelnet.api.routemaker.nl/content/gpx/wandelnet/130.gpx",
+    "gpxFile": "gpx/warnsborn.gpx"
+  },
+  {
+    "id": "8c150cf9-8935-4a62-84db-932c5120a92a",
+    "slug": "noord-hollands-duinreservaat",
+    "title": "NS-wandeling Noord-Hollands Duinreservaat",
+    "shortTitle": "Veel afwisseling in het Noord-Hollands Duinreservaat",
+    "description": "Voor liefhebbers van natuur is deze NS-wandeling een topper. Met bos, open veld en duinen is er volop afwisseling. Onderweg kun je veel dieren zien: van aalscholvers tot Schotse hooglanders. Denk je dat je alles hebt gehad? Er wacht je nog strand en zee als spectaculair sluitstuk van deze route.",
+    "location": "Van station Castricum naar Egmond aan Zee",
+    "distanceKm": 15.0,
+    "distanceText": "15 km",
+    "provinces": [
+      "noordholland"
+    ],
+    "types": [
+      "bos",
+      "duinenenstrand"
+    ],
+    "suitableFor": [
+      "honden"
+    ],
+    "pavedPercentage": null,
+    "image": "https://www.ns.nl/binaries/_ht_1580113037125/tegel/content/gallery/ns-nl/dagjeuit-hero-afbeeldingen/wandelingen/ns-wandeling-noord-hollands-duinreservaat-hero.jpg",
+    "nsUrl": "https://www.ns.nl/dagje-uit/wandelen/noord-hollands-duinreservaat.html",
+    "wandelnetId": "124",
+    "wandelnetUrl": "https://www.wandelnet.nl/wandelroute/124/Noord-Hollands-Duinreservaat",
+    "gpxUrl": "https://wandelnet.api.routemaker.nl/content/gpx/wandelnet/124.gpx",
+    "gpxFile": "gpx/noord-hollands-duinreservaat.gpx"
+  },
+  {
+    "id": "61f6990a-714f-4195-a088-e4860cede6fd",
+    "slug": "sint-pietersberg",
+    "title": "NS-wandeling Sint-Pietersberg",
+    "shortTitle": "Stad en natuur rondom de Sint-Pietersberg.",
+    "description": "Een combinatie van stad en natuur. Je begint in het oude centrum van Maastricht. Dan klim je omhoog naar de Sint-Pietersberg om van het uitzicht te genieten. Langs het riviertje De Jeker loop je weer terug naar Maastricht. Daar is het goed toeven op een van de vele terrasjes.",
+    "location": "Rondwandeling vanaf station Maastricht.",
+    "distanceKm": 9.0,
+    "distanceText": "9 of 14 km",
+    "provinces": [
+      "limburg"
+    ],
+    "types": [
+      "stadenomgeving"
+    ],
+    "suitableFor": [
+      "honden"
+    ],
+    "pavedPercentage": null,
+    "image": "https://www.ns.nl/binaries/_ht_1586254218483/tegel/content/gallery/ns-nl/dagjeuit-hero-afbeeldingen/wandelingen/fort-sint-pieter-bij-maastricht.jpg",
+    "nsUrl": "https://www.ns.nl/dagje-uit/wandelen/sint-pietersberg.html",
+    "wandelnetId": "662",
+    "wandelnetUrl": "https://www.wandelnet.nl/wandelroute/662/Pietersberg-Maastricht",
+    "gpxUrl": "https://wandelnet.api.routemaker.nl/content/gpx/wandelnet/662.gpx",
+    "gpxFile": "gpx/sint-pietersberg.gpx"
+  },
+  {
+    "id": "0e1d5158-7766-4f51-b826-8af742eda954",
+    "slug": "land-van-ravenstein",
+    "title": "NS-wandeling Land van Ravenstein",
+    "shortTitle": "Rustiek wandelen in het Land van Ravenstein",
+    "description": "Wandel mee in dit landelijk gebied over smalle asfaltweggetjes en groene graspaden. De lange route voert je door de uiterwaarden van de Maas. De korte route gaat langs slaperige, oude dijkdorpjes. Tip: steek 's zomers met het pontje de Maas over en bezoek het middeleeuwse Batenburg.",
+    "location": "Rondwandeling vanaf station Ravenstein",
+    "distanceKm": 9.0,
+    "distanceText": "9 of 16 km",
+    "provinces": [
+      "noordbrabant"
+    ],
+    "types": [
+      "waterlandenrivieren"
+    ],
+    "suitableFor": [
+      "honden"
+    ],
+    "pavedPercentage": 65,
+    "image": "https://www.ns.nl/binaries/_ht_1478874207441/tegel/content/gallery/ns-nl/dagjeuit-hero-afbeeldingen/wandelingen/ns-wandeling-land-van-ravenstein-hero.jpg",
+    "nsUrl": "https://www.ns.nl/dagje-uit/wandelen/land-van-ravenstein.html",
+    "wandelnetId": "669",
+    "wandelnetUrl": "https://www.wandelnet.nl/wandelroute/669/Land-van-Ravenstein",
+    "gpxUrl": "https://wandelnet.api.routemaker.nl/content/gpx/wandelnet/669.gpx",
+    "gpxFile": "gpx/land-van-ravenstein.gpx"
+  },
+  {
+    "id": "9ddba33b-3984-4eea-8859-29fc2276b088",
+    "slug": "heiligenbergerbeek",
+    "title": "NS-wandeling Heiligenbergerbeek",
+    "shortTitle": "In het spoor van de Heiligenbergerbeek",
+    "description": "In het spoor van de Heiligenbergerbeek loop je door een bijzonder landschap met houtwallen en knotwilgen. Je eindigt in Amersfoort, waar nog een prachtige tocht door het historische centrum op je wacht.",
+    "location": "Via het Valleikanaal en de Heiligenbergerbeek naar de historische binnenstad van Amersfoort.",
+    "distanceKm": 14.0,
+    "distanceText": "14 of 17 km",
+    "provinces": [
+      "utrecht"
+    ],
+    "types": [
+      "landgoederen",
+      "stadenomgeving"
+    ],
+    "suitableFor": [],
+    "pavedPercentage": null,
+    "image": "https://www.ns.nl/binaries/_ht_1479218393224/tegel/content/gallery/ns-nl/dagjeuit-hero-afbeeldingen/wandelingen/ns-wandeling-heiligenbergbeek-alternatief-hero.jpg",
+    "nsUrl": "https://www.ns.nl/dagje-uit/wandelen/heiligenbergerbeek.html",
+    "wandelnetId": "99",
+    "wandelnetUrl": "https://www.wandelnet.nl/wandelroute/99/Heiligenbergerbeek",
+    "gpxUrl": "https://wandelnet.api.routemaker.nl/content/gpx/wandelnet/99.gpx",
+    "gpxFile": "gpx/heiligenbergerbeek.gpx"
+  },
+  {
+    "id": "2e123a95-3990-4fb4-ba62-b86742955f09",
+    "slug": "fort-de-roovere",
+    "title": "NS-wandeling Fort de Roovere",
+    "shortTitle": "Natuur en historie bij Fort de Roovere",
+    "description": "Natuur en historie, dat kom je tijdens deze wandeling volop tegen. Via Landgoed Zoomland, een gebied met bos, heide, stuifzand en moeras, kom je bij Fort de Roovere. De wandeling eindigt in Bergen op Zoom. Een ideale plek om je bourgondische hart nog even op te halen.",
+    "location": "Rondwandeling vanaf station Bergen op Zoom",
+    "distanceKm": 13.0,
+    "distanceText": "13 tot 18 km",
+    "provinces": [
+      "noordbrabant"
+    ],
+    "types": [
+      "bos",
+      "heideenzand"
+    ],
+    "suitableFor": [
+      "honden"
+    ],
+    "pavedPercentage": 65,
+    "image": "https://www.ns.nl/binaries/_ht_1580121291886/tegel/content/gallery/ns-nl/dagjeuit-hero-afbeeldingen/wandelingen/ns-wandeling-fort-de-roovere-hero.jpg",
+    "nsUrl": "https://www.ns.nl/dagje-uit/wandelen/fort-de-roovere.html",
+    "wandelnetId": "672",
+    "wandelnetUrl": "https://www.wandelnet.nl/wandelroute/672/Fort-de-Roovere",
+    "gpxUrl": "https://wandelnet.api.routemaker.nl/content/gpx/wandelnet/672.gpx",
+    "gpxFile": "gpx/fort-de-roovere.gpx"
+  },
+  {
+    "id": "d5fe8cff-9917-4238-88ad-17dbf05eb27f",
+    "slug": "amsterdam",
+    "title": "NS-wandeling Amsterdam",
+    "shortTitle": "Historisch wandelen door Amsterdam",
+    "description": "Een wandeling door hartje Amsterdam, maar dan net even anders. Zo volg je het Westerborkpad, wat het verhaal vertelt over de Jodenvervolging uit de Tweede Wereldoorlog.",
+    "location": "Van Amsterdam Centraal via het Westerborkpad naar Amsterdam Muiderpoort.",
+    "distanceKm": 8.5,
+    "distanceText": "8,5 of 11 km",
+    "provinces": [
+      "noordholland"
+    ],
+    "types": [
+      "stadenomgeving"
+    ],
+    "suitableFor": [
+      "honden"
+    ],
+    "pavedPercentage": null,
+    "image": "https://www.ns.nl/binaries/_ht_1580123214825/tegel/content/gallery/ns-nl/dagjeuit-hero-afbeeldingen/wandelingen/ns-wandeling-amsterdam-hero.jpg",
+    "nsUrl": "https://www.ns.nl/dagje-uit/wandelen/amsterdam.html",
+    "wandelnetId": "131",
+    "wandelnetUrl": "https://www.wandelnet.nl/wandelroute/131/Amsterdam-via-Westerborkpad",
+    "gpxUrl": "https://wandelnet.api.routemaker.nl/content/gpx/wandelnet/131.gpx",
+    "gpxFile": "gpx/amsterdam.gpx"
+  },
+  {
+    "id": "5a432742-9245-46ee-a83b-f333919e826e",
+    "slug": "beerschoten",
+    "title": "NS-wandeling Beerschoten",
+    "shortTitle": "Via bunkers en forten op weg naar Beerschoten",
+    "description": "Een beetje wandelaar moet een keer over het pad langs de Kromme Rijn naar Rhijnauwen gelopen zijn. Je loopt er prachtig tussen de forten door en langs de bunkers van de Hollandse Waterlinie. Het leuke, levendige theehuis vraagt gewoon om een uitgebreide tussenstop.",
+    "location": "Van station Bunnik naar Bilthoven",
+    "distanceKm": 6.0,
+    "distanceText": "6 tot 17 km",
+    "provinces": [
+      "utrecht"
+    ],
+    "types": [
+      "stadenomgeving"
+    ],
+    "suitableFor": [
+      "honden"
+    ],
+    "pavedPercentage": null,
+    "image": "https://www.ns.nl/binaries/_ht_1580124226804/tegel/content/gallery/ns-nl/dagjeuit-hero-afbeeldingen/wandelingen/ns-wandeling-beerschoten-hero.jpg",
+    "nsUrl": "https://www.ns.nl/dagje-uit/wandelen/beerschoten.html",
+    "wandelnetId": "678",
+    "wandelnetUrl": "https://www.wandelnet.nl/wandelroute/678/Beerschoten-Bilthoven",
+    "gpxUrl": "https://wandelnet.api.routemaker.nl/content/gpx/wandelnet/678.gpx",
+    "gpxFile": "gpx/beerschoten.gpx"
+  },
+  {
+    "id": "3b7a15d2-7102-467e-b380-aa275216829d",
+    "slug": "landgoed-groeneveld",
+    "title": "NS-wandeling Landgoed Groeneveld",
+    "shortTitle": "Ervaar de romantiek op Landgoed Groeneveld",
+    "description": "Een sprookjesachtig kasteel, een romantisch landgoed in een idyllische omgeving. Zie jij jezelf er al rondlopen? Het kan met deze NS-wandeling. Tip: bekijk de tentoonstelling in kasteel Groeneveld en trakteer jezelf op iets lekkers in Grand café Groeneveld gevestigd in het Koetshuis.",
+    "location": "Van station Baarn naar Hilversum Media Park",
+    "distanceKm": 8.0,
+    "distanceText": "8 tot 15 km",
+    "provinces": [
+      "noordholland",
+      "utrecht"
+    ],
+    "types": [
+      "heideenzand",
+      "landgoederen"
+    ],
+    "suitableFor": [
+      "honden"
+    ],
+    "pavedPercentage": null,
+    "image": "https://www.ns.nl/binaries/_ht_1478852970661/tegel/content/gallery/ns-nl/dagjeuit-hero-afbeeldingen/wandelingen/ns-wandeling-landgoed-groeneveld-hero.jpg",
+    "nsUrl": "https://www.ns.nl/dagje-uit/wandelen/landgoed-groeneveld.html",
+    "wandelnetId": "117",
+    "wandelnetUrl": "https://www.wandelnet.nl/wandelroute/117/Landgoed-Groeneveld",
+    "gpxUrl": "https://wandelnet.api.routemaker.nl/content/gpx/wandelnet/117.gpx",
+    "gpxFile": "gpx/landgoed-groeneveld.gpx"
+  },
+  {
+    "id": "11070472-0046-4b95-90cb-200f650221f0",
+    "slug": "mastbos",
+    "title": "NS-wandeling Mastbos",
+    "shortTitle": "Geniet van de groene oase Mastbos en Breda",
+    "description": "Het Mastbos met z’n mooie vennen is een groene oase net buiten Breda. Je loopt hier door een van de oudste aangeplante naaldbossen van Nederland. Ontdek daarna bruisend Breda. Op de Grote Markt kun je jouw wandeling perfect afsluiten in een van de gezellige horecagelegenheden.",
+    "location": "Rondwandeling vanaf station Breda",
+    "distanceKm": 11.0,
+    "distanceText": "11 of 14 km",
+    "provinces": [
+      "noordbrabant"
+    ],
+    "types": [
+      "landgoederen",
+      "stadenomgeving"
+    ],
+    "suitableFor": [
+      "honden"
+    ],
+    "pavedPercentage": null,
+    "image": "https://www.ns.nl/binaries/_ht_1478798118261/tegel/content/gallery/ns-nl/dagjeuit-hero-afbeeldingen/wandelingen/ns-wandeling-mastbos-hero.jpg",
+    "nsUrl": "https://www.ns.nl/dagje-uit/wandelen/mastbos.html",
+    "wandelnetId": "666",
+    "wandelnetUrl": "https://www.wandelnet.nl/wandelroute/666/Mastbos-Breda",
+    "gpxUrl": "https://wandelnet.api.routemaker.nl/content/gpx/wandelnet/666.gpx",
+    "gpxFile": "gpx/mastbos.gpx"
+  },
+  {
+    "id": "47607ef9-f301-4afd-9383-c0813bbc9cc0",
+    "slug": "beukenburg",
+    "title": "NS-wandeling Beukenburg",
+    "shortTitle": "Langs landgoed Beukenburg, met zicht op de Dom",
+    "description": "Van de Kees Boekeschool waar Prinses Beatrix en haar zussen op zaten, tot de Dom in het stadshart van Utrecht. Onderweg is het decor al net zo afwisselend, want je loopt over brede beukenlanen, komt langs landgoed Beukenburg en langs de Hooge Kampse Plas. Steeds met zicht op de Dom.",
+    "location": "Van station Bilthoven naar Utrecht Centraal.",
+    "distanceKm": 14.0,
+    "distanceText": "14 km",
+    "provinces": [
+      "utrecht"
+    ],
+    "types": [
+      "bos",
+      "stadenomgeving"
+    ],
+    "suitableFor": [
+      "honden"
+    ],
+    "pavedPercentage": null,
+    "image": "https://www.ns.nl/binaries/_ht_1478797153490/tegel/content/gallery/ns-nl/dagjeuit-hero-afbeeldingen/wandelingen/ns-wandeling-beukenburg-hero.jpg",
+    "nsUrl": "https://www.ns.nl/dagje-uit/wandelen/beukenburg.html",
+    "wandelnetId": "114",
+    "wandelnetUrl": "https://www.wandelnet.nl/wandelroute/114/Beukenburg",
+    "gpxUrl": "https://wandelnet.api.routemaker.nl/content/gpx/wandelnet/114.gpx",
+    "gpxFile": "gpx/beukenburg.gpx"
+  },
+  {
+    "id": "9a99ce94-15cd-4726-b9ce-6e110d859a90",
+    "slug": "elsterberg",
+    "title": "NS-wandeling Elsterberg",
+    "shortTitle": "Klimmen en dalen bij de Elsterberg",
+    "description": "Houd je van klimmen en dalen? Tijdens deze wandeling word je ervoor beloond met prachtige vergezichten. Vanaf de Elsterberg kijk je uit over de Gelderse Vallei. Als je even doorloopt, kom je verderop langs het Egelmeer. Goede kans dat je in dit voormalig hoogveengebied veel dieren spot.",
+    "location": "Van station Rhenen naar Veenendaal West",
+    "distanceKm": 11.0,
+    "distanceText": "11 of 17,5 km",
+    "provinces": [
+      "utrecht"
+    ],
+    "types": [
+      "bos",
+      "heideenzand"
+    ],
+    "suitableFor": [
+      "honden"
+    ],
+    "pavedPercentage": null,
+    "image": "https://www.ns.nl/binaries/_ht_1478789459556/tegel/content/gallery/ns-nl/dagjeuit-hero-afbeeldingen/wandelingen/ns-wandeling-elsterberg-hero.jpg",
+    "nsUrl": "https://www.ns.nl/dagje-uit/wandelen/elsterberg.html",
+    "wandelnetId": "115",
+    "wandelnetUrl": "https://www.wandelnet.nl/wandelroute/115/Elsterberg",
+    "gpxUrl": "https://wandelnet.api.routemaker.nl/content/gpx/wandelnet/115.gpx",
+    "gpxFile": "gpx/elsterberg.gpx"
+  },
+  {
+    "id": "14236a9a-8456-496c-aff4-f39391c84016",
+    "slug": "veluwezoom",
+    "title": "NS-wandeling Veluwezoom",
+    "shortTitle": "NS-wandeling Veluwezoom",
+    "description": "Deze NS-wandeling is een echte aanrader. Eerst loop je door de heuvelachtige Onzalige Bosschen, die vroeger tot het jachtdomein van de Prinsen van Oranje behoorden. Op dit gedeelte van de route moet je flink klimmen en dalen. Vervolgens ontdek je de indrukwekkende heide bij de Posbank en de Zijpenberg.",
+    "location": "Bosrijke route van station Dieren naar Rheden of Velp",
+    "distanceKm": 11.0,
+    "distanceText": "11 of 15 km",
+    "provinces": [
+      "gelderland"
+    ],
+    "types": [
+      "bos",
+      "heideenzand"
+    ],
+    "suitableFor": [
+      "honden"
+    ],
+    "pavedPercentage": null,
+    "image": "https://www.ns.nl/binaries/_ht_1580292581267/tegel/content/gallery/ns-nl/dagjeuit-hero-afbeeldingen/wandelingen/ns-wandeling-veluwezoom-hero.jpg",
+    "nsUrl": "https://www.ns.nl/dagje-uit/wandelen/veluwezoom.html",
+    "wandelnetId": "127",
+    "wandelnetUrl": "https://www.wandelnet.nl/wandelroute/127/Veluwezoom",
+    "gpxUrl": "https://wandelnet.api.routemaker.nl/content/gpx/wandelnet/127.gpx",
+    "gpxFile": "gpx/veluwezoom.gpx"
+  },
+  {
+    "id": "fa7a95dc-e6ee-4e20-b167-6aa53f3b28b9",
+    "slug": "de-vuursche",
+    "title": "NS-wandeling De Vuursche",
+    "shortTitle": "Oude bomen en beukenlanen in De Vuursche",
+    "description": "In de 17e eeuw was dit nog een uitgestrekt heidegebied. Tot er allerlei buitenverblijven verrezen met weelderige tuinen en fraaie parkbossen. Nu wandel je in bossen waarin monumentale bomen en oude beukenlanen liggen verscholen. Kies jij in het bosdorp Lage Vuursche voor pannenkoeken of poffertjes?",
+    "location": "Van station Baarn naar Hollandsche Rading",
+    "distanceKm": 9.0,
+    "distanceText": "9 of 13 km",
+    "provinces": [
+      "utrecht"
+    ],
+    "types": [
+      "bos",
+      "heideenzand"
+    ],
+    "suitableFor": [
+      "honden"
+    ],
+    "pavedPercentage": null,
+    "image": "https://www.ns.nl/binaries/_ht_1580126460929/tegel/content/gallery/ns-nl/dagjeuit-hero-afbeeldingen/wandelingen/ns-wandeling-de-vuursche-hero.jpg",
+    "nsUrl": "https://www.ns.nl/dagje-uit/wandelen/de-vuursche.html",
+    "wandelnetId": "129",
+    "wandelnetUrl": "https://www.wandelnet.nl/wandelroute/129/De-Vuursche",
+    "gpxUrl": "https://wandelnet.api.routemaker.nl/content/gpx/wandelnet/129.gpx",
+    "gpxFile": "gpx/de-vuursche.gpx"
+  },
+  {
+    "id": "3584b796-d5da-4f10-b384-39be8b1db7da",
+    "slug": "meijendel",
+    "title": "NS-wandeling Meijendel",
+    "shortTitle": "Wandelen richting de duinen van Meijendel",
+    "description": "Dit is een leuke, afwisselende wandelroute door bos en duin. Je zult veel bekende gebouwen en plaatsen tegenkomen. Wat dacht je van paleis Huis Ten Bosch, het mooie landgoed Clingendael en de bekende Waalsdorpervlakte? Als je meer wilt weten over de duinen, vind je bij boerderij Meijendel een bezoekerscentrum.",
+    "location": "Van station Den Haag Centraal naar Wassenaar",
+    "distanceKm": 13.0,
+    "distanceText": "13 km",
+    "provinces": [
+      "zuidholland"
+    ],
+    "types": [
+      "bos",
+      "duinenenstrand"
+    ],
+    "suitableFor": [
+      "honden"
+    ],
+    "pavedPercentage": null,
+    "image": "https://www.ns.nl/binaries/_ht_1580292891405/tegel/content/gallery/ns-nl/dagjeuit-hero-afbeeldingen/wandelingen/ns-wandeling-meijendel-hero.jpg",
+    "nsUrl": "https://www.ns.nl/dagje-uit/wandelen/meijendel.html",
+    "wandelnetId": "119",
+    "wandelnetUrl": "https://www.wandelnet.nl/wandelroute/119/Meijendel",
+    "gpxUrl": "https://wandelnet.api.routemaker.nl/content/gpx/wandelnet/119.gpx",
+    "gpxFile": "gpx/meijendel.gpx"
+  },
+  {
+    "id": "3a1be9f2-c6f7-485f-b741-22844fdf18a9",
+    "slug": "drentsche-aa",
+    "title": "NS-wandeling Drentsche Aa",
+    "shortTitle": "Het mooiste van Drenthe langs de Drentsche Aa",
+    "description": "Als je de allermooiste plekken van Drenthe wilt zien, hoef je alleen maar deze route te lopen. Geniet van diepjes (Drents voor beekjes), karakteristieke boerderijen en leuke plaatsjes zoals Rolde. Natuurlijk zie je ook hunebedden, want die mogen op deze route door het land van Bartje niet ontbreken.",
+    "location": "Rondwandeling vanaf station Assen",
+    "distanceKm": 10.0,
+    "distanceText": "10 of 15 km",
+    "provinces": [
+      "drenthe"
+    ],
+    "types": [
+      "boerenland",
+      "stadenomgeving"
+    ],
+    "suitableFor": [],
+    "pavedPercentage": null,
+    "image": "https://www.ns.nl/binaries/_ht_1580294142515/tegel/content/gallery/ns-nl/dagjeuit-hero-afbeeldingen/wandelingen/ns-wandeling-drentse-aa--hero.jpg",
+    "nsUrl": "https://www.ns.nl/dagje-uit/wandelen/drentsche-aa.html",
+    "wandelnetId": "674",
+    "wandelnetUrl": "https://www.wandelnet.nl/wandelroute/674/Drentsche-Aa",
+    "gpxUrl": "https://wandelnet.api.routemaker.nl/content/gpx/wandelnet/674.gpx",
+    "gpxFile": "gpx/drentsche-aa.gpx"
+  },
+  {
+    "id": "3173bef4-962d-4bab-9372-899749524bf1",
+    "slug": "kampina",
+    "title": "NS-wandeling Kampina",
+    "shortTitle": "Ervaar rust op de heide van de Kampina",
+    "description": "Ervaar de rust op de heide. Het enige wat je hier tegenkomt, zijn grazende schapen en runderen. Slenter verder door velden, bossen en langs vennen. Heb je dorst of trek gekregen? In Oisterwijk zijn genoeg horecagelegenheden om weer helemaal bij te komen van deze prachtige wandelroute.",
+    "location": "Van station Boxtel naar Oisterwijk",
+    "distanceKm": 18.0,
+    "distanceText": "18 km",
+    "provinces": [
+      "noordbrabant"
+    ],
+    "types": [
+      "bos",
+      "heideenzand"
+    ],
+    "suitableFor": [
+      "honden"
+    ],
+    "pavedPercentage": null,
+    "image": "https://www.ns.nl/binaries/_ht_1580127092368/tegel/content/gallery/ns-nl/dagjeuit-hero-afbeeldingen/wandelingen/ns-wandeling-kampina-hero.jpg",
+    "nsUrl": "https://www.ns.nl/dagje-uit/wandelen/kampina.html",
+    "wandelnetId": "111",
+    "wandelnetUrl": "https://www.wandelnet.nl/wandelroute/111/Kampina",
+    "gpxUrl": "https://wandelnet.api.routemaker.nl/content/gpx/wandelnet/111.gpx",
+    "gpxFile": "gpx/kampina.gpx"
+  },
+  {
+    "id": "f6d2e935-8d62-48dd-b9e3-fdb3f29da210",
+    "slug": "vughtse-lunetten",
+    "title": "NS-wandeling Vughtse Lunetten",
+    "shortTitle": "Over historisch gebied van de Vughtse Lunetten",
+    "description": "Vanaf station Vught loop je naar de voormalige Lunetten en naar Kamp Vught. Een mooi graspad brengt je naar Fort Isabella, onderdeel van de Zuiderwaterlinie. Vlak voor ’s-Hertogenbosch volg je de stadswallen, maar je kunt ook door het groene Bossche Broek wandelen. Je eindigt in de oude binnenstad van ’s-Hertogenbosch met tal van monumenten, horeca en winkels. Heb je de echte Bossche Bol al eens geproefd?",
+    "location": "Van station Vught naar Den Bosch",
+    "distanceKm": 9.0,
+    "distanceText": "9 of 10 km",
+    "provinces": [
+      "noordbrabant"
+    ],
+    "types": [
+      "stadenomgeving"
+    ],
+    "suitableFor": [
+      "honden"
+    ],
+    "pavedPercentage": null,
+    "image": "https://www.ns.nl/binaries/_ht_1580295996216/tegel/content/gallery/ns-nl/dagjeuit-hero-afbeeldingen/wandelingen/ns-wandeling-vughtse-lunetten-hero.jpg",
+    "nsUrl": "https://www.ns.nl/dagje-uit/wandelen/vughtse-lunetten.html",
+    "wandelnetId": "128",
+    "wandelnetUrl": "https://www.wandelnet.nl/wandelroute/128/Vughtse-Lunetten",
+    "gpxUrl": "https://wandelnet.api.routemaker.nl/content/gpx/wandelnet/128.gpx",
+    "gpxFile": "gpx/vughtse-lunetten.gpx"
+  },
+  {
+    "id": "c0fe720b-23d6-4ea5-ba16-81517029f21b",
+    "slug": "belmonte",
+    "title": "NS-wandeling Belmonte",
+    "shortTitle": "Via bos en beken naar botanische tuin Belmonte",
+    "description": "In dit afwisselende landschap wandel je over landgoed Hoekelum en langs de slingerende Molenbeek. Neem op de Wageningse Berg de tijd om van het fraaie uitzicht over de Rijn en de Betuwe te genieten. Sluit je wandeling af in de beroemde tuin ‘Belmonte’ met prachtige magnolia's en rododendrons.",
+    "location": "Van station Ede-Wageningen naar busstation Wageningen",
+    "distanceKm": 12.0,
+    "distanceText": "12 of 18 km",
+    "provinces": [
+      "gelderland"
+    ],
+    "types": [
+      "bos",
+      "landgoederen"
+    ],
+    "suitableFor": [
+      "honden"
+    ],
+    "pavedPercentage": null,
+    "image": "https://www.ns.nl/binaries/_ht_1580299930839/tegel/content/gallery/ns-nl/dagjeuit-hero-afbeeldingen/wandelingen/ns-wandeling-belmonte-hero.jpg",
+    "nsUrl": "https://www.ns.nl/dagje-uit/wandelen/belmonte.html",
+    "wandelnetId": "113",
+    "wandelnetUrl": "https://www.wandelnet.nl/wandelroute/113/Belmonte",
+    "gpxUrl": "https://wandelnet.api.routemaker.nl/content/gpx/wandelnet/113.gpx",
+    "gpxFile": "gpx/belmonte.gpx"
+  },
+  {
+    "id": "7b8932d1-e63e-479b-bf4d-37eebb845c4e",
+    "slug": "leeuwarden",
+    "title": "NS-wandeling Leeuwarden",
+    "shortTitle": "Ontdek Leeuwarden",
+    "description": "Al eens kennisgemaakt met Leeuwarden? Je wandelt langs monumenten, grachten, bijzondere winkeltjes en talloze restaurantjes. Je kunt de route ook uitbreiden en een kijkje nemen in de voormalige land- en tuinbouwgebieden van Leeuwarden.",
+    "location": "Stadswandeling vanaf station Leeuwarden.",
+    "distanceKm": 6.5,
+    "distanceText": "6,5 of 12,5 km",
+    "provinces": [
+      "friesland"
+    ],
+    "types": [
+      "stadenomgeving"
+    ],
+    "suitableFor": [
+      "honden"
+    ],
+    "pavedPercentage": null,
+    "image": "https://www.ns.nl/binaries/_ht_1580394654123/tegel/content/gallery/ns-nl/dagjeuit-hero-afbeeldingen/wandelingen/ns-wandeling-leeuwarden-hero.jpg",
+    "nsUrl": "https://www.ns.nl/dagje-uit/wandelen/leeuwarden.html",
+    "wandelnetId": "668",
+    "wandelnetUrl": "https://www.wandelnet.nl/wandelroute/668/Leeuwarden",
+    "gpxUrl": "https://wandelnet.api.routemaker.nl/content/gpx/wandelnet/668.gpx",
+    "gpxFile": "gpx/leeuwarden.gpx"
+  },
+  {
+    "id": "f510f8db-861b-4b29-b3a1-755ed2ae265c",
+    "slug": "hemelse-berg",
+    "title": "NS-wandeling Hemelse Berg",
+    "shortTitle": "Historie en natuurschoon bij de Hemelse Berg",
+    "description": "Tussen Oosterbeek en Arnhem ligt een schitterend wandelgebied: de Hemelse Berg. Maar ook: Heveadorp, landgoed Duno, Westerbouwing en landgoed Mariëndaal. Wandel op en neer door de bossen, geniet van het uitzicht over de Rijn, struin door de uiterwaarden. Tijd over? Bezoek dan het centrum van Arnhem.",
+    "location": "Van station Oosterbeek naar Arnhem Centraal",
+    "distanceKm": 16.5,
+    "distanceText": "5 tot 16,5 km",
+    "provinces": [
+      "gelderland"
+    ],
+    "types": [
+      "landgoederen",
+      "stadenomgeving",
+      "waterlandenrivieren"
+    ],
+    "suitableFor": [
+      "honden"
+    ],
+    "pavedPercentage": null,
+    "image": "https://www.ns.nl/binaries/_ht_1580127543944/tegel/content/gallery/ns-nl/dagjeuit-hero-afbeeldingen/wandelingen/ns-wandeling-hemelse-berg-arnhem-hero.jpg",
+    "nsUrl": "https://www.ns.nl/dagje-uit/wandelen/hemelse-berg.html",
+    "wandelnetId": "671",
+    "wandelnetUrl": "https://www.wandelnet.nl/wandelroute/671/Hemelse-Berg-Arnhem",
+    "gpxUrl": "https://wandelnet.api.routemaker.nl/content/gpx/wandelnet/671.gpx",
+    "gpxFile": "gpx/hemelse-berg.gpx"
+  },
+  {
+    "id": "970a54ec-c770-4eaf-8da0-6a9356ad249a",
+    "slug": "rotterdam-maasstad",
+    "title": "NS-wandeling Rotterdam Maasstad",
+    "shortTitle": "Rotterdam Maasstad",
+    "description": "Wandel mee via groene singels naar het historische Delfshaven. Vanuit de Veerhaven vaar je de Maas over naar Hotel New York of je loopt de Erasmusbrug over. Tijdens deze NS-wandeling kun je op verschillende plaatsen de beroemde skyline en architectuur van Rotterdam bewonderen.",
+    "location": "Stadswandeling vanaf station Rotterdam Centraal.",
+    "distanceKm": 12.0,
+    "distanceText": "12 of 15 km",
+    "provinces": [
+      "zuidholland"
+    ],
+    "types": [
+      "stadenomgeving"
+    ],
+    "suitableFor": [
+      "honden"
+    ],
+    "pavedPercentage": null,
+    "image": "https://www.ns.nl/binaries/_ht_1478702477932/tegel/content/gallery/ns-nl/dagjeuit-hero-afbeeldingen/wandelingen/ns-wandeling-rotterdam-maasstad-hero.jpg",
+    "nsUrl": "https://www.ns.nl/dagje-uit/wandelen/rotterdam-maasstad.html",
+    "wandelnetId": "1083",
+    "wandelnetUrl": "https://www.wandelnet.nl/wandelroute/1083/Rotterdam-Maasstad",
+    "gpxUrl": "https://wandelnet.api.routemaker.nl/content/gpx/wandelnet/1083.gpx",
+    "gpxFile": "gpx/rotterdam-maasstad.gpx"
+  },
+  {
+    "id": "167d4022-8616-4d9e-b222-41c335613163",
+    "slug": "hollandse-kade",
+    "title": "NS-wandeling Hollandse Kade",
+    "shortTitle": "Vogels zien en horen langs de Hollandse Kade",
+    "description": "Een mooie route door het Groene Hart voor wie echt even 'buiten' wil zijn.",
+    "location": "Van station Breukelen naar station Woerden.",
+    "distanceKm": 12.0,
+    "distanceText": "12 of 17 km",
+    "provinces": [
+      "utrecht"
+    ],
+    "types": [
+      "boerenland",
+      "waterlandenrivieren"
+    ],
+    "suitableFor": [
+      "honden"
+    ],
+    "pavedPercentage": null,
+    "image": "https://www.ns.nl/binaries/_ht_1580395393159/tegel/content/gallery/ns-nl/dagjeuit-hero-afbeeldingen/wandelingen/ns-wandeling-hollandse-kade-hero.jpg",
+    "nsUrl": "https://www.ns.nl/dagje-uit/wandelen/hollandse-kade.html",
+    "wandelnetId": "103",
+    "wandelnetUrl": "https://www.wandelnet.nl/wandelroute/103/Hollandse-Kade",
+    "gpxUrl": "https://wandelnet.api.routemaker.nl/content/gpx/wandelnet/103.gpx",
+    "gpxFile": "gpx/hollandse-kade.gpx"
+  },
+  {
+    "id": "a3c39961-6e99-4ff9-8462-8cdd9d5383fb",
+    "slug": "lange-duinen",
+    "title": "NS-wandeling Lange Duinen",
+    "shortTitle": "Het prachtige stuifzandgebied de Lange Duinen",
+    "description": "Deze wandelroute voert je over onverharde wegen door het bos en langs zand, veel fijn los zand. De Korte en Lange Duinen zijn namelijk stuifzandgebieden en vanwege hun zeldzaamheid uitgeroepen tot aardkundige monumenten. Je hoeft dus niet per se naar zee te gaan om in de duinen te spelen.",
+    "location": "Van Station Amersfoort Centraal naar Soest Zuid of Hollandsche Rading.",
+    "distanceKm": 12.0,
+    "distanceText": "12 tot 22,5 km",
+    "provinces": [
+      "utrecht"
+    ],
+    "types": [
+      "bos",
+      "heideenzand"
+    ],
+    "suitableFor": [
+      "honden"
+    ],
+    "pavedPercentage": 20,
+    "image": "https://www.ns.nl/binaries/_ht_1478698286283/tegel/content/gallery/ns-nl/dagjeuit-hero-afbeeldingen/wandelingen/ns-wandeling-lange-duinen-hero.jpg",
+    "nsUrl": "https://www.ns.nl/dagje-uit/wandelen/lange-duinen.html",
+    "wandelnetId": "118",
+    "wandelnetUrl": "https://www.wandelnet.nl/wandelroute/118/Lange-Duinen",
+    "gpxUrl": "https://wandelnet.api.routemaker.nl/content/gpx/wandelnet/118.gpx",
+    "gpxFile": "gpx/lange-duinen.gpx"
+  },
+  {
+    "id": "cd8d7f2b-7ca4-408b-8ab9-83c1eb20b758",
+    "slug": "woldberg",
+    "title": "NS-wandeling Woldberg",
+    "shortTitle": "Wandeling over de bosrijke stuwwal Woldberg",
+    "description": "Mooie wandeling over een bosrijke stuwwal, langs weilanden en over het prachtige landgoed De Eese. Als je de uitkijktoren beklimt, kun je bij helder weer Heerenveen en Giethoorn zien. Voor wie hoogtevrees heeft of opziet tegen de 131 treden, is het goed toeven in het theehuis eronder.",
+    "location": "Rondwandeling vanaf station Steenwijk",
+    "distanceKm": 9.0,
+    "distanceText": "9 tot 17 km",
+    "provinces": [
+      "overijssel"
+    ],
+    "types": [
+      "bos",
+      "boerenland"
+    ],
+    "suitableFor": [
+      "honden"
+    ],
+    "pavedPercentage": null,
+    "image": "https://www.ns.nl/binaries/_ht_1479156631268/tegel/content/gallery/ns-nl/dagjeuit-hero-afbeeldingen/wandelingen/ns-wandeling-wezepsche-heide-hero.jpg",
+    "nsUrl": "https://www.ns.nl/dagje-uit/wandelen/woldberg.html",
+    "wandelnetId": "657",
+    "wandelnetUrl": "https://www.wandelnet.nl/wandelroute/657/Woldberg-Steenwijk",
+    "gpxUrl": "https://wandelnet.api.routemaker.nl/content/gpx/wandelnet/657.gpx",
+    "gpxFile": "gpx/woldberg.gpx"
+  },
+  {
+    "id": "f800f156-0667-4794-bc0d-49b30a8bbae2",
+    "slug": "de-bretten",
+    "title": "NS-wandeling De Bretten",
+    "shortTitle": "Avontuurlijk wandelen door De Bretten",
+    "description": "Houd je van een beetje avontuur? Ga dan wandelen in deze groene wildernis vol planten en dieren. Je struint over grasdijken, langs kanalen en slingerende paadjes. Wat oudere kinderen zullen deze route heel leuk vinden. Klim samen met hen over hekken of steek de sloot over met een trekpontje.",
+    "location": "Van station Halfweg-Zwanenburg naar Amsterdam Sloterdijk",
+    "distanceKm": 10.0,
+    "distanceText": "10 km",
+    "provinces": [
+      "noordholland"
+    ],
+    "types": [
+      "boerenland",
+      "waterlandenrivieren"
+    ],
+    "suitableFor": [
+      "honden"
+    ],
+    "pavedPercentage": 30,
+    "image": "https://www.ns.nl/binaries/_ht_1479203577171/tegel/content/gallery/ns-nl/dagjeuit-hero-afbeeldingen/wandelingen/ns-wandeling-de-bretten-hero.jpg",
+    "nsUrl": "https://www.ns.nl/dagje-uit/wandelen/de-bretten.html",
+    "wandelnetId": "676",
+    "wandelnetUrl": "https://www.wandelnet.nl/wandelroute/676/De-Bretten",
+    "gpxUrl": "https://wandelnet.api.routemaker.nl/content/gpx/wandelnet/676.gpx",
+    "gpxFile": "gpx/de-bretten.gpx"
+  }
+]

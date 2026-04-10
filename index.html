@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NS Wandelingen</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<style>
+  :root { --bg:#0f172a; --panel:#111827; --border:#1f2937; --text:#e5e7eb; --muted:#9ca3af; --accent:#ffc917; }
+  html, body { margin:0; height:100%; font-family: -apple-system, system-ui, sans-serif; background:var(--bg); color:var(--text); }
+  #app { display:flex; height:100vh; }
+  #sidebar { width:340px; flex:none; background:var(--panel); border-right:1px solid var(--border); display:flex; flex-direction:column; }
+  #sidebar header { padding:16px; border-bottom:1px solid var(--border); }
+  #sidebar h1 { margin:0 0 4px; font-size:18px; }
+  #sidebar .sub { color:var(--muted); font-size:12px; }
+  #search { width:100%; margin-top:10px; padding:8px 10px; background:#0b1220; border:1px solid var(--border); border-radius:6px; color:var(--text); font-size:13px; box-sizing:border-box; }
+  #list { flex:1; overflow-y:auto; }
+  .item { padding:12px 16px; border-bottom:1px solid var(--border); cursor:pointer; }
+  .item:hover { background:#0b1220; }
+  .item.active { background:#1e293b; border-left:3px solid var(--accent); padding-left:13px; }
+  .item .title { font-size:14px; font-weight:600; margin-bottom:2px; }
+  .item .meta { font-size:12px; color:var(--muted); }
+  #map { flex:1; }
+  .popup .popup-title { font-weight:600; font-size:14px; margin-bottom:4px; }
+  .popup .popup-meta { color:#555; font-size:12px; margin-bottom:6px; }
+  .popup .popup-desc { font-size:12px; line-height:1.4; margin-bottom:8px; max-width: 260px; }
+  .popup .popup-link { font-size:12px; color:#0066cc; text-decoration:none; }
+  .loading { padding:16px; color:var(--muted); font-size:13px; }
+</style>
+</head>
+<body>
+<div id="app">
+  <aside id="sidebar">
+    <header>
+      <h1>NS Wandelingen</h1>
+      <div class="sub" id="count">Laden…</div>
+      <input id="search" placeholder="Zoek op naam, provincie…">
+    </header>
+    <div id="list"><div class="loading">Loading routes…</div></div>
+  </aside>
+  <div id="map"></div>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+const map = L.map('map', { zoomControl: true }).setView([52.1, 5.3], 8);
+L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+  maxZoom: 20,
+  subdomains: 'abcd',
+  attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> &copy; <a href="https://carto.com/attributions">CARTO</a>'
+}).addTo(map);
+
+const COLORS = ['#e6194b','#3cb44b','#4363d8','#f58231','#911eb4','#42d4f4','#f032e6','#bfef45','#fabed4','#469990','#dcbeff','#9a6324','#800000','#aaffc3','#808000','#ffd8b1','#000075','#a9a9a9','#ffe119','#808080'];
+
+async function parseGpx(url) {
+  const xml = new DOMParser().parseFromString(await (await fetch(url)).text(), 'application/xml');
+  const pts = [];
+  xml.querySelectorAll('trkpt').forEach(p => {
+    pts.push([parseFloat(p.getAttribute('lat')), parseFloat(p.getAttribute('lon'))]);
+  });
+  return pts;
+}
+
+// Build popup DOM using textContent — never inject untrusted strings as HTML.
+function buildPopup(h) {
+  const root = document.createElement('div');
+  root.className = 'popup';
+  const title = document.createElement('div');
+  title.className = 'popup-title';
+  title.textContent = h.shortTitle || h.title || '';
+  const meta = document.createElement('div');
+  meta.className = 'popup-meta';
+  meta.textContent = `${h.location || ''} · ${h.distanceText || ''}`;
+  const desc = document.createElement('div');
+  desc.className = 'popup-desc';
+  desc.textContent = h.description || '';
+  const link = document.createElement('a');
+  link.className = 'popup-link';
+  link.href = h.nsUrl || '#';
+  link.target = '_blank';
+  link.rel = 'noopener';
+  link.textContent = 'Bekijk op ns.nl →';
+  root.append(title, meta, desc, link);
+  return root;
+}
+
+function buildListItem(h) {
+  const div = document.createElement('div');
+  div.className = 'item';
+  div.dataset.id = h.id;
+  const title = document.createElement('div');
+  title.className = 'title';
+  title.textContent = h.shortTitle || h.title || '';
+  const meta = document.createElement('div');
+  meta.className = 'meta';
+  meta.textContent = `${h.location || ''} · ${h.distanceText || ''}`;
+  div.append(title, meta);
+  return div;
+}
+
+(async () => {
+  const hikes = await (await fetch('hikes.json')).json();
+  const listEl = document.getElementById('list');
+  const searchEl = document.getElementById('search');
+  document.getElementById('count').textContent = `${hikes.length} routes`;
+
+  const layers = {};
+  const allBounds = L.latLngBounds([]);
+
+  listEl.textContent = '';
+  hikes.forEach(h => {
+    const item = buildListItem(h);
+    item.addEventListener('click', () => focusHike(h.id));
+    listEl.appendChild(item);
+  });
+
+  function setActive(id) {
+    document.querySelectorAll('.item').forEach(el => el.classList.toggle('active', el.dataset.id === id));
+  }
+  function focusHike(id) {
+    const rec = layers[id];
+    if (!rec) return;
+    setActive(id);
+    map.fitBounds(rec.layer.getBounds(), { padding: [40, 40] });
+    rec.layer.openPopup();
+  }
+
+  const queue = [...hikes.entries()];
+  const workers = Array.from({ length: 6 }, async () => {
+    while (queue.length) {
+      const [i, h] = queue.shift();
+      if (!h.gpxFile) continue;
+      try {
+        const pts = await parseGpx(h.gpxFile);
+        if (!pts.length) continue;
+        const color = COLORS[i % COLORS.length];
+        const line = L.polyline(pts, { color, weight: 3, opacity: 0.85 });
+        line.bindPopup(buildPopup(h));
+        line.on('click', () => setActive(h.id));
+        line.addTo(map);
+        layers[h.id] = { layer: line, hike: h };
+        allBounds.extend(line.getBounds());
+      } catch (e) {
+        console.warn('gpx failed', h.slug, e);
+      }
+    }
+  });
+  await Promise.all(workers);
+  if (allBounds.isValid()) map.fitBounds(allBounds, { padding: [20, 20] });
+
+  searchEl.addEventListener('input', () => {
+    const q = searchEl.value.trim().toLowerCase();
+    document.querySelectorAll('.item').forEach((el, i) => {
+      const h = hikes[i];
+      const hay = [h.shortTitle, h.location, (h.provinces || []).join(' '), (h.types || []).join(' ')].join(' ').toLowerCase();
+      el.style.display = hay.includes(q) ? '' : 'none';
+    });
+  });
+})();
+</script>
+</body>
+</html>
