@@ -1,0 +1,7 @@
+services:
+  web:
+    build: .
+    container_name: ns-wandelingen
+    ports:
+      - "8765:80"
+    restart: unless-stopped

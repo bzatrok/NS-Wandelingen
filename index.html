@@ -6,51 +6,259 @@
 <title>NS Wandelingen</title>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <style>
-  :root { --bg:#0f172a; --panel:#111827; --border:#1f2937; --text:#e5e7eb; --muted:#9ca3af; --accent:#ffc917; }
-  html, body { margin:0; height:100%; font-family: -apple-system, system-ui, sans-serif; background:var(--bg); color:var(--text); }
-  #app { display:flex; height:100vh; }
-  #sidebar { width:340px; flex:none; background:var(--panel); border-right:1px solid var(--border); display:flex; flex-direction:column; }
-  #sidebar header { padding:16px; border-bottom:1px solid var(--border); }
-  #sidebar h1 { margin:0 0 4px; font-size:18px; }
-  #sidebar .sub { color:var(--muted); font-size:12px; }
-  #search { width:100%; margin-top:10px; padding:8px 10px; background:#0b1220; border:1px solid var(--border); border-radius:6px; color:var(--text); font-size:13px; box-sizing:border-box; }
-  #list { flex:1; overflow-y:auto; }
-  .item { padding:12px 16px; border-bottom:1px solid var(--border); cursor:pointer; }
-  .item:hover { background:#0b1220; }
-  .item.active { background:#1e293b; border-left:3px solid var(--accent); padding-left:13px; }
-  .item .title { font-size:14px; font-weight:600; margin-bottom:2px; }
-  .item .meta { font-size:12px; color:var(--muted); }
-  #map { flex:1; }
-  .popup .popup-title { font-weight:600; font-size:14px; margin-bottom:4px; }
-  .popup .popup-meta { color:#555; font-size:12px; margin-bottom:6px; }
-  .popup .popup-desc { font-size:12px; line-height:1.4; margin-bottom:8px; max-width: 260px; }
-  .popup .popup-link { font-size:12px; color:#0066cc; text-decoration:none; }
-  .loading { padding:16px; color:var(--muted); font-size:13px; }
+  :root {
+    --ns-yellow: #ffc917;
+    --ns-blue: #003082;
+    --text: #0f172a;
+    --muted: #64748b;
+    --border: #e2e8f0;
+    --bg: #ffffff;
+    --shadow: 0 6px 24px rgba(15,23,42,0.12), 0 2px 6px rgba(15,23,42,0.08);
+  }
+  html, body { margin:0; height:100%; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif; color:var(--text); }
+  #map { position:absolute; inset:0; }
+
+  /* --- Search control (Google-Maps style, top-left) --- */
+  .search-panel {
+    position: absolute;
+    top: 12px; left: 12px;
+    z-index: 1000;
+    width: 360px;
+    max-width: calc(100vw - 24px);
+    background: var(--bg);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    font-size: 15px;
+  }
+  .search-row { display:flex; align-items:center; padding: 12px 14px; gap:10px; }
+  .search-icon { flex:none; color: var(--muted); font-size:18px; line-height:1; }
+  .search-input {
+    flex: 1; border: none; outline: none; background: transparent;
+    font-size: 15px; color: var(--text); min-width: 0;
+    font-family: inherit;
+  }
+  .search-input::placeholder { color: #94a3b8; }
+  .search-clear {
+    border: none; background: transparent; color: var(--muted);
+    font-size: 18px; cursor: pointer; padding: 2px 6px; display: none;
+  }
+  .search-clear.visible { display: block; }
+  .search-title { flex:1; }
+  .search-title .brand { font-weight:700; font-size:15px; color: var(--ns-blue); }
+  .search-title .brand .yellow { color: var(--ns-yellow); background: var(--ns-blue); padding: 1px 6px; border-radius: 3px; margin-right: 4px; }
+  .search-title .count { display:block; font-size:12px; color:var(--muted); margin-top:2px; }
+
+  .search-results {
+    max-height: min(60vh, 520px);
+    overflow-y: auto;
+    border-top: 1px solid var(--border);
+  }
+  .search-results:empty { display: none; }
+  .result {
+    padding: 11px 14px;
+    display: flex; gap: 12px; align-items: center;
+    cursor: pointer;
+    border-bottom: 1px solid var(--border);
+  }
+  .result:last-child { border-bottom: none; }
+  .result:hover, .result.active { background: #f8fafc; }
+  .result-thumb {
+    flex: none; width: 44px; height: 44px; border-radius: 8px;
+    background-color: #f1f5f9; background-size: cover; background-position: center;
+  }
+  .result-body { flex: 1; min-width: 0; }
+  .result-title { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .result-meta { font-size: 12px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .result-meta mark { background: #fef3c7; color: inherit; padding: 0 1px; border-radius: 2px; }
+
+  /* --- Glow for route polylines --- */
+  .leaflet-routes-pane {
+    filter: drop-shadow(0 0 3px rgba(67,99,216,0.35)) drop-shadow(0 0 1px rgba(0,0,0,0.25));
+  }
+
+  /* --- Locate button --- */
+  .leaflet-control.locate-btn {
+    background:#fff; width:34px; height:34px; line-height:34px; text-align:center;
+    font-size:18px; cursor:pointer; border-radius:6px;
+    box-shadow:0 1px 5px rgba(0,0,0,0.2); border:none; color:#333;
+  }
+  .leaflet-control.locate-btn:hover { background:#f4f4f4; }
+  .leaflet-control.locate-btn.active { color:#4285f4; }
+
+  /* --- Station labels --- */
+  .station-label {
+    background:none; border:none; box-shadow:none;
+    font-size:11px; color:#334155; white-space:nowrap;
+    text-shadow: 0 0 2px #fff, 0 0 2px #fff, 0 0 2px #fff;
+    pointer-events:none;
+  }
+
+  /* --- Legend --- */
+  .legend {
+    background: rgba(255,255,255,0.97);
+    padding: 12px 14px;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    font-size: 12.5px;
+    color: #334155;
+    line-height: 1.7;
+  }
+  .legend-title { font-weight:700; font-size:13px; margin-bottom:8px; color: var(--text); }
+  .legend-row { display:flex; align-items:center; gap:10px; }
+  .legend-swatch { flex:none; width:14px; height:14px; display:inline-block; }
+  .legend-swatch.circle { border-radius:50%; }
+  .legend-swatch.line { height:3px; width:20px; border-radius:2px; }
+  .legend-swatch.dashed { background: repeating-linear-gradient(90deg, #94a3b8 0 4px, transparent 4px 8px); }
+
+  /* --- Modern popup styling --- */
+  .leaflet-popup-content-wrapper {
+    border-radius: 14px !important;
+    padding: 0 !important;
+    box-shadow: 0 8px 32px rgba(15,23,42,0.18), 0 2px 6px rgba(15,23,42,0.10) !important;
+    overflow: hidden;
+  }
+  .leaflet-popup-content {
+    margin: 0 !important;
+    width: 300px !important;
+    font-size: 14px;
+  }
+  .leaflet-popup-close-button {
+    top: 8px !important; right: 8px !important;
+    width: 26px !important; height: 26px !important;
+    background: rgba(255,255,255,0.92) !important;
+    border-radius: 50% !important;
+    font-size: 18px !important; line-height: 26px !important;
+    color: #334155 !important;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  }
+  .leaflet-popup-tip { box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+
+  .card { font-family: inherit; color: var(--text); }
+  .card-img {
+    width: 100%; height: 140px;
+    background-color: #e2e8f0;
+    background-size: cover; background-position: center;
+  }
+  .card-body { padding: 14px 16px 16px; }
+  .card-title { font-size: 16px; font-weight: 700; line-height: 1.25; margin: 0 0 6px; color: var(--text); }
+  .card-meta {
+    display: flex; flex-wrap: wrap; gap: 6px 10px;
+    font-size: 12.5px; color: var(--muted);
+    margin-bottom: 10px;
+  }
+  .card-badge {
+    display: inline-flex; align-items: center; gap: 4px;
+    background: #f1f5f9; color: #334155;
+    padding: 2px 8px; border-radius: 999px; font-weight: 500;
+  }
+  .card-desc {
+    font-size: 13.5px; line-height: 1.5; color: #475569;
+    margin-bottom: 14px;
+    display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .card-actions { display: flex; gap: 8px; }
+  .btn {
+    flex: 1;
+    display: inline-flex; align-items: center; justify-content: center;
+    padding: 9px 12px; border-radius: 8px;
+    font-size: 13px; font-weight: 600;
+    text-decoration: none;
+    cursor: pointer; border: none;
+    transition: background 0.15s;
+  }
+  .leaflet-popup-content a.btn-primary,
+  .btn-primary { background: var(--ns-blue); color: #fff !important; }
+  .btn-primary:hover { background: #002060; }
+  .leaflet-popup-content a.btn-secondary,
+  .btn-secondary { background: #f1f5f9; color: var(--text) !important; }
+  .btn-secondary:hover { background: #e2e8f0; }
+
+  /* --- Mobile --- */
+  @media (max-width: 640px) {
+    .search-panel { left: 10px; right: 10px; width: auto; top: 10px; }
+    .leaflet-popup-content { width: 260px !important; }
+    .card-img { height: 120px; }
+    .card-title { font-size: 15px; }
+    .legend { font-size: 11.5px; padding: 10px 12px; }
+    .leaflet-touch .leaflet-bar a { width:34px; height:34px; line-height:34px; }
+    .leaflet-control.locate-btn { width:38px; height:38px; line-height:38px; font-size:20px; }
+  }
 </style>
 </head>
 <body>
-<div id="app">
-  <aside id="sidebar">
-    <header>
-      <h1>NS Wandelingen</h1>
-      <div class="sub" id="count">Laden…</div>
-      <input id="search" placeholder="Zoek op naam, provincie…">
-    </header>
-    <div id="list"><div class="loading">Loading routes…</div></div>
-  </aside>
-  <div id="map"></div>
+<div id="map"></div>
+
+<div class="search-panel" id="searchPanel">
+  <div class="search-row">
+    <span class="search-icon">⌕</span>
+    <input id="search" class="search-input" type="search" autocomplete="off" spellcheck="false" placeholder="Zoek wandeling, provincie, station…">
+    <button id="searchClear" class="search-clear" type="button" aria-label="Wissen">×</button>
+  </div>
+  <div class="search-results" id="searchResults"></div>
 </div>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0/dist/fuse.min.js"></script>
 <script>
-const map = L.map('map', { zoomControl: true }).setView([52.1, 5.3], 8);
+const map = L.map('map', { zoomControl: true, zoomSnap: 0.5 }).setView([52.1, 5.3], 8);
+// Keep zoom control on right to free up top-left for search.
+map.zoomControl.setPosition('topright');
+
 L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
   maxZoom: 20,
   subdomains: 'abcd',
   attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> &copy; <a href="https://carto.com/attributions">CARTO</a>'
 }).addTo(map);
 
+map.createPane('railways');  map.getPane('railways').style.zIndex  = 395;
+map.createPane('stations');  map.getPane('stations').style.zIndex  = 405;
+map.createPane('routes');    map.getPane('routes').style.zIndex    = 410;
+map.createPane('endpoints'); map.getPane('endpoints').style.zIndex = 420;
+
 const COLORS = ['#e6194b','#3cb44b','#4363d8','#f58231','#911eb4','#42d4f4','#f032e6','#bfef45','#fabed4','#469990','#dcbeff','#9a6324','#800000','#aaffc3','#808000','#ffd8b1','#000075','#a9a9a9','#ffe119','#808080'];
+
+// --- Locate control ---
+const LocateControl = L.Control.extend({
+  options: { position: 'topright' },
+  onAdd() {
+    const btn = L.DomUtil.create('button', 'leaflet-bar leaflet-control locate-btn');
+    btn.type = 'button';
+    btn.title = 'Toon mijn locatie';
+    btn.textContent = '⊙';
+    L.DomEvent.on(btn, 'click', (e) => {
+      L.DomEvent.stop(e);
+      btn.classList.add('active');
+      map.locate({ setView: true, maxZoom: 13, enableHighAccuracy: true, timeout: 10000 });
+    });
+    L.DomEvent.disableClickPropagation(btn);
+    this._btn = btn;
+    return btn;
+  },
+});
+const locateControl = new LocateControl();
+locateControl.addTo(map);
+
+let userMarker = null;
+map.on('locationfound', (e) => {
+  if (userMarker) userMarker.remove();
+  userMarker = L.circleMarker(e.latlng, {
+    radius: 7, color: '#fff', weight: 2, fillColor: '#4285f4', fillOpacity: 0.9,
+  }).addTo(map);
+  if (locateControl._btn) locateControl._btn.classList.remove('active');
+});
+map.on('locationerror', (e) => {
+  if (locateControl._btn) locateControl._btn.classList.remove('active');
+  console.warn('geolocation error', e.message);
+});
+
+// Prevent map panning when interacting with the search panel.
+(function suppressMapOnPanel() {
+  const panel = document.getElementById('searchPanel');
+  L.DomEvent.disableClickPropagation(panel);
+  L.DomEvent.disableScrollPropagation(panel);
+})();
 
 async function parseGpx(url) {
   const xml = new DOMParser().parseFromString(await (await fetch(url)).text(), 'application/xml');
@@ -61,68 +269,228 @@ async function parseGpx(url) {
   return pts;
 }
 
-// Build popup DOM using textContent — never inject untrusted strings as HTML.
+// --- Modern popup card ---
 function buildPopup(h) {
   const root = document.createElement('div');
-  root.className = 'popup';
+  root.className = 'card';
+
+  if (h.image) {
+    const img = document.createElement('div');
+    img.className = 'card-img';
+    img.style.backgroundImage = `url(${JSON.stringify(h.image)})`;
+    root.appendChild(img);
+  }
+
+  const body = document.createElement('div');
+  body.className = 'card-body';
+
   const title = document.createElement('div');
-  title.className = 'popup-title';
+  title.className = 'card-title';
   title.textContent = h.shortTitle || h.title || '';
+  body.appendChild(title);
+
   const meta = document.createElement('div');
-  meta.className = 'popup-meta';
-  meta.textContent = `${h.location || ''} · ${h.distanceText || ''}`;
-  const desc = document.createElement('div');
-  desc.className = 'popup-desc';
-  desc.textContent = h.description || '';
-  const link = document.createElement('a');
-  link.className = 'popup-link';
-  link.href = h.nsUrl || '#';
-  link.target = '_blank';
-  link.rel = 'noopener';
-  link.textContent = 'Bekijk op ns.nl →';
-  root.append(title, meta, desc, link);
+  meta.className = 'card-meta';
+  if (h.distanceText) {
+    const b = document.createElement('span');
+    b.className = 'card-badge';
+    b.textContent = h.distanceText;
+    meta.appendChild(b);
+  }
+  if (h.location) {
+    const b = document.createElement('span');
+    b.className = 'card-badge';
+    b.textContent = h.location.replace(/^Van\s+/, '').replace(/\s+naar\s+/, ' → ');
+    meta.appendChild(b);
+  }
+  body.appendChild(meta);
+
+  if (h.description) {
+    const desc = document.createElement('div');
+    desc.className = 'card-desc';
+    desc.textContent = h.description;
+    body.appendChild(desc);
+  }
+
+  const actions = document.createElement('div');
+  actions.className = 'card-actions';
+  const nsLink = document.createElement('a');
+  nsLink.className = 'btn btn-primary';
+  nsLink.href = h.nsUrl || '#';
+  nsLink.target = '_blank';
+  nsLink.rel = 'noopener';
+  nsLink.textContent = 'Bekijk op ns.nl';
+  actions.appendChild(nsLink);
+  if (h.gpxFile) {
+    const dl = document.createElement('a');
+    dl.className = 'btn btn-secondary';
+    dl.href = h.gpxFile;
+    dl.download = (h.slug || 'route') + '.gpx';
+    dl.textContent = 'Download GPX';
+    actions.appendChild(dl);
+  }
+  body.appendChild(actions);
+
+  root.appendChild(body);
   return root;
 }
 
-function buildListItem(h) {
-  const div = document.createElement('div');
-  div.className = 'item';
-  div.dataset.id = h.id;
-  const title = document.createElement('div');
-  title.className = 'title';
-  title.textContent = h.shortTitle || h.title || '';
-  const meta = document.createElement('div');
-  meta.className = 'meta';
-  meta.textContent = `${h.location || ''} · ${h.distanceText || ''}`;
-  div.append(title, meta);
-  return div;
+// --- Railways (static GeoJSON) ---
+async function loadRailways() {
+  try {
+    const res = await fetch('railways.geojson');
+    if (!res.ok) return 0;
+    const gj = await res.json();
+    L.geoJSON(gj, {
+      pane: 'railways',
+      interactive: false,
+      style: { color: '#94a3b8', weight: 1.4, opacity: 0.75, dashArray: '4 4', lineCap: 'round' },
+    }).addTo(map);
+    return (gj.features || []).length;
+  } catch (e) {
+    console.warn('railways.geojson not available', e);
+    return 0;
+  }
 }
 
-(async () => {
-  const hikes = await (await fetch('hikes.json')).json();
-  const listEl = document.getElementById('list');
-  const searchEl = document.getElementById('search');
-  document.getElementById('count').textContent = `${hikes.length} routes`;
+// --- Stations layer ---
+async function loadStations() {
+  try {
+    const stations = await (await fetch('stations.json')).json();
+    const markers = new Map();
+    const majorTypes = new Set(['MEGA_STATION', 'KNOOPPUNT_INTERCITY_STATION', 'INTERCITY_STATION']);
+    for (const s of stations) {
+      const isMajor = majorTypes.has(s.type);
+      const marker = L.circleMarker([s.lat, s.lng], {
+        pane: 'stations',
+        radius: isMajor ? 4 : 2.5,
+        color: '#94a3b8',
+        weight: 1,
+        fillColor: '#cbd5e1',
+        fillOpacity: 0.9,
+      });
+      marker._major = isMajor;
+      marker._station = s;
+      const pop = document.createElement('div');
+      pop.className = 'card';
+      const body = document.createElement('div');
+      body.className = 'card-body';
+      body.style.padding = '12px 14px';
+      const t = document.createElement('div');
+      t.className = 'card-title';
+      t.textContent = s.name;
+      const m = document.createElement('div');
+      m.className = 'card-meta';
+      const b = document.createElement('span');
+      b.className = 'card-badge';
+      b.textContent = `Station ${s.code}`;
+      m.appendChild(b);
+      body.append(t, m);
+      pop.appendChild(body);
+      marker.bindPopup(pop);
+      marker.addTo(map);
+      markers.set(s.code, marker);
+    }
+    return { stations, markers };
+  } catch (e) {
+    console.warn('stations.json not available', e);
+    return { stations: [], markers: new Map() };
+  }
+}
 
-  const layers = {};
+function styleStationUsed(marker) {
+  marker.setStyle({ color: '#003082', fillColor: '#ffc917', fillOpacity: 0.95 });
+  marker.setRadius(marker._major ? 5 : 3.5);
+  if (marker._major && !marker.getTooltip()) {
+    marker.bindTooltip(marker._station.name, {
+      permanent: true, direction: 'right', offset: [6, 0], className: 'station-label',
+    });
+  }
+}
+
+// --- Geo helpers ---
+function distMeters(a, b) {
+  const R = 6371000;
+  const toRad = x => x * Math.PI / 180;
+  const dLat = toRad(b[0] - a[0]);
+  const dLon = toRad(b[1] - a[1]);
+  const lat1 = toRad(a[0]), lat2 = toRad(b[0]);
+  const h = Math.sin(dLat/2)**2 + Math.cos(lat1)*Math.cos(lat2)*Math.sin(dLon/2)**2;
+  return 2 * R * Math.asin(Math.sqrt(h));
+}
+function nearestStation(pt, stations, maxMeters = 1200) {
+  let best = null, bestD = Infinity;
+  for (const s of stations) {
+    const d = distMeters(pt, [s.lat, s.lng]);
+    if (d < bestD) { bestD = d; best = s; }
+  }
+  return bestD <= maxMeters ? best : null;
+}
+
+// --- Legend ---
+function addLegend() {
+  const legend = L.control({ position: 'bottomright' });
+  legend.onAdd = function () {
+    const div = L.DomUtil.create('div', 'legend');
+    const rows = [
+      { type: 'title', text: 'Legenda' },
+      { swatch: 'line',   color: '#4363d8', text: 'NS-wandeling' },
+      { swatch: 'circle', color: '#16a34a', text: 'Start' },
+      { swatch: 'circle', color: '#dc2626', text: 'Einde' },
+      { swatch: 'circle', color: '#ffc917', border: '#003082', text: 'Station (met wandeling)' },
+      { swatch: 'circle', color: '#cbd5e1', border: '#94a3b8', text: 'Station (overig)' },
+      { swatch: 'dashed', text: 'Spoorlijn' },
+    ];
+    for (const r of rows) {
+      if (r.type === 'title') {
+        const t = document.createElement('div');
+        t.className = 'legend-title';
+        t.textContent = r.text;
+        div.appendChild(t);
+        continue;
+      }
+      const row = document.createElement('div');
+      row.className = 'legend-row';
+      const sw = document.createElement('span');
+      sw.className = 'legend-swatch ' + r.swatch;
+      if (r.swatch === 'circle') {
+        sw.style.background = r.color;
+        if (r.border) sw.style.border = `1px solid ${r.border}`;
+      } else if (r.swatch === 'line') {
+        sw.style.background = r.color;
+      }
+      const label = document.createElement('span');
+      label.textContent = r.text;
+      row.append(sw, label);
+      div.appendChild(row);
+    }
+    L.DomEvent.disableClickPropagation(div);
+    return div;
+  };
+  legend.addTo(map);
+}
+addLegend();
+
+// --- Main ---
+(async () => {
+  const [hikes, stationData] = await Promise.all([
+    (await fetch('hikes.json')).json(),
+    loadRailways().then(loadStations),
+  ]);
+  const { stations, markers: stationMarkers } = stationData;
+  const usedStationCodes = new Set();
+
+  const layers = {};           // hikeId -> { line, hit, start, end, hike }
   const allBounds = L.latLngBounds([]);
 
-  listEl.textContent = '';
-  hikes.forEach(h => {
-    const item = buildListItem(h);
-    item.addEventListener('click', () => focusHike(h.id));
-    listEl.appendChild(item);
-  });
+  function setActiveHike(id) { /* hook for future highlight */ }
 
-  function setActive(id) {
-    document.querySelectorAll('.item').forEach(el => el.classList.toggle('active', el.dataset.id === id));
-  }
   function focusHike(id) {
     const rec = layers[id];
     if (!rec) return;
-    setActive(id);
-    map.fitBounds(rec.layer.getBounds(), { padding: [40, 40] });
-    rec.layer.openPopup();
+    setActiveHike(id);
+    map.fitBounds(rec.layer.getBounds(), { padding: [60, 60], maxZoom: 13 });
+    rec.hit.openPopup();
   }
 
   const queue = [...hikes.entries()];
@@ -134,12 +502,34 @@ function buildListItem(h) {
         const pts = await parseGpx(h.gpxFile);
         if (!pts.length) continue;
         const color = COLORS[i % COLORS.length];
-        const line = L.polyline(pts, { color, weight: 3, opacity: 0.85 });
-        line.bindPopup(buildPopup(h));
-        line.on('click', () => setActive(h.id));
+        const line = L.polyline(pts, { pane: 'routes', color, weight: 3, opacity: 0.9, interactive: false });
         line.addTo(map);
-        layers[h.id] = { layer: line, hike: h };
+        const hit = L.polyline(pts, { pane: 'routes', color: '#000', weight: 16, opacity: 0, interactive: true });
+        hit.bindPopup(buildPopup(h), { autoClose: true, closeOnClick: true, maxWidth: 320, minWidth: 300, className: 'hike-popup' });
+        hit.on('click', (ev) => hit.openPopup(ev.latlng));
+        hit.on('mouseover', (ev) => {
+          line.setStyle({ weight: 5 });
+          hit.openPopup(ev.latlng);
+        });
+        hit.on('mouseout', () => line.setStyle({ weight: 3 }));
+        hit.addTo(map);
+
+        const start = L.circleMarker(pts[0], {
+          pane: 'endpoints', radius: 4, color: '#fff', weight: 1.5,
+          fillColor: '#16a34a', fillOpacity: 1,
+        }).bindTooltip('Start', { direction: 'top' }).addTo(map);
+        const end = L.circleMarker(pts[pts.length - 1], {
+          pane: 'endpoints', radius: 4, color: '#fff', weight: 1.5,
+          fillColor: '#dc2626', fillOpacity: 1,
+        }).bindTooltip('Einde', { direction: 'top' }).addTo(map);
+
+        layers[h.id] = { layer: line, hit, start, end, hike: h };
         allBounds.extend(line.getBounds());
+
+        for (const pt of [pts[0], pts[pts.length - 1]]) {
+          const s = nearestStation(pt, stations);
+          if (s) usedStationCodes.add(s.code);
+        }
       } catch (e) {
         console.warn('gpx failed', h.slug, e);
       }
@@ -148,13 +538,144 @@ function buildListItem(h) {
   await Promise.all(workers);
   if (allBounds.isValid()) map.fitBounds(allBounds, { padding: [20, 20] });
 
-  searchEl.addEventListener('input', () => {
-    const q = searchEl.value.trim().toLowerCase();
-    document.querySelectorAll('.item').forEach((el, i) => {
-      const h = hikes[i];
-      const hay = [h.shortTitle, h.location, (h.provinces || []).join(' '), (h.types || []).join(' ')].join(' ').toLowerCase();
-      el.style.display = hay.includes(q) ? '' : 'none';
+  for (const code of usedStationCodes) {
+    const m = stationMarkers.get(code);
+    if (m) styleStationUsed(m);
+  }
+
+  // --- Fuzzy search (Fuse.js) ---
+  // Index: hikes (primary) + major stations (secondary).
+  const majorTypes = new Set(['MEGA_STATION', 'KNOOPPUNT_INTERCITY_STATION', 'INTERCITY_STATION']);
+  const indexItems = [];
+  for (const h of hikes) {
+    indexItems.push({
+      kind: 'hike',
+      id: h.id,
+      title: h.shortTitle || h.title || '',
+      subtitle: `${h.location || ''} · ${h.distanceText || ''}`,
+      image: h.image,
+      provinces: (h.provinces || []).join(' '),
+      types: (h.types || []).join(' '),
+      _hike: h,
     });
+  }
+  for (const s of stations) {
+    if (majorTypes.has(s.type)) {
+      indexItems.push({
+        kind: 'station',
+        id: 'st:' + s.code,
+        title: s.name,
+        subtitle: `Station ${s.code}`,
+        _station: s,
+      });
+    }
+  }
+
+  const fuse = new Fuse(indexItems, {
+    keys: [
+      { name: 'title', weight: 0.6 },
+      { name: 'subtitle', weight: 0.2 },
+      { name: 'provinces', weight: 0.1 },
+      { name: 'types', weight: 0.1 },
+    ],
+    threshold: 0.4,
+    ignoreLocation: true,
+    includeMatches: true,
+    minMatchCharLength: 2,
+  });
+
+  const searchInput = document.getElementById('search');
+  const searchResults = document.getElementById('searchResults');
+  const searchClear = document.getElementById('searchClear');
+
+  function highlight(text, matches, key) {
+    if (!text) return document.createTextNode('');
+    const match = matches && matches.find(m => m.key === key);
+    if (!match) return document.createTextNode(text);
+    const frag = document.createDocumentFragment();
+    let cursor = 0;
+    for (const [start, end] of match.indices) {
+      if (start > cursor) frag.appendChild(document.createTextNode(text.slice(cursor, start)));
+      const mark = document.createElement('mark');
+      mark.textContent = text.slice(start, end + 1);
+      frag.appendChild(mark);
+      cursor = end + 1;
+    }
+    if (cursor < text.length) frag.appendChild(document.createTextNode(text.slice(cursor)));
+    return frag;
+  }
+
+  function renderResults(items, matchesByIdx = []) {
+    searchResults.textContent = '';
+    items.slice(0, 12).forEach((item, idx) => {
+      const row = document.createElement('div');
+      row.className = 'result';
+      row.dataset.kind = item.kind;
+      row.dataset.id = item.id;
+
+      const thumb = document.createElement('div');
+      thumb.className = 'result-thumb';
+      if (item.image) {
+        thumb.style.backgroundImage = `url(${JSON.stringify(item.image)})`;
+      } else if (item.kind === 'station') {
+        thumb.style.background = 'var(--ns-yellow)';
+        thumb.style.border = '2px solid var(--ns-blue)';
+      }
+      row.appendChild(thumb);
+
+      const body = document.createElement('div');
+      body.className = 'result-body';
+      const title = document.createElement('div');
+      title.className = 'result-title';
+      title.appendChild(highlight(item.title, matchesByIdx[idx], 'title'));
+      const meta = document.createElement('div');
+      meta.className = 'result-meta';
+      meta.appendChild(highlight(item.subtitle, matchesByIdx[idx], 'subtitle'));
+      body.append(title, meta);
+      row.appendChild(body);
+
+      row.addEventListener('click', () => {
+        if (item.kind === 'hike') {
+          focusHike(item._hike.id);
+        } else {
+          const m = stationMarkers.get(item._station.code);
+          if (m) { map.setView([item._station.lat, item._station.lng], 14); m.openPopup(); }
+        }
+        searchInput.value = item.title;
+        searchClear.classList.add('visible');
+        searchResults.textContent = '';
+      });
+      searchResults.appendChild(row);
+    });
+  }
+
+  // Empty state: show all hikes (capped) as a browseable list.
+  function showBrowseList() {
+    const items = indexItems.filter(i => i.kind === 'hike');
+    renderResults(items);
+  }
+
+  searchInput.addEventListener('focus', () => {
+    if (!searchInput.value) showBrowseList();
+  });
+  searchInput.addEventListener('input', () => {
+    const q = searchInput.value.trim();
+    searchClear.classList.toggle('visible', !!q);
+    if (!q) { showBrowseList(); return; }
+    const res = fuse.search(q);
+    renderResults(res.map(r => r.item), res.map(r => r.matches));
+  });
+  searchClear.addEventListener('click', () => {
+    searchInput.value = '';
+    searchClear.classList.remove('visible');
+    showBrowseList();
+    searchInput.focus();
+  });
+  // Hide results list when clicking outside the panel.
+  document.addEventListener('click', (e) => {
+    if (!document.getElementById('searchPanel').contains(e.target)) {
+      searchResults.textContent = '';
+    }
   });
 })();
 </script>
