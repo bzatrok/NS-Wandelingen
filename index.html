@@ -199,6 +199,10 @@
   <div class="search-results" id="searchResults"></div>
 </div>
 
+<!-- 100% privacy-first analytics -->
+<script data-collect-dnt="true" async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+<noscript><img src="https://queue.simpleanalyticscdn.com/noscript.gif?collect-dnt=true" alt="" referrerpolicy="no-referrer-when-downgrade"/></noscript>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0/dist/fuse.min.js"></script>
 <script>
@@ -506,10 +510,15 @@ addLegend();
         line.addTo(map);
         const hit = L.polyline(pts, { pane: 'routes', color: '#000', weight: 16, opacity: 0, interactive: true });
         hit.bindPopup(buildPopup(h), { autoClose: true, closeOnClick: true, maxWidth: 320, minWidth: 300, className: 'hike-popup' });
-        hit.on('click', (ev) => hit.openPopup(ev.latlng));
+        // Open popup raised above the cursor so the path under the pointer remains visible.
+        const raiseLatLng = (latlng, px = 36) => {
+          const p = map.latLngToContainerPoint(latlng);
+          return map.containerPointToLatLng([p.x, p.y - px]);
+        };
+        hit.on('click', (ev) => hit.openPopup(raiseLatLng(ev.latlng)));
         hit.on('mouseover', (ev) => {
           line.setStyle({ weight: 5 });
-          hit.openPopup(ev.latlng);
+          hit.openPopup(raiseLatLng(ev.latlng));
         });
         hit.on('mouseout', () => line.setStyle({ weight: 3 }));
         hit.addTo(map);
