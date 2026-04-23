@@ -315,11 +315,12 @@ map.createPane('stations');  map.getPane('stations').style.zIndex  = 405;
 map.createPane('routes');    map.getPane('routes').style.zIndex    = 410;
 map.createPane('endpoints'); map.getPane('endpoints').style.zIndex = 420;
 
-// Canvas renderers per heavy pane. SVG chokes on ~14.6k OSM ways + ~500 markers.
+// Canvas renderers per heavy pane. SVG chokes on ~14.6k OSM ways + ~400 station markers.
+// Endpoints stay on SVG on purpose: their pane sits above routes, and a canvas
+// with interactive layers would intercept route-hover events across its whole area.
 const railwaysRenderer = L.canvas({ pane: 'railways' });
 const stationsRenderer = L.canvas({ pane: 'stations' });
 const routesRenderer   = L.canvas({ pane: 'routes' });
-const endpointsRenderer = L.canvas({ pane: 'endpoints' });
 
 const COLORS = ['#e6194b','#3cb44b','#4363d8','#f58231','#911eb4','#42d4f4','#f032e6','#bfef45','#fabed4','#469990','#dcbeff','#9a6324','#800000','#aaffc3','#808000','#ffd8b1','#000075','#a9a9a9','#ffe119','#808080'];
 
@@ -626,11 +627,11 @@ addLegend();
         hit.addTo(map);
 
         const start = L.circleMarker(pts[0], {
-          renderer: endpointsRenderer, pane: 'endpoints', radius: 4, color: '#fff', weight: 1.5,
+          pane: 'endpoints', radius: 4, color: '#fff', weight: 1.5,
           fillColor: '#16a34a', fillOpacity: 1,
         }).bindTooltip('Start', { direction: 'top' }).addTo(map);
         const end = L.circleMarker(pts[pts.length - 1], {
-          renderer: endpointsRenderer, pane: 'endpoints', radius: 4, color: '#fff', weight: 1.5,
+          pane: 'endpoints', radius: 4, color: '#fff', weight: 1.5,
           fillColor: '#dc2626', fillOpacity: 1,
         }).bindTooltip('Einde', { direction: 'top' }).addTo(map);
 
