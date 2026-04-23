@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ns-wandelingen.zatrok.com/sitemap.xml

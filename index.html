@@ -3,7 +3,62 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>NS Wandelingen</title>
+<title>NS Wandelingen Kaart — 47 wandelroutes vanaf het station</title>
+<meta name="description" content="Interactieve kaart met alle NS-wandelingen door Nederland. Bekijk routes vanaf elk NS-station, start- en eindpunten, provincies en afstanden, en download GPX-tracks.">
+<meta name="keywords" content="NS wandelingen, NS wandelroutes, wandelen Nederland, wandelen vanaf station, GPX wandelroutes, Wandelnet, NS dagje uit, wandelkaart Nederland">
+<meta name="author" content="Ben Zatrok">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="theme-color" content="#003082">
+<link rel="canonical" href="https://ns-wandelingen.zatrok.com/">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="NS Wandelingen Kaart">
+<meta property="og:title" content="NS Wandelingen Kaart — 47 wandelroutes vanaf het station">
+<meta property="og:description" content="Interactieve kaart met alle NS-wandelingen door Nederland. Routes, stations, afstanden en GPX-downloads op één plek.">
+<meta property="og:url" content="https://ns-wandelingen.zatrok.com/">
+<meta property="og:locale" content="nl_NL">
+<meta property="og:image" content="https://ns-wandelingen.zatrok.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Kaart van Nederland met alle NS-wandelroutes.">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="NS Wandelingen Kaart">
+<meta name="twitter:description" content="Alle NS-wandelroutes op één interactieve kaart. Met GPX-downloads.">
+<meta name="twitter:image" content="https://ns-wandelingen.zatrok.com/og-image.png">
+
+<!-- Favicon (inline SVG: NS-yellow block with train icon) -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23003082'/%3E%3Ctext x='32' y='44' font-family='system-ui,-apple-system,sans-serif' font-size='34' font-weight='800' text-anchor='middle' fill='%23ffc917'%3ENS%3C/text%3E%3C/svg%3E">
+
+<!-- Structured data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://ns-wandelingen.zatrok.com/#website",
+      "url": "https://ns-wandelingen.zatrok.com/",
+      "name": "NS Wandelingen Kaart",
+      "description": "Interactieve kaart met alle NS-wandelingen door Nederland.",
+      "inLanguage": "nl-NL"
+    },
+    {
+      "@type": "WebApplication",
+      "name": "NS Wandelingen Kaart",
+      "url": "https://ns-wandelingen.zatrok.com/",
+      "applicationCategory": "TravelApplication",
+      "operatingSystem": "Any",
+      "browserRequirements": "Requires JavaScript. Modern browser.",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+      "inLanguage": "nl-NL"
+    }
+  ]
+}
+</script>
+
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <style>
   :root {
@@ -17,6 +72,12 @@
   }
   html, body { margin:0; height:100%; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif; color:var(--text); }
   #map { position:absolute; inset:0; }
+
+  /* Accessible, crawlable content that stays out of the visual layout. */
+  .sr-only {
+    position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+    overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+  }
 
   /* --- Search control (Google-Maps style, top-left) --- */
   .search-panel {
@@ -188,7 +249,33 @@
 </style>
 </head>
 <body>
-<div id="map"></div>
+<header class="sr-only">
+  <h1>NS Wandelingen Kaart</h1>
+  <p>
+    Interactieve kaart met alle 47 NS-wandelingen door Nederland. Elke route
+    begint en eindigt bij een NS-station, zodat je met de trein heen en terug
+    kunt. Bekijk de routes op de kaart, zie afstanden, provincies en de
+    start- en eindstations, en download de GPX-track voor elke wandeling.
+    Inclusief het NL-spoorwegnet en alle 397 treinstations.
+  </p>
+  <h2>Functies</h2>
+  <ul>
+    <li>47 NS-wandelroutes op een kaart van Nederland</li>
+    <li>Zoeken op wandeling, provincie of station</li>
+    <li>Start- en eindpunten per route</li>
+    <li>GPX-downloads voor iedere route</li>
+    <li>Alle 397 NL-stations en het spoorwegnet in beeld</li>
+    <li>Werkt op mobiel, met locatieknop</li>
+  </ul>
+  <noscript>
+    <p>Deze kaart vereist JavaScript. De onderliggende data is beschikbaar als
+    <a href="hikes.json">hikes.json</a>,
+    <a href="stations.json">stations.json</a> en
+    <a href="railways.geojson">railways.geojson</a>.</p>
+  </noscript>
+</header>
+
+<div id="map" role="application" aria-label="Kaart van NS-wandelroutes in Nederland"></div>
 
 <div class="search-panel" id="searchPanel">
   <div class="search-row">
