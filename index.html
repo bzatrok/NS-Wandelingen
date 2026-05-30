@@ -243,15 +243,51 @@
   .btn-secondary { background: #f1f5f9; color: var(--text) !important; }
   .btn-secondary:hover { background: #e2e8f0; }
 
-  /* --- Mobile --- */
+  /* --- View toggle --- */
+  .view-toggle {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 1000;
+    display: flex;
+    background: var(--bg);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    font-size: 14px;
+  }
+  .view-btn {
+    flex: 1;
+    border: none;
+    background: transparent;
+    padding: 10px 12px;
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--muted);
+    transition: color 0.2s;
+  }
+  .view-btn.active {
+    color: var(--ns-blue);
+  }
+  .view-btn:hover {
+    color: var(--ns-blue);
+  }
+
+/* --- Mobile --- */
   @media (max-width: 640px) {
-    .search-panel { left: 10px; right: 10px; width: auto; top: 10px; }
+    .search-panel { left: 10px; right: 110px; width: auto; top: 10px; }
     .leaflet-popup-content { width: 260px !important; }
     .card-img { height: 120px; }
     .card-title { font-size: 15px; }
     .legend { font-size: 11.5px; padding: 10px 12px; }
     .leaflet-touch .leaflet-bar a { width:34px; height:34px; line-height:34px; }
     .leaflet-control.locate-btn { width:38px; height:38px; line-height:38px; font-size:20px; }
+    
+    /* View toggle button styles for mobile */
+    .view-toggle {
+      top: 10px;
+      right: 10px;
+    }
   }
 </style>
 </head>
@@ -283,6 +319,11 @@
 </header>
 
 <div id="map" role="application" aria-label="Kaart van NS-wandelroutes in Nederland"></div>
+
+<div class="view-toggle" id="viewToggle">
+  <button id="mapViewBtn" class="view-btn active" aria-label="Kaartweergave">Kaart</button>
+  <button id="tilesViewBtn" class="view-btn" aria-label="Tegelweergave">Tegels</button>
+</div>
 
 <div class="search-panel" id="searchPanel">
   <div class="search-row">
@@ -579,81 +620,96 @@ function addLegend() {
 addLegend();
 
 // --- Main ---
-(async () => {
-  const [hikes, stationData] = await Promise.all([
-    (await fetch('hikes.json')).json(),
-    loadRailways().then(loadStations),
-  ]);
-  const { stations, markers: stationMarkers } = stationData;
-  const usedStationCodes = new Set();
+  (async () => {
+    const [hikes, stationData] = await Promise.all([
+      (await fetch('hikes.json')).json(),
+      loadRailways().then(loadStations),
+    ]);
+    const { stations, markers: stationMarkers } = stationData;
+    const usedStationCodes = new Set();
 
-  const layers = {};           // hikeId -> { line, hit, start, end, hike }
-  const allBounds = L.latLngBounds([]);
+    const layers = {};           // hikeId -> { line, hit, start, end, hike }
+    const allBounds = L.latLngBounds([]);
 
-  function setActiveHike(id) { /* hook for future highlight */ }
+    // Create layer groups for easier management
+    const routesLayerGroup = L.layerGroup();
+    const railwayLayerGroup = L.layerGroup();
+    const stationLayerGroup = L.layerGroup();
+    const endpointLayerGroup = L.layerGroup();
 
-  function focusHike(id) {
-    const rec = layers[id];
-    if (!rec) return;
-    setActiveHike(id);
-    map.fitBounds(rec.layer.getBounds(), { padding: [60, 60], maxZoom: 13 });
-    rec.hit.openPopup();
-  }
+    function setActiveHike(id) { /* hook for future highlight */ }
 
-  const queue = [...hikes.entries()];
-  const workers = Array.from({ length: 6 }, async () => {
-    while (queue.length) {
-      const [i, h] = queue.shift();
-      if (!h.gpxFile) continue;
-      try {
-        const pts = await parseGpx(h.gpxFile);
-        if (!pts.length) continue;
-        const color = COLORS[i % COLORS.length];
-        const line = L.polyline(pts, { renderer: routesRenderer, pane: 'routes', color, weight: 3, opacity: 0.9, interactive: false });
-        line.addTo(map);
-        const hit = L.polyline(pts, { renderer: routesRenderer, pane: 'routes', color: '#000', weight: 16, opacity: 0, interactive: true });
-        hit.bindPopup(buildPopup(h), { autoClose: true, closeOnClick: true, maxWidth: 320, minWidth: 300, className: 'hike-popup' });
-        // Open popup raised above the cursor so the path under the pointer remains visible.
-        const raiseLatLng = (latlng, px = 36) => {
-          const p = map.latLngToContainerPoint(latlng);
-          return map.containerPointToLatLng([p.x, p.y - px]);
-        };
-        hit.on('click', (ev) => hit.openPopup(raiseLatLng(ev.latlng)));
-        hit.on('mouseover', (ev) => {
-          line.setStyle({ weight: 5 });
-          hit.openPopup(raiseLatLng(ev.latlng));
-        });
-        hit.on('mouseout', () => line.setStyle({ weight: 3 }));
-        hit.addTo(map);
-
-        const start = L.circleMarker(pts[0], {
-          pane: 'endpoints', radius: 4, color: '#fff', weight: 1.5,
-          fillColor: '#16a34a', fillOpacity: 1,
-        }).bindTooltip('Start', { direction: 'top' }).addTo(map);
-        const end = L.circleMarker(pts[pts.length - 1], {
-          pane: 'endpoints', radius: 4, color: '#fff', weight: 1.5,
-          fillColor: '#dc2626', fillOpacity: 1,
-        }).bindTooltip('Einde', { direction: 'top' }).addTo(map);
-
-        layers[h.id] = { layer: line, hit, start, end, hike: h };
-        allBounds.extend(line.getBounds());
-
-        for (const pt of [pts[0], pts[pts.length - 1]]) {
-          const s = nearestStation(pt, stations);
-          if (s) usedStationCodes.add(s.code);
-        }
-      } catch (e) {
-        console.warn('gpx failed', h.slug, e);
-      }
+    function focusHike(id) {
+      const rec = layers[id];
+      if (!rec) return;
+      setActiveHike(id);
+      map.fitBounds(rec.layer.getBounds(), { padding: [60, 60], maxZoom: 13 });
+      rec.hit.openPopup();
     }
-  });
-  await Promise.all(workers);
-  if (allBounds.isValid()) map.fitBounds(allBounds, { padding: [20, 20] });
 
-  for (const code of usedStationCodes) {
-    const m = stationMarkers.get(code);
-    if (m) styleStationUsed(m);
-  }
+    const queue = [...hikes.entries()];
+    const workers = Array.from({ length: 6 }, async () => {
+      while (queue.length) {
+        const [i, h] = queue.shift();
+        if (!h.gpxFile) continue;
+        try {
+          const pts = await parseGpx(h.gpxFile);
+          if (!pts.length) continue;
+          const color = COLORS[i % COLORS.length];
+          const line = L.polyline(pts, { renderer: routesRenderer, pane: 'routes', color, weight: 3, opacity: 0.9, interactive: false });
+          line.addTo(routesLayerGroup);
+          const hit = L.polyline(pts, { renderer: routesRenderer, pane: 'routes', color: '#000', weight: 16, opacity: 0, interactive: true });
+          hit.bindPopup(buildPopup(h), { autoClose: true, closeOnClick: true, maxWidth: 320, minWidth: 300, className: 'hike-popup' });
+          // Open popup raised above the cursor so the path under the pointer remains visible.
+          const raiseLatLng = (latlng, px = 36) => {
+            const p = map.latLngToContainerPoint(latlng);
+            return map.containerPointToLatLng([p.x, p.y - px]);
+          };
+          hit.on('click', (ev) => hit.openPopup(raiseLatLng(ev.latlng)));
+          hit.on('mouseover', (ev) => {
+            line.setStyle({ weight: 5 });
+            hit.openPopup(raiseLatLng(ev.latlng));
+          });
+          hit.on('mouseout', () => line.setStyle({ weight: 3 }));
+          hit.addTo(routesLayerGroup);
+
+          const start = L.circleMarker(pts[0], {
+            pane: 'endpoints', radius: 4, color: '#fff', weight: 1.5,
+            fillColor: '#16a34a', fillOpacity: 1,
+          }).bindTooltip('Start', { direction: 'top' }).addTo(endpointLayerGroup);
+          const end = L.circleMarker(pts[pts.length - 1], {
+            pane: 'endpoints', radius: 4, color: '#fff', weight: 1.5,
+            fillColor: '#dc2626', fillOpacity: 1,
+          }).bindTooltip('Einde', { direction: 'top' }).addTo(endpointLayerGroup);
+
+          layers[h.id] = { layer: line, hit, start, end, hike: h };
+          allBounds.extend(line.getBounds());
+
+          for (const pt of [pts[0], pts[pts.length - 1]]) {
+            const s = nearestStation(pt, stations);
+            if (s) usedStationCodes.add(s.code);
+          }
+        } catch (e) {
+          console.warn('gpx failed', h.slug, e);
+        }
+      }
+    });
+    await Promise.all(workers);
+    if (allBounds.isValid()) map.fitBounds(allBounds, { padding: [20, 20] });
+
+    for (const code of usedStationCodes) {
+      const m = stationMarkers.get(code);
+      if (m) styleStationUsed(m);
+    }
+
+    // Add all our custom layers to the appropriate groups
+    // After all data is loaded, we can add the groups to the map
+    // This will be done in the view switching functions below
+    // Store references to layer groups for management
+    routesLayerGroup.addTo(map);
+    railwayLayerGroup.addTo(map);
+    stationLayerGroup.addTo(map);
+    endpointLayerGroup.addTo(map);
 
   // --- Fuzzy search (Fuse.js) ---
   // Index: hikes (primary) + major stations (secondary).
@@ -789,6 +845,63 @@ addLegend();
       searchResults.textContent = '';
     }
   });
+
+  // --- View toggle functionality ---
+  const mapViewBtn = document.getElementById('mapViewBtn');
+  const tilesViewBtn = document.getElementById('tilesViewBtn');
+  const viewToggle = document.getElementById('viewToggle');
+  const mapDiv = document.getElementById('map');
+
+  // Store references to main layers
+  let routesLayerGroup = null;
+  let railwayLayerGroup = null;
+  let stationLayerGroup = null;
+  let endpointLayerGroup = null;
+
+  // Store original tile layer for tiles view
+  let originalTileLayer = null;
+
+  // Function to switch to map view
+  function switchToMapView() {
+    mapViewBtn.classList.add('active');
+    tilesViewBtn.classList.remove('active');
+    
+    // Show the map and all layers
+    mapDiv.style.display = 'block';
+    
+    // Add all data layers back to the map
+    if (routesLayerGroup) routesLayerGroup.addTo(map);
+    if (railwayLayerGroup) railwayLayerGroup.addTo(map);
+    if (stationLayerGroup) stationLayerGroup.addTo(map);
+    if (endpointLayerGroup) endpointLayerGroup.addTo(map);
+  }
+
+  // Function to switch to tiles view
+  function switchToTilesView() {
+    tilesViewBtn.classList.add('active');
+    mapViewBtn.classList.remove('active');
+    
+    // Hide the map div
+    mapDiv.style.display = 'none';
+    
+    // For tiles view, we would normally show just the base tiles
+    // But since we need to keep map functionality, we'll just hide the overlays
+    if (routesLayerGroup) map.removeLayer(routesLayerGroup);
+    if (railwayLayerGroup) map.removeLayer(railwayLayerGroup);
+    if (stationLayerGroup) map.removeLayer(stationLayerGroup);
+    if (endpointLayerGroup) map.removeLayer(endpointLayerGroup);
+    
+    // Show the base map tiles only
+    // (This is a simplified version - in a full implementation
+    // we might create a separate tiles-only map)
+  }
+
+  // Add event listeners to view buttons
+  mapViewBtn.addEventListener('click', switchToMapView);
+  tilesViewBtn.addEventListener('click', switchToTilesView);
+
+  // Initialize view to map view
+  switchToMapView();
 })();
 </script>
 </body>
