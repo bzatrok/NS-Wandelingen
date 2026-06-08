@@ -659,15 +659,20 @@ addLegend();
           const line = L.polyline(pts, { renderer: routesRenderer, pane: 'routes', color, weight: 3, opacity: 0.9, interactive: false });
           line.addTo(routesLayerGroup);
           const hit = L.polyline(pts, { renderer: routesRenderer, pane: 'routes', color: '#000', weight: 16, opacity: 0, interactive: true });
-          hit.bindPopup(buildPopup(h), { autoClose: true, closeOnClick: true, maxWidth: 320, minWidth: 300, className: 'hike-popup' });
+          // autoPan off by default so hovering a route never shifts the map; only clicks pan it into view.
+          hit.bindPopup(buildPopup(h), { autoClose: true, closeOnClick: true, autoPan: false, maxWidth: 320, minWidth: 300, className: 'hike-popup' });
           // Open popup raised above the cursor so the path under the pointer remains visible.
           const raiseLatLng = (latlng, px = 36) => {
             const p = map.latLngToContainerPoint(latlng);
             return map.containerPointToLatLng([p.x, p.y - px]);
           };
-          hit.on('click', (ev) => hit.openPopup(raiseLatLng(ev.latlng)));
+          hit.on('click', (ev) => {
+            hit.getPopup().options.autoPan = true;
+            hit.openPopup(raiseLatLng(ev.latlng));
+          });
           hit.on('mouseover', (ev) => {
             line.setStyle({ weight: 5 });
+            hit.getPopup().options.autoPan = false;
             hit.openPopup(raiseLatLng(ev.latlng));
           });
           hit.on('mouseout', () => line.setStyle({ weight: 3 }));
