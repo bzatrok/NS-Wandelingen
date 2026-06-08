@@ -273,8 +273,105 @@
     color: var(--ns-blue);
   }
 
+  /* --- Detail modal --- */
+  .modal-backdrop {
+    position: fixed; inset: 0; z-index: 2000;
+    background: rgba(15,23,42,0.55);
+    display: none; align-items: flex-start; justify-content: center;
+    padding: 24px 16px; overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .modal-backdrop.open { display: flex; }
+  .modal {
+    position: relative;
+    width: 100%; max-width: 760px;
+    background: var(--bg); border-radius: 16px;
+    box-shadow: 0 20px 60px rgba(15,23,42,0.35);
+    overflow: hidden;
+    animation: modalIn 0.18s ease-out;
+  }
+  @keyframes modalIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+  .modal-hero {
+    height: 220px; background: #e2e8f0;
+    background-size: cover; background-position: center;
+  }
+  .modal-close {
+    position: absolute; top: 14px; right: 14px;
+    width: 34px; height: 34px; border: none; cursor: pointer;
+    border-radius: 50%; background: rgba(255,255,255,0.94);
+    color: #334155; font-size: 22px; line-height: 34px; text-align: center;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.25);
+  }
+  .modal-close:hover { background: #fff; }
+  .modal-body { padding: 20px 22px 0; }
+  .modal-title { font-size: 22px; font-weight: 800; line-height: 1.2; margin: 0 0 6px; }
+  .modal-loc { font-size: 14px; color: var(--muted); margin-bottom: 14px; }
+  .modal-stats { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+  .modal-desc { font-size: 14.5px; line-height: 1.6; color: #475569; margin-bottom: 20px; }
+  .modal-section { margin-bottom: 20px; }
+  .modal-section-title {
+    font-size: 13px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.04em; color: var(--muted); margin-bottom: 10px;
+  }
+  .detail-map { height: 300px; border-radius: 12px; overflow: hidden; background: #eef2f7; }
+  .detail-map .leaflet-control-attribution { font-size: 9px; }
+
+  /* Elevation profile */
+  .elev-wrap { background: #f8fafc; border-radius: 12px; padding: 12px 14px; }
+  .elev-chart { display: block; width: 100%; height: 120px; }
+  .elev-axis { font-size: 10px; fill: var(--muted); }
+  .elev-area { fill: rgba(67,99,216,0.15); }
+  .elev-line { fill: none; stroke: #4363d8; stroke-width: 2; }
+  .elev-summary { display: flex; gap: 16px; font-size: 12.5px; color: #475569; margin-top: 8px; }
+  .elev-summary b { color: var(--text); }
+
+  /* Weather */
+  .weather-row { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px; }
+  .weather-day {
+    flex: 1 0 auto; min-width: 78px;
+    background: #f8fafc; border-radius: 10px;
+    padding: 10px 8px; text-align: center;
+  }
+  .weather-day .wd-name { font-size: 11.5px; color: var(--muted); font-weight: 600; }
+  .weather-day .wd-icon { font-size: 24px; margin: 4px 0; line-height: 1; }
+  .weather-day .wd-temp { font-size: 13px; font-weight: 700; }
+  .weather-day .wd-temp .lo { color: var(--muted); font-weight: 500; }
+  .weather-day .wd-rain { font-size: 11px; color: #2563eb; margin-top: 2px; }
+  .modal-note { font-size: 12.5px; color: var(--muted); }
+
+  /* Sticky action bar */
+  .modal-actions {
+    position: sticky; bottom: 0;
+    display: flex; gap: 8px; flex-wrap: wrap;
+    padding: 14px 22px;
+    background: var(--bg); border-top: 1px solid var(--border);
+  }
+  .modal-actions .btn { flex: 1 1 120px; padding: 11px 12px; font-size: 13.5px; }
+
+  /* Toast */
+  .toast {
+    position: fixed; left: 50%; bottom: 28px; transform: translateX(-50%);
+    z-index: 2100; background: #0f172a; color: #fff;
+    padding: 10px 18px; border-radius: 999px; font-size: 13.5px;
+    box-shadow: var(--shadow); opacity: 0; transition: opacity 0.2s;
+    pointer-events: none;
+  }
+  .toast.show { opacity: 1; }
+
+  .spinner {
+    width: 22px; height: 22px; border-radius: 50%;
+    border: 3px solid var(--border); border-top-color: var(--ns-blue);
+    animation: spin 0.8s linear infinite; margin: 8px auto;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
 /* --- Mobile --- */
   @media (max-width: 640px) {
+    .modal { max-width: 100%; }
+    .modal-hero { height: 170px; }
+    .modal-title { font-size: 19px; }
+    .detail-map { height: 240px; }
+    .modal-backdrop { padding: 12px 8px; }
     .search-panel { left: 10px; right: 110px; width: auto; top: 10px; }
     .leaflet-popup-content { width: 260px !important; }
     .card-img { height: 120px; }
@@ -333,6 +430,11 @@
   </div>
   <div class="search-results" id="searchResults"></div>
 </div>
+
+<div class="modal-backdrop" id="detailModal" role="dialog" aria-modal="true" aria-labelledby="detailTitle">
+  <div class="modal" id="detailCard"></div>
+</div>
+<div class="toast" id="toast"></div>
 
 <!-- 100% privacy-first analytics -->
 <script data-collect-dnt="true" async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
@@ -415,6 +517,270 @@ async function parseGpx(url) {
   return pts;
 }
 
+// =====================================================================
+//  Detail modal — route mini-map, elevation profile (Open-Meteo),
+//  weather forecast (Open-Meteo) and shareable deep links.
+// =====================================================================
+
+const TYPE_LABELS = {
+  boerenland: 'Boerenland', bos: 'Bos', duinenenstrand: 'Duinen & strand',
+  heideenzand: 'Heide & zand', landgoederen: 'Landgoederen',
+  stadenomgeving: 'Stad & omgeving', waterlandenrivieren: 'Water & rivieren',
+};
+const PROVINCE_LABELS = {
+  drenthe: 'Drenthe', friesland: 'Friesland', gelderland: 'Gelderland',
+  limburg: 'Limburg', noordbrabant: 'Noord-Brabant', noordholland: 'Noord-Holland',
+  overijssel: 'Overijssel', utrecht: 'Utrecht', zeeland: 'Zeeland', zuidholland: 'Zuid-Holland',
+};
+
+// WMO weather interpretation codes → emoji + Dutch label.
+function wmoInfo(code) {
+  const m = {
+    0: ['☀️', 'Helder'], 1: ['🌤️', 'Overw. helder'], 2: ['⛅', 'Half bewolkt'], 3: ['☁️', 'Bewolkt'],
+    45: ['🌫️', 'Mist'], 48: ['🌫️', 'Mist'],
+    51: ['🌦️', 'Motregen'], 53: ['🌦️', 'Motregen'], 55: ['🌦️', 'Motregen'],
+    56: ['🌧️', 'IJzel'], 57: ['🌧️', 'IJzel'],
+    61: ['🌧️', 'Regen'], 63: ['🌧️', 'Regen'], 65: ['🌧️', 'Regen'],
+    66: ['🌧️', 'IJzel'], 67: ['🌧️', 'IJzel'],
+    71: ['🌨️', 'Sneeuw'], 73: ['🌨️', 'Sneeuw'], 75: ['🌨️', 'Sneeuw'], 77: ['🌨️', 'Sneeuw'],
+    80: ['🌦️', 'Buien'], 81: ['🌧️', 'Buien'], 82: ['🌧️', 'Zware buien'],
+    85: ['🌨️', 'Sneeuwbuien'], 86: ['🌨️', 'Sneeuwbuien'],
+    95: ['⛈️', 'Onweer'], 96: ['⛈️', 'Onweer'], 99: ['⛈️', 'Onweer'],
+  };
+  const v = m[code] || ['🌡️', '—'];
+  return { icon: v[0], label: v[1] };
+}
+
+function esc(s) {
+  return String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+}
+
+// Simple localStorage cache with TTL (weather is short-lived; elevation is static).
+function cacheGet(key, ttlMs) {
+  try {
+    const raw = localStorage.getItem(key);
+    if (!raw) return null;
+    const o = JSON.parse(raw);
+    if (Date.now() - o.t > ttlMs) return null;
+    return o.v;
+  } catch { return null; }
+}
+function cacheSet(key, v) {
+  try { localStorage.setItem(key, JSON.stringify({ t: Date.now(), v })); } catch { /* quota/full */ }
+}
+
+function downsample(pts, n) {
+  if (pts.length <= n) return pts.slice();
+  const out = [];
+  const step = (pts.length - 1) / (n - 1);
+  for (let i = 0; i < n; i++) out.push(pts[Math.round(i * step)]);
+  return out;
+}
+
+// Parsed GPX points, filled lazily by the route loader and reused by the modal.
+const routePtsById = {};
+async function getRoutePoints(h) {
+  if (routePtsById[h.id]) return routePtsById[h.id];
+  if (!h.gpxFile) return [];
+  const pts = await parseGpx(h.gpxFile);
+  routePtsById[h.id] = pts;
+  return pts;
+}
+
+// --- Modal DOM + state ---
+const modalEl = document.getElementById('detailModal');
+const modalCard = document.getElementById('detailCard');
+const toastEl = document.getElementById('toast');
+let detailMiniMap = null;
+let toastTimer = null;
+
+function showToast(msg) {
+  toastEl.textContent = msg;
+  toastEl.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => toastEl.classList.remove('show'), 2200);
+}
+
+function buildDetailMap(container, pts) {
+  const m = L.map(container, {
+    zoomControl: false, attributionControl: true,
+    dragging: false, touchZoom: false, doubleClickZoom: false,
+    scrollWheelZoom: false, boxZoom: false, keyboard: false, tap: false,
+  });
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+    maxZoom: 20, subdomains: 'abcd',
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
+  }).addTo(m);
+  const line = L.polyline(pts, { color: '#4363d8', weight: 4, opacity: 0.9 }).addTo(m);
+  L.circleMarker(pts[0], { radius: 6, color: '#fff', weight: 2, fillColor: '#16a34a', fillOpacity: 1 })
+    .addTo(m).bindTooltip('Start', { direction: 'top' });
+  L.circleMarker(pts[pts.length - 1], { radius: 6, color: '#fff', weight: 2, fillColor: '#dc2626', fillOpacity: 1 })
+    .addTo(m).bindTooltip('Einde', { direction: 'top' });
+  m.fitBounds(line.getBounds(), { padding: [24, 24] });
+  return m;
+}
+
+// Open-Meteo elevation API (static data → cache 30 days). Returns {dists(km), elevs(m)}.
+async function fetchElevation(h, pts) {
+  const key = 'elev:' + (h.slug || h.id);
+  const cached = cacheGet(key, 30 * 24 * 3600 * 1000);
+  if (cached) return cached;
+  const sampled = downsample(pts, 100);
+  const lat = sampled.map(p => p[0].toFixed(5)).join(',');
+  const lon = sampled.map(p => p[1].toFixed(5)).join(',');
+  const res = await fetch(`https://api.open-meteo.com/v1/elevation?latitude=${lat}&longitude=${lon}`);
+  if (!res.ok) throw new Error('elevation http ' + res.status);
+  const data = await res.json();
+  const elevs = data.elevation || [];
+  const dists = [0];
+  for (let i = 1; i < sampled.length; i++) dists.push(dists[i - 1] + distMeters(sampled[i - 1], sampled[i]) / 1000);
+  const out = { dists, elevs };
+  cacheSet(key, out);
+  return out;
+}
+
+function renderElevation(section, data) {
+  const body = section.querySelector('.elev-body');
+  const { dists, elevs } = data;
+  if (!elevs.length) { body.textContent = 'Geen hoogtegegevens beschikbaar.'; return; }
+  const W = 600, H = 120, padL = 4, padR = 4, padT = 8, padB = 8;
+  const total = dists[dists.length - 1] || 1;
+  let min = Math.min(...elevs), max = Math.max(...elevs);
+  if (max - min < 1) max = min + 1; // avoid divide-by-zero on flat routes
+  const x = d => padL + (d / total) * (W - padL - padR);
+  const y = e => padT + (1 - (e - min) / (max - min)) * (H - padT - padB);
+  const pathPts = elevs.map((e, i) => `${x(dists[i]).toFixed(1)},${y(e).toFixed(1)}`);
+  const linePath = 'M' + pathPts.join(' L');
+  const areaPath = `M${x(0).toFixed(1)},${(H - padB).toFixed(1)} L${pathPts.join(' L')} L${x(total).toFixed(1)},${(H - padB).toFixed(1)} Z`;
+  let asc = 0, desc = 0;
+  for (let i = 1; i < elevs.length; i++) { const d = elevs[i] - elevs[i - 1]; if (d > 0) asc += d; else desc -= d; }
+  body.innerHTML =
+    `<svg class="elev-chart" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" aria-hidden="true">` +
+      `<path class="elev-area" d="${areaPath}"/><path class="elev-line" d="${linePath}"/></svg>` +
+    `<div class="elev-summary">` +
+      `<span>Afstand <b>${total.toFixed(1)} km</b></span>` +
+      `<span>Stijging <b>${Math.round(asc)} m</b></span>` +
+      `<span>Daling <b>${Math.round(desc)} m</b></span>` +
+      `<span>Hoogste <b>${Math.round(max)} m</b></span>` +
+    `</div>`;
+}
+
+// Open-Meteo daily forecast (cache 10 min, keyed by rounded location).
+async function fetchWeather(lat, lon) {
+  const key = `wx:${lat.toFixed(2)},${lon.toFixed(2)}`;
+  const cached = cacheGet(key, 10 * 60 * 1000);
+  if (cached) return cached;
+  const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat.toFixed(4)}&longitude=${lon.toFixed(4)}` +
+    `&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max&timezone=auto&forecast_days=7`;
+  const res = await fetch(url);
+  if (!res.ok) throw new Error('weather http ' + res.status);
+  const data = await res.json();
+  cacheSet(key, data.daily);
+  return data.daily;
+}
+
+function renderWeather(daily) {
+  const days = (daily && daily.time) || [];
+  if (!days.length) return 'Weer niet beschikbaar.';
+  const fmt = new Intl.DateTimeFormat('nl-NL', { weekday: 'short' });
+  let html = '<div class="weather-row">';
+  days.forEach((iso, i) => {
+    const date = new Date(iso + 'T12:00:00');
+    const name = i === 0 ? 'Vandaag' : fmt.format(date);
+    const w = wmoInfo(daily.weather_code[i]);
+    const hi = Math.round(daily.temperature_2m_max[i]);
+    const lo = Math.round(daily.temperature_2m_min[i]);
+    const rain = daily.precipitation_probability_max ? daily.precipitation_probability_max[i] : null;
+    html += `<div class="weather-day" title="${esc(w.label)}">` +
+      `<div class="wd-name">${esc(name)}</div>` +
+      `<div class="wd-icon">${w.icon}</div>` +
+      `<div class="wd-temp">${hi}° <span class="lo">${lo}°</span></div>` +
+      `<div class="wd-rain">${rain != null ? '💧' + rain + '%' : ''}</div>` +
+    `</div>`;
+  });
+  return html + '</div>';
+}
+
+async function shareHike(h) {
+  const url = new URL(location.href);
+  url.searchParams.set('hike', h.slug || h.id);
+  const link = url.toString();
+  const title = h.shortTitle || h.title || 'NS Wandeling';
+  if (navigator.share) {
+    try { await navigator.share({ title, text: title, url: link }); return; }
+    catch (e) { if (e && e.name === 'AbortError') return; }
+  }
+  try { await navigator.clipboard.writeText(link); showToast('Link gekopieerd'); }
+  catch { showToast(link); }
+}
+
+function closeDetail() {
+  modalEl.classList.remove('open');
+  document.body.style.overflow = '';
+  if (detailMiniMap) { detailMiniMap.remove(); detailMiniMap = null; }
+  modalCard.innerHTML = '';
+  const url = new URL(location.href);
+  url.searchParams.delete('hike');
+  history.replaceState({}, '', url);
+}
+
+async function openDetail(h) {
+  const loc = (h.location || '').replace(/^Van\s+/, '').replace(/\s+naar\s+/, ' → ');
+  const badges = [];
+  if (h.distanceText) badges.push(h.distanceText);
+  if (h.pavedPercentage != null) badges.push(`${h.pavedPercentage}% verhard`);
+  (h.types || []).forEach(t => badges.push(TYPE_LABELS[t] || t));
+  (h.provinces || []).forEach(p => badges.push(PROVINCE_LABELS[p] || p));
+  if ((h.suitableFor || []).includes('honden')) badges.push('🐕 Honden welkom');
+
+  modalCard.innerHTML =
+    `<div class="modal-hero" style="${h.image ? `background-image:url('${esc(h.image)}')` : ''}"></div>` +
+    `<button class="modal-close" type="button" aria-label="Sluiten">×</button>` +
+    `<div class="modal-body">` +
+      `<h2 class="modal-title" id="detailTitle">${esc(h.shortTitle || h.title || '')}</h2>` +
+      `<div class="modal-loc">${esc(loc)}</div>` +
+      `<div class="modal-stats">${badges.map(b => `<span class="card-badge">${esc(b)}</span>`).join('')}</div>` +
+      (h.description ? `<div class="modal-desc">${esc(h.description)}</div>` : '') +
+      `<div class="modal-section"><div class="modal-section-title">Route</div><div class="detail-map" id="detailMap"></div></div>` +
+      `<div class="modal-section" id="elevSection"><div class="modal-section-title">Hoogteprofiel</div><div class="elev-wrap"><div class="elev-body"><div class="spinner"></div></div></div></div>` +
+      `<div class="modal-section" id="wxSection"><div class="modal-section-title">Weer komende dagen</div><div class="wx-body"><div class="spinner"></div></div></div>` +
+    `</div>` +
+    `<div class="modal-actions">` +
+      `<a class="btn btn-primary" href="${esc(h.nsUrl || '#')}" target="_blank" rel="noopener">Bekijk op ns.nl</a>` +
+      (h.gpxFile ? `<a class="btn btn-secondary" href="${esc(h.gpxFile)}" download="${esc(h.slug || 'route')}.gpx">Download GPX</a>` : '') +
+      `<button class="btn btn-secondary" type="button" id="shareBtn">Deel wandeling</button>` +
+    `</div>`;
+
+  modalEl.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  modalCard.scrollTop = 0;
+  modalCard.querySelector('.modal-close').addEventListener('click', closeDetail);
+  modalCard.querySelector('#shareBtn').addEventListener('click', () => shareHike(h));
+
+  const url = new URL(location.href);
+  url.searchParams.set('hike', h.slug || h.id);
+  history.replaceState({ hike: h.slug || h.id }, '', url);
+
+  const pts = await getRoutePoints(h);
+  if (!modalEl.classList.contains('open')) return; // closed while loading
+  if (!pts.length) return;
+
+  detailMiniMap = buildDetailMap(modalCard.querySelector('#detailMap'), pts);
+  requestAnimationFrame(() => { if (detailMiniMap) detailMiniMap.invalidateSize(); });
+
+  fetchElevation(h, pts)
+    .then(d => renderElevation(modalCard.querySelector('#elevSection'), d))
+    .catch(() => { const b = modalCard.querySelector('#elevSection .elev-body'); if (b) b.textContent = 'Hoogteprofiel niet beschikbaar.'; });
+
+  const mid = pts[Math.floor(pts.length / 2)];
+  fetchWeather(mid[0], mid[1])
+    .then(daily => { const b = modalCard.querySelector('#wxSection .wx-body'); if (b) b.innerHTML = renderWeather(daily); })
+    .catch(() => { const b = modalCard.querySelector('#wxSection .wx-body'); if (b) b.textContent = 'Weer niet beschikbaar.'; });
+}
+
+modalEl.addEventListener('click', e => { if (e.target === modalEl) closeDetail(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && modalEl.classList.contains('open')) closeDetail(); });
+
 // --- Modern popup card ---
 function buildPopup(h) {
   const root = document.createElement('div');
@@ -460,13 +826,12 @@ function buildPopup(h) {
 
   const actions = document.createElement('div');
   actions.className = 'card-actions';
-  const nsLink = document.createElement('a');
-  nsLink.className = 'btn btn-primary';
-  nsLink.href = h.nsUrl || '#';
-  nsLink.target = '_blank';
-  nsLink.rel = 'noopener';
-  nsLink.textContent = 'Bekijk op ns.nl';
-  actions.appendChild(nsLink);
+  const details = document.createElement('button');
+  details.type = 'button';
+  details.className = 'btn btn-primary';
+  details.textContent = 'Bekijk details';
+  details.addEventListener('click', () => openDetail(h));
+  actions.appendChild(details);
   if (h.gpxFile) {
     const dl = document.createElement('a');
     dl.className = 'btn btn-secondary';
@@ -655,6 +1020,7 @@ addLegend();
         try {
           const pts = await parseGpx(h.gpxFile);
           if (!pts.length) continue;
+          routePtsById[h.id] = pts;
           const color = COLORS[i % COLORS.length];
           const line = L.polyline(pts, { renderer: routesRenderer, pane: 'routes', color, weight: 3, opacity: 0.9, interactive: false });
           line.addTo(routesLayerGroup);
@@ -705,6 +1071,13 @@ addLegend();
     for (const code of usedStationCodes) {
       const m = stationMarkers.get(code);
       if (m) styleStationUsed(m);
+    }
+
+    // Open the detail modal directly when arriving via a shared ?hike=<slug> link.
+    const wanted = new URLSearchParams(location.search).get('hike');
+    if (wanted) {
+      const h = hikes.find(x => x.slug === wanted || x.id === wanted);
+      if (h) openDetail(h);
     }
 
     // Add all our custom layers to the appropriate groups
@@ -857,14 +1230,9 @@ addLegend();
   const viewToggle = document.getElementById('viewToggle');
   const mapDiv = document.getElementById('map');
 
-  // Store references to main layers
-  let routesLayerGroup = null;
-  let railwayLayerGroup = null;
-  let stationLayerGroup = null;
-  let endpointLayerGroup = null;
-
-  // Store original tile layer for tiles view
-  let originalTileLayer = null;
+  // Layer groups are the ones created at the top of this IIFE; the view
+  // functions close over them directly. (Re-declaring them here shadowed the
+  // real groups with nulls and threw a duplicate-declaration SyntaxError.)
 
   // Function to switch to map view
   function switchToMapView() {

@@ -17,7 +17,11 @@ lines, GPX downloads and fuzzy search.
 - **Fuzzy search** (Fuse.js) over route names, locations, provinces and
   major stations. Top-left Google-Maps-style panel.
 - **Rich popup cards** with the NS hero photo, distance, route endpoints,
-  description, a link to ns.nl and a one-click GPX download.
+  description, a "Bekijk details" button and a one-click GPX download.
+- **Detail modal** (per route) with hero image, stat badges, a non-interactive
+  route map, an elevation profile and a 7-day weather forecast (both from the
+  keyless [Open-Meteo](https://open-meteo.com/) API), plus ns.nl / GPX /
+  shareable-link actions. Opening `?hike=<slug>` deep-links straight into it.
 - **Legend**, **geolocation button**, **mobile-responsive**.
 
 ## Architecture
@@ -32,8 +36,9 @@ railways.geojson  NL main+branch rail lines
 gpx/*.gpx         47 downloaded GPX tracks
 ```
 
-All data is baked at build time by `fetch.py`. The browser never calls
-an external API.
+All route/station data is baked at build time by `fetch.py`. The only
+runtime API calls are to Open-Meteo (elevation + weather), made lazily when
+a route's detail modal is opened and cached in `localStorage`.
 
 ## Data pipeline (`fetch.py`)
 
