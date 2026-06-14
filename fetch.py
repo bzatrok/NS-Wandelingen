@@ -91,9 +91,157 @@ def fetch_stations():
     print(f"  saved {len(stations)} NL stations")
 
 
+# --- Klompenpaden (Provincie Utrecht GIS) ---------------------------------
+# Klompenpaden are circular ("rondwandelingen") unpaved farmland walks in the
+# Utrecht/Gelderland landscape. The Province of Utrecht publishes them through
+# an ArcGIS REST service that can emit GeoJSON directly, so no HTML scraping is
+# needed. We pull the line geometry, group features into routes and write one
+# GPX track per route plus a klompenpaden.json that mirrors the hikes.json shape
+# (with source="klompenpad", circular=true). Only the Utrecht paden are covered
+# here; the Gelderland ones live in a separate source and can be added later.
+KP_SERVICE = "https://gis.provincie-utrecht.nl/server/rest/services/Recreatie/s01_4_toerisme_recreatie/MapServer"
+
+def _slugify(name: str) -> str:
+    s = name.lower()
+    for a, b in (("é","e"),("è","e"),("ë","e"),("ê","e"),("ï","i"),("í","i"),
+                 ("ö","o"),("ó","o"),("ü","u"),("ú","u"),("ä","a"),("á","a"),("ç","c")):
+        s = s.replace(a, b)
+    s = re.sub(r"[^a-z0-9]+", "-", s).strip("-")
+    return s or "klompenpad"
+
+def _prop(props: dict, *cands):
+    """Case-insensitive lookup of the first present, non-empty property."""
+    lower = {str(k).lower(): v for k, v in (props or {}).items()}
+    for c in cands:
+        v = lower.get(c.lower())
+        if v not in (None, "", " "):
+            return v
+    return None
+
+def _arcgis_geojson(layer_url: str) -> list[dict]:
+    """Fetch all features of an ArcGIS layer as GeoJSON (handles paging)."""
+    feats, offset = [], 0
+    while True:
+        params = urllib.parse.urlencode({
+            "where": "1=1", "outFields": "*", "outSR": "4326",
+            "returnGeometry": "true", "f": "geojson",
+            "resultOffset": offset, "resultRecordCount": 1000,
+        })
+        gj = json.loads(get(f"{layer_url}/query?{params}"))
+        batch = gj.get("features", [])
+        feats.extend(batch)
+        if not batch or not gj.get("exceededTransferLimit"):
+            break
+        offset += len(batch)
+    return feats
+
+def _coords_from_geom(geom: dict) -> list[list[float]]:
+    if not geom:
+        return []
+    t, c = geom.get("type"), geom.get("coordinates") or []
+    if t == "LineString":
+        return c
+    if t == "MultiLineString":
+        out = []
+        for part in c:
+            out.extend(part)
+        return out
+    return []
+
+def _write_gpx(path: pathlib.Path, name: str, coords: list[list[float]]):
+    pts = "".join(f'<trkpt lat="{lat:.6f}" lon="{lon:.6f}"></trkpt>' for lon, lat in coords)
+    path.write_text(
+        '<?xml version="1.0" encoding="UTF-8"?>'
+        '<gpx version="1.1" creator="ns-wandelingen-map" xmlns="http://www.topografix.com/GPX/1/1">'
+        f'<trk><name>{html.escape(name)}</name><trkseg>{pts}</trkseg></trk></gpx>',
+        encoding="utf-8",
+    )
+
+def fetch_klompenpaden():
+    out = BASE / "klompenpaden.json"
+    if out.exists():
+        print("klompenpaden.json exists, skipping")
+        return
+    print("fetching Klompenpaden from Provincie Utrecht GIS…")
+    try:
+        meta = json.loads(get(KP_SERVICE + "?f=json"))
+    except Exception as e:
+        print(f"  could not reach GIS service: {e}")
+        return
+    # Pick the line layer(s) whose name mentions "klompenpad". The root service
+    # JSON usually omits geometryType, so confirm it per layer.
+    line_layers = []
+    for l in meta.get("layers", []):
+        if "klompenpad" not in str(l.get("name", "")).lower():
+            continue
+        try:
+            info = json.loads(get(f"{KP_SERVICE}/{l['id']}?f=json"))
+        except Exception:
+            continue
+        if info.get("geometryType") == "esriGeometryPolyline":
+            line_layers.append(l)
+    if not line_layers:
+        print("  no klompenpaden line layer found — check service/layer names in KP_SERVICE")
+        return
+
+    routes: dict[str, dict] = {}
+    for l in line_layers:
+        try:
+            feats = _arcgis_geojson(f"{KP_SERVICE}/{l['id']}")
+        except Exception as e:
+            print(f"  layer {l['id']} query failed: {e}")
+            continue
+        for f in feats:
+            coords = _coords_from_geom(f.get("geometry"))
+            if len(coords) < 2:
+                continue
+            props = f.get("properties", {}) or {}
+            name = _prop(props, "NAAM", "naam", "ROUTENAAM", "NAAM_ROUTE", "NAME",
+                         "TITEL", "THEMA", "OMSCHRIJVING") or f"Klompenpad {len(routes) + 1}"
+            slug = _slugify(str(name))
+            r = routes.setdefault(slug, {"name": str(name), "coords": [], "props": props})
+            r["coords"].extend(coords)
+
+    if not routes:
+        print("  no klompenpaden line features returned (schema may differ)")
+        return
+
+    items = []
+    for slug, r in sorted(routes.items()):
+        gpx_name = f"klompenpad-{slug}.gpx"
+        _write_gpx(GPX_DIR / gpx_name, r["name"], r["coords"])
+        length = _prop(r["props"], "LENGTE", "LENGTH", "AFSTAND", "Shape__Length", "SHAPE_Length")
+        try:
+            km = round(float(length) / 1000, 1) if length else None
+        except (TypeError, ValueError):
+            km = None
+        items.append({
+            "id": "kp-" + slug,
+            "slug": "klompenpad-" + slug,
+            "title": r["name"],
+            "shortTitle": r["name"],
+            "description": _prop(r["props"], "OMSCHRIJVING", "BESCHRIJVING", "TEKST", "INFO") or "",
+            "location": _prop(r["props"], "PLAATS", "WOONPLAATS", "STARTPUNT", "GEMEENTE") or "",
+            "distanceKm": km,
+            "distanceText": (f"{km:.1f} km".replace(".", ",")) if km else None,
+            "provinces": ["utrecht"],
+            "types": [],
+            "suitableFor": [],
+            "pavedPercentage": None,
+            "image": None,
+            "source": "klompenpad",
+            "circular": True,
+            "infoUrl": _prop(r["props"], "URL", "WEBSITE", "LINK") or "https://www.klompenpaden.nl",
+            "gpxFile": f"gpx/{gpx_name}",
+        })
+    out.write_text(json.dumps(items, indent=2, ensure_ascii=False))
+    print(f"  saved {len(items)} klompenpaden + GPX tracks")
+
+
 def main():
     fetch_railways()
     fetch_stations()
+    fetch_klompenpaden()
     results = load_listing()
     print(f"Found {len(results)} routes on NS listing")
     hikes = []
@@ -126,6 +274,7 @@ def main():
             print("  no wandelnet link on detail page")
         hikes.append({
             "id": r["id"],
+            "source": "ns",
             "slug": r["naam"],
             "title": r["titel"],
             "shortTitle": short,

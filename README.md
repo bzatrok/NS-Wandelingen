@@ -30,11 +30,17 @@ Pure static site — no backend:
 
 ```
 index.html        Leaflet + Fuse.js + all UI
-hikes.json        47 routes with metadata
+hikes.json        47 NS routes with metadata (source: "ns")
+klompenpaden.json Utrecht klompenpaden — circular walks (source: "klompenpad")
 stations.json     397 NL stations (code, name, lat/lng, type)
 railways.geojson  NL main+branch rail lines
-gpx/*.gpx         47 downloaded GPX tracks
+gpx/*.gpx         downloaded GPX tracks (ns + klompenpad-*)
 ```
+
+Both NS routes and klompenpaden share one map. A category filter (bottom-left)
+toggles each set independently. Klompenpaden are circular — drawn in a single
+green colour with one start/finish marker; NS routes stay multi-coloured with
+green start / red end markers.
 
 All route/station data is baked at build time by `fetch.py`. The only
 runtime API calls are to Open-Meteo (elevation + weather), made lazily when
@@ -42,7 +48,7 @@ a route's detail modal is opened and cached in `localStorage`.
 
 ## Data pipeline (`fetch.py`)
 
-`fetch.py` is idempotent and pulls from three sources:
+`fetch.py` is idempotent and pulls from these sources:
 
 1. **NS route listing** — scraped from `https://www.ns.nl/dagje-uit/wandelen`
    (parses the `app-dagjeuit` component's `appData` JSON).
@@ -52,6 +58,13 @@ a route's detail modal is opened and cached in `localStorage`.
    Requires `NS_API_KEY`. Filters to NL.
 4. **NL railways** — OpenStreetMap via Overpass API. Filters to
    `railway=rail` with `usage=main|branch`.
+5. **Klompenpaden** — the Province of Utrecht ArcGIS REST service
+   (`gis.provincie-utrecht.nl/.../Recreatie/s01_4_toerisme_recreatie/MapServer`),
+   queried as GeoJSON. The line features are grouped into routes, written to
+   `gpx/klompenpad-*.gpx`, and summarised in `klompenpaden.json`. Covers the
+   Utrecht klompenpaden only; Gelderland lives in a separate source (TODO).
+   Layer/field names are detected defensively — if the service schema changes,
+   adjust `KP_SERVICE` and the field lists in `fetch_klompenpaden()`.
 
 ### Run the pipeline
 
@@ -62,9 +75,9 @@ export NS_API_KEY=your_subscription_key
 python3 fetch.py
 ```
 
-Each output file (`hikes.json`, `stations.json`, `railways.geojson`,
-`gpx/*.gpx`) is skipped if it already exists. Delete the file to force a
-refresh.
+Each output file (`hikes.json`, `klompenpaden.json`, `stations.json`,
+`railways.geojson`, `gpx/*.gpx`) is skipped if it already exists. Delete the
+file to force a refresh.
 
 Get a free NS API key at <https://apiportal.ns.nl>.
 

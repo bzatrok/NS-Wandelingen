@@ -179,6 +179,10 @@
   .legend-swatch.line { height:3px; width:20px; border-radius:2px; }
   .legend-swatch.dashed { background: repeating-linear-gradient(90deg, #94a3b8 0 4px, transparent 4px 8px); }
 
+  /* --- Category filter --- */
+  .filter-control .filter-row { cursor: pointer; user-select: none; }
+  .filter-control .filter-row input { margin: 0 2px 0 0; cursor: pointer; }
+
   /* --- Modern popup styling --- */
   .leaflet-popup-content-wrapper {
     border-radius: 14px !important;
@@ -410,6 +414,7 @@
   <noscript>
     <p>Deze kaart vereist JavaScript. De onderliggende data is beschikbaar als
     <a href="hikes.json">hikes.json</a>,
+    <a href="klompenpaden.json">klompenpaden.json</a>,
     <a href="stations.json">stations.json</a> en
     <a href="railways.geojson">railways.geojson</a>.</p>
   </noscript>
@@ -466,6 +471,9 @@ const stationsRenderer = L.canvas({ pane: 'stations' });
 const routesRenderer   = L.canvas({ pane: 'routes' });
 
 const COLORS = ['#e6194b','#3cb44b','#4363d8','#f58231','#911eb4','#42d4f4','#f032e6','#bfef45','#fabed4','#469990','#dcbeff','#9a6324','#800000','#aaffc3','#808000','#ffd8b1','#000075','#a9a9a9','#ffe119','#808080'];
+// Klompenpaden share one consistent colour so they read as a single set,
+// distinct from the multi-coloured NS routes.
+const KP_COLOR = '#15803d';
 
 // --- Locate control ---
 const LocateControl = L.Control.extend({
@@ -601,7 +609,8 @@ function showToast(msg) {
   toastTimer = setTimeout(() => toastEl.classList.remove('show'), 2200);
 }
 
-function buildDetailMap(container, pts) {
+function buildDetailMap(container, pts, opts = {}) {
+  const { circular = false, color = '#4363d8' } = opts;
   const m = L.map(container, {
     zoomControl: false, attributionControl: true,
     dragging: false, touchZoom: false, doubleClickZoom: false,
@@ -611,11 +620,14 @@ function buildDetailMap(container, pts) {
     maxZoom: 20, subdomains: 'abcd',
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
   }).addTo(m);
-  const line = L.polyline(pts, { color: '#4363d8', weight: 4, opacity: 0.9 }).addTo(m);
-  L.circleMarker(pts[0], { radius: 6, color: '#fff', weight: 2, fillColor: '#16a34a', fillOpacity: 1 })
-    .addTo(m).bindTooltip('Start', { direction: 'top' });
-  L.circleMarker(pts[pts.length - 1], { radius: 6, color: '#fff', weight: 2, fillColor: '#dc2626', fillOpacity: 1 })
-    .addTo(m).bindTooltip('Einde', { direction: 'top' });
+  const line = L.polyline(pts, { color, weight: 4, opacity: 0.9 }).addTo(m);
+  // Circular routes (klompenpaden) share a start/finish, so show one marker.
+  L.circleMarker(pts[0], { radius: 6, color: '#fff', weight: 2, fillColor: circular ? color : '#16a34a', fillOpacity: 1 })
+    .addTo(m).bindTooltip(circular ? 'Start / einde' : 'Start', { direction: 'top' });
+  if (!circular) {
+    L.circleMarker(pts[pts.length - 1], { radius: 6, color: '#fff', weight: 2, fillColor: '#dc2626', fillOpacity: 1 })
+      .addTo(m).bindTooltip('Einde', { direction: 'top' });
+  }
   m.fitBounds(line.getBounds(), { padding: [24, 24] });
   return m;
 }
@@ -725,8 +737,13 @@ function closeDetail() {
 }
 
 async function openDetail(h) {
+  const isKp = h.source === 'klompenpad';
   const loc = (h.location || '').replace(/^Van\s+/, '').replace(/\s+naar\s+/, ' → ');
+  const infoUrl = h.nsUrl || h.infoUrl || '#';
+  const infoLabel = isKp ? 'Bekijk op klompenpaden.nl' : 'Bekijk op ns.nl';
   const badges = [];
+  if (isKp) badges.push('🌳 Klompenpad');
+  if (h.circular) badges.push('Rondwandeling');
   if (h.distanceText) badges.push(h.distanceText);
   if (h.pavedPercentage != null) badges.push(`${h.pavedPercentage}% verhard`);
   (h.types || []).forEach(t => badges.push(TYPE_LABELS[t] || t));
@@ -746,7 +763,7 @@ async function openDetail(h) {
       `<div class="modal-section" id="wxSection"><div class="modal-section-title">Weer komende dagen</div><div class="wx-body"><div class="spinner"></div></div></div>` +
     `</div>` +
     `<div class="modal-actions">` +
-      `<a class="btn btn-primary" href="${esc(h.nsUrl || '#')}" target="_blank" rel="noopener">Bekijk op ns.nl</a>` +
+      `<a class="btn btn-primary" href="${esc(infoUrl)}" target="_blank" rel="noopener">${infoLabel}</a>` +
       (h.gpxFile ? `<a class="btn btn-secondary" href="${esc(h.gpxFile)}" download="${esc(h.slug || 'route')}.gpx">Download GPX</a>` : '') +
       `<button class="btn btn-secondary" type="button" id="shareBtn">Deel wandeling</button>` +
     `</div>`;
@@ -765,7 +782,7 @@ async function openDetail(h) {
   if (!modalEl.classList.contains('open')) return; // closed while loading
   if (!pts.length) return;
 
-  detailMiniMap = buildDetailMap(modalCard.querySelector('#detailMap'), pts);
+  detailMiniMap = buildDetailMap(modalCard.querySelector('#detailMap'), pts, { circular: !!h.circular, color: isKp ? KP_COLOR : '#4363d8' });
   requestAnimationFrame(() => { if (detailMiniMap) detailMiniMap.invalidateSize(); });
 
   fetchElevation(h, pts)
@@ -941,7 +958,7 @@ function nearestStation(pt, stations, maxMeters = 1200) {
 }
 
 // --- Legend ---
-function addLegend() {
+function addLegend(hasKp) {
   const legend = L.control({ position: 'bottomright' });
   legend.onAdd = function () {
     const div = L.DomUtil.create('div', 'legend');
@@ -950,6 +967,10 @@ function addLegend() {
       { swatch: 'line',   color: '#4363d8', text: 'NS-wandeling' },
       { swatch: 'circle', color: '#16a34a', text: 'Start' },
       { swatch: 'circle', color: '#dc2626', text: 'Einde' },
+      ...(hasKp ? [
+        { swatch: 'line',   color: KP_COLOR, text: 'Klompenpad (rondwandeling)' },
+        { swatch: 'circle', color: KP_COLOR, text: 'Start / einde klompenpad' },
+      ] : []),
       { swatch: 'circle', color: '#ffc917', border: '#003082', text: 'Station (met wandeling)' },
       { swatch: 'circle', color: '#cbd5e1', border: '#94a3b8', text: 'Station (overig)' },
       { swatch: 'dashed', text: 'Spoorlijn' },
@@ -982,25 +1003,59 @@ function addLegend() {
   };
   legend.addTo(map);
 }
-addLegend();
 
 // --- Main ---
   (async () => {
-    const [hikes, stationData] = await Promise.all([
+    const [hikes, kp, stationData] = await Promise.all([
       (await fetch('hikes.json')).json(),
+      // klompenpaden.json is optional: it only exists once the GIS pipeline has run.
+      fetch('klompenpaden.json').then(r => r.ok ? r.json() : []).catch(() => []),
       loadRailways().then(loadStations),
     ]);
     const { stations, markers: stationMarkers } = stationData;
+    const allRoutes = hikes.concat(kp);
     const usedStationCodes = new Set();
 
-    const layers = {};           // hikeId -> { line, hit, start, end, hike }
+    const layers = {};           // routeId -> { line, hit, start, end, hike }
     const allBounds = L.latLngBounds([]);
 
-    // Create layer groups for easier management
-    const routesLayerGroup = L.layerGroup();
+    // Separate groups per category so the filter control can toggle each on its own.
+    const routesLayerGroup = L.layerGroup();     // NS route lines + hit targets
+    const endpointLayerGroup = L.layerGroup();   // NS start/end markers
+    const kpRoutesLayerGroup = L.layerGroup();   // Klompenpad lines + hit targets
+    const kpEndpointLayerGroup = L.layerGroup(); // Klompenpad start/finish markers
     const railwayLayerGroup = L.layerGroup();
     const stationLayerGroup = L.layerGroup();
-    const endpointLayerGroup = L.layerGroup();
+
+    // Build the polylines + endpoint marker(s) for one route and register it.
+    function makeRoute(h, pts, { color, circular, routesGroup, endpointsGroup }) {
+      const line = L.polyline(pts, { renderer: routesRenderer, pane: 'routes', color, weight: 3, opacity: 0.9, interactive: false });
+      line.addTo(routesGroup);
+      const hit = L.polyline(pts, { renderer: routesRenderer, pane: 'routes', color: '#000', weight: 16, opacity: 0, interactive: true });
+      // autoPan off by default so hovering a route never shifts the map; only clicks pan it into view.
+      hit.bindPopup(buildPopup(h), { autoClose: true, closeOnClick: true, autoPan: false, maxWidth: 320, minWidth: 300, className: 'hike-popup' });
+      const raiseLatLng = (latlng, px = 36) => {
+        const p = map.latLngToContainerPoint(latlng);
+        return map.containerPointToLatLng([p.x, p.y - px]);
+      };
+      hit.on('click', (ev) => { hit.getPopup().options.autoPan = true; hit.openPopup(raiseLatLng(ev.latlng)); });
+      hit.on('mouseover', (ev) => { line.setStyle({ weight: 5 }); hit.getPopup().options.autoPan = false; hit.openPopup(raiseLatLng(ev.latlng)); });
+      hit.on('mouseout', () => line.setStyle({ weight: 3 }));
+      hit.addTo(routesGroup);
+
+      let start, end;
+      if (circular) {
+        start = end = L.circleMarker(pts[0], { pane: 'endpoints', radius: 4, color: '#fff', weight: 1.5, fillColor: color, fillOpacity: 1 })
+          .bindTooltip('Start / einde', { direction: 'top' }).addTo(endpointsGroup);
+      } else {
+        start = L.circleMarker(pts[0], { pane: 'endpoints', radius: 4, color: '#fff', weight: 1.5, fillColor: '#16a34a', fillOpacity: 1 })
+          .bindTooltip('Start', { direction: 'top' }).addTo(endpointsGroup);
+        end = L.circleMarker(pts[pts.length - 1], { pane: 'endpoints', radius: 4, color: '#fff', weight: 1.5, fillColor: '#dc2626', fillOpacity: 1 })
+          .bindTooltip('Einde', { direction: 'top' }).addTo(endpointsGroup);
+      }
+      layers[h.id] = { layer: line, hit, start, end, hike: h };
+      allBounds.extend(line.getBounds());
+    }
 
     function setActiveHike(id) { /* hook for future highlight */ }
 
@@ -1012,6 +1067,7 @@ addLegend();
       rec.hit.openPopup();
     }
 
+    // NS routes: multi-coloured, point-to-point, mapped to nearby stations.
     const queue = [...hikes.entries()];
     const workers = Array.from({ length: 6 }, async () => {
       while (queue.length) {
@@ -1021,41 +1077,7 @@ addLegend();
           const pts = await parseGpx(h.gpxFile);
           if (!pts.length) continue;
           routePtsById[h.id] = pts;
-          const color = COLORS[i % COLORS.length];
-          const line = L.polyline(pts, { renderer: routesRenderer, pane: 'routes', color, weight: 3, opacity: 0.9, interactive: false });
-          line.addTo(routesLayerGroup);
-          const hit = L.polyline(pts, { renderer: routesRenderer, pane: 'routes', color: '#000', weight: 16, opacity: 0, interactive: true });
-          // autoPan off by default so hovering a route never shifts the map; only clicks pan it into view.
-          hit.bindPopup(buildPopup(h), { autoClose: true, closeOnClick: true, autoPan: false, maxWidth: 320, minWidth: 300, className: 'hike-popup' });
-          // Open popup raised above the cursor so the path under the pointer remains visible.
-          const raiseLatLng = (latlng, px = 36) => {
-            const p = map.latLngToContainerPoint(latlng);
-            return map.containerPointToLatLng([p.x, p.y - px]);
-          };
-          hit.on('click', (ev) => {
-            hit.getPopup().options.autoPan = true;
-            hit.openPopup(raiseLatLng(ev.latlng));
-          });
-          hit.on('mouseover', (ev) => {
-            line.setStyle({ weight: 5 });
-            hit.getPopup().options.autoPan = false;
-            hit.openPopup(raiseLatLng(ev.latlng));
-          });
-          hit.on('mouseout', () => line.setStyle({ weight: 3 }));
-          hit.addTo(routesLayerGroup);
-
-          const start = L.circleMarker(pts[0], {
-            pane: 'endpoints', radius: 4, color: '#fff', weight: 1.5,
-            fillColor: '#16a34a', fillOpacity: 1,
-          }).bindTooltip('Start', { direction: 'top' }).addTo(endpointLayerGroup);
-          const end = L.circleMarker(pts[pts.length - 1], {
-            pane: 'endpoints', radius: 4, color: '#fff', weight: 1.5,
-            fillColor: '#dc2626', fillOpacity: 1,
-          }).bindTooltip('Einde', { direction: 'top' }).addTo(endpointLayerGroup);
-
-          layers[h.id] = { layer: line, hit, start, end, hike: h };
-          allBounds.extend(line.getBounds());
-
+          makeRoute(h, pts, { color: COLORS[i % COLORS.length], circular: false, routesGroup: routesLayerGroup, endpointsGroup: endpointLayerGroup });
           for (const pt of [pts[0], pts[pts.length - 1]]) {
             const s = nearestStation(pt, stations);
             if (s) usedStationCodes.add(s.code);
@@ -1065,7 +1087,25 @@ addLegend();
         }
       }
     });
-    await Promise.all(workers);
+
+    // Klompenpaden: single green colour, circular (one start/finish marker).
+    const kpQueue = [...kp];
+    const kpWorkers = Array.from({ length: 6 }, async () => {
+      while (kpQueue.length) {
+        const h = kpQueue.shift();
+        if (!h.gpxFile) continue;
+        try {
+          const pts = await parseGpx(h.gpxFile);
+          if (!pts.length) continue;
+          routePtsById[h.id] = pts;
+          makeRoute(h, pts, { color: KP_COLOR, circular: true, routesGroup: kpRoutesLayerGroup, endpointsGroup: kpEndpointLayerGroup });
+        } catch (e) {
+          console.warn('klompenpad gpx failed', h.slug, e);
+        }
+      }
+    });
+
+    await Promise.all([...workers, ...kpWorkers]);
     if (allBounds.isValid()) map.fitBounds(allBounds, { padding: [20, 20] });
 
     for (const code of usedStationCodes) {
@@ -1076,32 +1116,67 @@ addLegend();
     // Open the detail modal directly when arriving via a shared ?hike=<slug> link.
     const wanted = new URLSearchParams(location.search).get('hike');
     if (wanted) {
-      const h = hikes.find(x => x.slug === wanted || x.id === wanted);
+      const h = allRoutes.find(x => x.slug === wanted || x.id === wanted);
       if (h) openDetail(h);
     }
 
-    // Add all our custom layers to the appropriate groups
-    // After all data is loaded, we can add the groups to the map
-    // This will be done in the view switching functions below
-    // Store references to layer groups for management
+    // All categories share one map; the filter control toggles each on its own.
     routesLayerGroup.addTo(map);
+    endpointLayerGroup.addTo(map);
+    kpRoutesLayerGroup.addTo(map);
+    kpEndpointLayerGroup.addTo(map);
     railwayLayerGroup.addTo(map);
     stationLayerGroup.addTo(map);
-    endpointLayerGroup.addTo(map);
+
+    addLegend(kp.length > 0);
+
+    // --- Category filter (only shown when there are klompenpaden to filter) ---
+    if (kp.length > 0) {
+      const FilterControl = L.Control.extend({
+        options: { position: 'bottomleft' },
+        onAdd() {
+          const div = L.DomUtil.create('div', 'legend filter-control');
+          const title = L.DomUtil.create('div', 'legend-title', div);
+          title.textContent = 'Toon';
+          const addRow = (label, color, groups) => {
+            const row = L.DomUtil.create('label', 'legend-row filter-row', div);
+            const cb = L.DomUtil.create('input', '', row);
+            cb.type = 'checkbox';
+            cb.checked = true;
+            const sw = L.DomUtil.create('span', 'legend-swatch line', row);
+            sw.style.background = color;
+            const txt = L.DomUtil.create('span', '', row);
+            txt.textContent = label;
+            cb.addEventListener('change', () => {
+              for (const g of groups) cb.checked ? g.addTo(map) : map.removeLayer(g);
+            });
+          };
+          addRow('NS-wandelingen', '#4363d8', [routesLayerGroup, endpointLayerGroup]);
+          addRow('Klompenpaden', KP_COLOR, [kpRoutesLayerGroup, kpEndpointLayerGroup]);
+          L.DomEvent.disableClickPropagation(div);
+          return div;
+        },
+      });
+      new FilterControl().addTo(map);
+    }
 
   // --- Fuzzy search (Fuse.js) ---
   // Index: hikes (primary) + major stations (secondary).
   const majorTypes = new Set(['MEGA_STATION', 'KNOOPPUNT_INTERCITY_STATION', 'INTERCITY_STATION']);
   const indexItems = [];
-  for (const h of hikes) {
+  for (const h of allRoutes) {
+    const isKp = h.source === 'klompenpad';
+    const subtitle = isKp
+      ? ['Klompenpad', h.location, h.distanceText].filter(Boolean).join(' · ')
+      : `${h.location || ''} · ${h.distanceText || ''}`;
     indexItems.push({
       kind: 'hike',
       id: h.id,
       title: h.shortTitle || h.title || '',
-      subtitle: `${h.location || ''} · ${h.distanceText || ''}`,
+      subtitle,
       image: h.image,
       provinces: (h.provinces || []).join(' '),
-      types: (h.types || []).join(' '),
+      types: ((h.types || []).join(' ') + (isKp ? ' klompenpad klompenpaden rondwandeling' : '')).trim(),
       _hike: h,
     });
   }
@@ -1244,9 +1319,11 @@ addLegend();
     
     // Add all data layers back to the map
     if (routesLayerGroup) routesLayerGroup.addTo(map);
+    if (endpointLayerGroup) endpointLayerGroup.addTo(map);
+    if (kpRoutesLayerGroup) kpRoutesLayerGroup.addTo(map);
+    if (kpEndpointLayerGroup) kpEndpointLayerGroup.addTo(map);
     if (railwayLayerGroup) railwayLayerGroup.addTo(map);
     if (stationLayerGroup) stationLayerGroup.addTo(map);
-    if (endpointLayerGroup) endpointLayerGroup.addTo(map);
   }
 
   // Function to switch to tiles view
@@ -1260,9 +1337,11 @@ addLegend();
     // For tiles view, we would normally show just the base tiles
     // But since we need to keep map functionality, we'll just hide the overlays
     if (routesLayerGroup) map.removeLayer(routesLayerGroup);
+    if (endpointLayerGroup) map.removeLayer(endpointLayerGroup);
+    if (kpRoutesLayerGroup) map.removeLayer(kpRoutesLayerGroup);
+    if (kpEndpointLayerGroup) map.removeLayer(kpEndpointLayerGroup);
     if (railwayLayerGroup) map.removeLayer(railwayLayerGroup);
     if (stationLayerGroup) map.removeLayer(stationLayerGroup);
-    if (endpointLayerGroup) map.removeLayer(endpointLayerGroup);
     
     // Show the base map tiles only
     // (This is a simplified version - in a full implementation
