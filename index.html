@@ -1,39 +1,44 @@
 <!doctype html>
 <html lang="nl">
+
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>NS Wandelingen Kaart — 47 wandelroutes vanaf het station</title>
-<meta name="description" content="Interactieve kaart met alle NS-wandelingen door Nederland. Bekijk routes vanaf elk NS-station, start- en eindpunten, provincies en afstanden, en download GPX-tracks.">
-<meta name="keywords" content="NS wandelingen, NS wandelroutes, wandelen Nederland, wandelen vanaf station, GPX wandelroutes, Wandelnet, NS dagje uit, wandelkaart Nederland">
-<meta name="author" content="Ben Zatrok">
-<meta name="robots" content="index,follow,max-image-preview:large">
-<meta name="theme-color" content="#003082">
-<link rel="canonical" href="https://ns-wandelingen.zatrok.com/">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NS Wandelingen Kaart — 47 wandelroutes vanaf het station</title>
+  <meta name="description"
+    content="Interactieve kaart met alle NS-wandelingen door Nederland. Bekijk routes vanaf elk NS-station, start- en eindpunten, provincies en afstanden, en download GPX-tracks.">
+  <meta name="keywords"
+    content="NS wandelingen, NS wandelroutes, wandelen Nederland, wandelen vanaf station, GPX wandelroutes, Wandelnet, NS dagje uit, wandelkaart Nederland">
+  <meta name="author" content="Ben Zatrok">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <meta name="theme-color" content="#003082">
+  <link rel="canonical" href="https://ns-wandelingen.zatrok.com/">
 
-<!-- Open Graph -->
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="NS Wandelingen Kaart">
-<meta property="og:title" content="NS Wandelingen Kaart — 47 wandelroutes vanaf het station">
-<meta property="og:description" content="Interactieve kaart met alle NS-wandelingen door Nederland. Routes, stations, afstanden en GPX-downloads op één plek.">
-<meta property="og:url" content="https://ns-wandelingen.zatrok.com/">
-<meta property="og:locale" content="nl_NL">
-<meta property="og:image" content="https://ns-wandelingen.zatrok.com/og-image.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Kaart van Nederland met alle NS-wandelroutes.">
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="NS Wandelingen Kaart">
+  <meta property="og:title" content="NS Wandelingen Kaart — 47 wandelroutes vanaf het station">
+  <meta property="og:description"
+    content="Interactieve kaart met alle NS-wandelingen door Nederland. Routes, stations, afstanden en GPX-downloads op één plek.">
+  <meta property="og:url" content="https://ns-wandelingen.zatrok.com/">
+  <meta property="og:locale" content="nl_NL">
+  <meta property="og:image" content="https://ns-wandelingen.zatrok.com/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Kaart van Nederland met alle NS-wandelroutes.">
 
-<!-- Twitter -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="NS Wandelingen Kaart">
-<meta name="twitter:description" content="Alle NS-wandelroutes op één interactieve kaart. Met GPX-downloads.">
-<meta name="twitter:image" content="https://ns-wandelingen.zatrok.com/og-image.png">
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="NS Wandelingen Kaart">
+  <meta name="twitter:description" content="Alle NS-wandelroutes op één interactieve kaart. Met GPX-downloads.">
+  <meta name="twitter:image" content="https://ns-wandelingen.zatrok.com/og-image.png">
 
-<!-- Favicon (inline SVG: NS-yellow block with train icon) -->
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23003082'/%3E%3Ctext x='32' y='44' font-family='system-ui,-apple-system,sans-serif' font-size='34' font-weight='800' text-anchor='middle' fill='%23ffc917'%3ENS%3C/text%3E%3C/svg%3E">
+  <!-- Favicon (inline SVG: NS-yellow block with train icon) -->
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23003082'/%3E%3Ctext x='32' y='44' font-family='system-ui,-apple-system,sans-serif' font-size='34' font-weight='800' text-anchor='middle' fill='%23ffc917'%3ENS%3C/text%3E%3C/svg%3E">
 
-<!-- Structured data -->
-<script type="application/ld+json">
+  <!-- Structured data -->
+  <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@graph": [
@@ -59,1223 +64,1677 @@
 }
 </script>
 
-<!-- Warm up the tile CDN connection before Leaflet requests tiles. -->
-<link rel="preconnect" href="https://a.basemaps.cartocdn.com" crossorigin>
-<link rel="preconnect" href="https://b.basemaps.cartocdn.com" crossorigin>
-<link rel="preconnect" href="https://c.basemaps.cartocdn.com" crossorigin>
-<link rel="preconnect" href="https://d.basemaps.cartocdn.com" crossorigin>
-<link rel="dns-prefetch" href="https://basemaps.cartocdn.com">
+  <!-- Warm up the tile CDN connection before Leaflet requests tiles. -->
+  <link rel="preconnect" href="https://a.basemaps.cartocdn.com" crossorigin>
+  <link rel="preconnect" href="https://b.basemaps.cartocdn.com" crossorigin>
+  <link rel="preconnect" href="https://c.basemaps.cartocdn.com" crossorigin>
+  <link rel="preconnect" href="https://d.basemaps.cartocdn.com" crossorigin>
+  <link rel="dns-prefetch" href="https://basemaps.cartocdn.com">
 
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-<style>
-  :root {
-    --ns-yellow: #ffc917;
-    --ns-blue: #003082;
-    --text: #0f172a;
-    --muted: #64748b;
-    --border: #e2e8f0;
-    --bg: #ffffff;
-    --shadow: 0 6px 24px rgba(15,23,42,0.12), 0 2px 6px rgba(15,23,42,0.08);
-  }
-  html, body { margin:0; height:100%; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif; color:var(--text); }
-  #map { position:absolute; inset:0; }
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <style>
+    :root {
+      --ns-yellow: #ffc917;
+      --ns-blue: #003082;
+      --text: #0f172a;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --bg: #ffffff;
+      --shadow: 0 6px 24px rgba(15, 23, 42, 0.12), 0 2px 6px rgba(15, 23, 42, 0.08);
+    }
 
-  /* Accessible, crawlable content that stays out of the visual layout. */
-  .sr-only {
-    position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
-    overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
-  }
+    html,
+    body {
+      margin: 0;
+      height: 100%;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+      color: var(--text);
+    }
 
-  /* --- Search control (Google-Maps style, top-left) --- */
-  .search-panel {
-    position: absolute;
-    top: 12px; left: 12px;
-    z-index: 1000;
-    width: 360px;
-    max-width: calc(100vw - 24px);
-    background: var(--bg);
-    border-radius: 12px;
-    box-shadow: var(--shadow);
-    overflow: hidden;
-    font-size: 15px;
-  }
-  .search-row { display:flex; align-items:center; padding: 12px 14px; gap:10px; }
-  .search-icon { flex:none; color: var(--muted); font-size:18px; line-height:1; }
-  .search-input {
-    flex: 1; border: none; outline: none; background: transparent;
-    font-size: 15px; color: var(--text); min-width: 0;
-    font-family: inherit;
-  }
-  .search-input::placeholder { color: #94a3b8; }
-  .search-clear {
-    border: none; background: transparent; color: var(--muted);
-    font-size: 18px; cursor: pointer; padding: 2px 6px; display: none;
-  }
-  .search-clear.visible { display: block; }
-  .search-title { flex:1; }
-  .search-title .brand { font-weight:700; font-size:15px; color: var(--ns-blue); }
-  .search-title .brand .yellow { color: var(--ns-yellow); background: var(--ns-blue); padding: 1px 6px; border-radius: 3px; margin-right: 4px; }
-  .search-title .count { display:block; font-size:12px; color:var(--muted); margin-top:2px; }
+    #map {
+      position: absolute;
+      inset: 0;
+    }
 
-  .search-results {
-    max-height: min(60vh, 520px);
-    overflow-y: auto;
-    border-top: 1px solid var(--border);
-  }
-  .search-results:empty { display: none; }
-  .result {
-    padding: 11px 14px;
-    display: flex; gap: 12px; align-items: center;
-    cursor: pointer;
-    border-bottom: 1px solid var(--border);
-  }
-  .result:last-child { border-bottom: none; }
-  .result:hover, .result.active { background: #f8fafc; }
-  .result-thumb {
-    flex: none; width: 44px; height: 44px; border-radius: 8px;
-    background-color: #f1f5f9; background-size: cover; background-position: center;
-  }
-  .result-body { flex: 1; min-width: 0; }
-  .result-title { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .result-meta { font-size: 12px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .result-meta mark { background: #fef3c7; color: inherit; padding: 0 1px; border-radius: 2px; }
+    /* Accessible, crawlable content that stays out of the visual layout. */
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
 
-  /* --- Glow for route polylines --- */
-  .leaflet-routes-pane {
-    filter: drop-shadow(0 0 3px rgba(67,99,216,0.35)) drop-shadow(0 0 1px rgba(0,0,0,0.25));
-  }
+    /* --- Search control (Google-Maps style, top-left) --- */
+    .search-panel {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      z-index: 1000;
+      width: 360px;
+      max-width: calc(100vw - 24px);
+      background: var(--bg);
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      font-size: 15px;
+    }
 
-  /* --- Locate button --- */
-  .leaflet-control.locate-btn {
-    background:#fff; width:34px; height:34px; line-height:34px; text-align:center;
-    font-size:18px; cursor:pointer; border-radius:6px;
-    box-shadow:0 1px 5px rgba(0,0,0,0.2); border:none; color:#333;
-  }
-  .leaflet-control.locate-btn:hover { background:#f4f4f4; }
-  .leaflet-control.locate-btn.active { color:#4285f4; }
+    .search-row {
+      display: flex;
+      align-items: center;
+      padding: 12px 14px;
+      gap: 10px;
+    }
 
-  /* --- Station labels --- */
-  .station-label {
-    background:none; border:none; box-shadow:none;
-    font-size:11px; color:#334155; white-space:nowrap;
-    text-shadow: 0 0 2px #fff, 0 0 2px #fff, 0 0 2px #fff;
-    pointer-events:none;
-  }
+    .search-icon {
+      flex: none;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1;
+    }
 
-  /* --- Legend --- */
-  .legend {
-    background: rgba(255,255,255,0.97);
-    padding: 12px 14px;
-    border-radius: 10px;
-    box-shadow: var(--shadow);
-    font-size: 12.5px;
-    color: #334155;
-    line-height: 1.7;
-  }
-  .legend-title { font-weight:700; font-size:13px; margin-bottom:8px; color: var(--text); }
-  .legend-row { display:flex; align-items:center; gap:10px; }
-  .legend-swatch { flex:none; width:14px; height:14px; display:inline-block; }
-  .legend-swatch.circle { border-radius:50%; }
-  .legend-swatch.line { height:3px; width:20px; border-radius:2px; }
-  .legend-swatch.dashed { background: repeating-linear-gradient(90deg, #94a3b8 0 4px, transparent 4px 8px); }
+    .search-input {
+      flex: 1;
+      border: none;
+      outline: none;
+      background: transparent;
+      font-size: 15px;
+      color: var(--text);
+      min-width: 0;
+      font-family: inherit;
+    }
 
-  /* --- Modern popup styling --- */
-  .leaflet-popup-content-wrapper {
-    border-radius: 14px !important;
-    padding: 0 !important;
-    box-shadow: 0 8px 32px rgba(15,23,42,0.18), 0 2px 6px rgba(15,23,42,0.10) !important;
-    overflow: hidden;
-  }
-  .leaflet-popup-content {
-    margin: 0 !important;
-    width: 300px !important;
-    font-size: 14px;
-  }
-  .leaflet-popup-close-button {
-    top: 8px !important; right: 8px !important;
-    width: 26px !important; height: 26px !important;
-    background: rgba(255,255,255,0.92) !important;
-    border-radius: 50% !important;
-    font-size: 18px !important; line-height: 26px !important;
-    color: #334155 !important;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
-  }
-  .leaflet-popup-tip { box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+    .search-input::placeholder {
+      color: #94a3b8;
+    }
 
-  .card { font-family: inherit; color: var(--text); }
-  .card-img {
-    width: 100%; height: 140px;
-    background-color: #e2e8f0;
-    background-size: cover; background-position: center;
-  }
-  .card-body { padding: 14px 16px 16px; }
-  .card-title { font-size: 16px; font-weight: 700; line-height: 1.25; margin: 0 0 6px; color: var(--text); }
-  .card-meta {
-    display: flex; flex-wrap: wrap; gap: 6px 10px;
-    font-size: 12.5px; color: var(--muted);
-    margin-bottom: 10px;
-  }
-  .card-badge {
-    display: inline-flex; align-items: center; gap: 4px;
-    background: #f1f5f9; color: #334155;
-    padding: 2px 8px; border-radius: 999px; font-weight: 500;
-  }
-  .card-desc {
-    font-size: 13.5px; line-height: 1.5; color: #475569;
-    margin-bottom: 14px;
-    display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-  .card-actions { display: flex; gap: 8px; }
-  .btn {
-    flex: 1;
-    display: inline-flex; align-items: center; justify-content: center;
-    padding: 9px 12px; border-radius: 8px;
-    font-size: 13px; font-weight: 600;
-    text-decoration: none;
-    cursor: pointer; border: none;
-    transition: background 0.15s;
-  }
-  .leaflet-popup-content a.btn-primary,
-  .btn-primary { background: var(--ns-blue); color: #fff !important; }
-  .btn-primary:hover { background: #002060; }
-  .leaflet-popup-content a.btn-secondary,
-  .btn-secondary { background: #f1f5f9; color: var(--text) !important; }
-  .btn-secondary:hover { background: #e2e8f0; }
+    .search-clear {
+      border: none;
+      background: transparent;
+      color: var(--muted);
+      font-size: 18px;
+      cursor: pointer;
+      padding: 2px 6px;
+      display: none;
+    }
 
-  /* --- View toggle --- */
-  .view-toggle {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    z-index: 1000;
-    display: flex;
-    background: var(--bg);
-    border-radius: 12px;
-    box-shadow: var(--shadow);
-    overflow: hidden;
-    font-size: 14px;
-  }
-  .view-btn {
-    flex: 1;
-    border: none;
-    background: transparent;
-    padding: 10px 12px;
-    cursor: pointer;
-    font-weight: 600;
-    color: var(--muted);
-    transition: color 0.2s;
-  }
-  .view-btn.active {
-    color: var(--ns-blue);
-  }
-  .view-btn:hover {
-    color: var(--ns-blue);
-  }
+    .search-clear.visible {
+      display: block;
+    }
 
-  /* --- Detail modal --- */
-  .modal-backdrop {
-    position: fixed; inset: 0; z-index: 2000;
-    background: rgba(15,23,42,0.55);
-    display: none; align-items: flex-start; justify-content: center;
-    padding: 24px 16px; overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-  }
-  .modal-backdrop.open { display: flex; }
-  .modal {
-    position: relative;
-    width: 100%; max-width: 760px;
-    background: var(--bg); border-radius: 16px;
-    box-shadow: 0 20px 60px rgba(15,23,42,0.35);
-    overflow: hidden;
-    animation: modalIn 0.18s ease-out;
-  }
-  @keyframes modalIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
-  .modal-hero {
-    height: 220px; background: #e2e8f0;
-    background-size: cover; background-position: center;
-  }
-  .modal-close {
-    position: absolute; top: 14px; right: 14px;
-    width: 34px; height: 34px; border: none; cursor: pointer;
-    border-radius: 50%; background: rgba(255,255,255,0.94);
-    color: #334155; font-size: 22px; line-height: 34px; text-align: center;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.25);
-  }
-  .modal-close:hover { background: #fff; }
-  .modal-body { padding: 20px 22px 0; }
-  .modal-title { font-size: 22px; font-weight: 800; line-height: 1.2; margin: 0 0 6px; }
-  .modal-loc { font-size: 14px; color: var(--muted); margin-bottom: 14px; }
-  .modal-stats { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
-  .modal-desc { font-size: 14.5px; line-height: 1.6; color: #475569; margin-bottom: 20px; }
-  .modal-section { margin-bottom: 20px; }
-  .modal-section-title {
-    font-size: 13px; font-weight: 700; text-transform: uppercase;
-    letter-spacing: 0.04em; color: var(--muted); margin-bottom: 10px;
-  }
-  .detail-map { height: 300px; border-radius: 12px; overflow: hidden; background: #eef2f7; }
-  .detail-map .leaflet-control-attribution { font-size: 9px; }
+    .search-title {
+      flex: 1;
+    }
 
-  /* Elevation profile */
-  .elev-wrap { background: #f8fafc; border-radius: 12px; padding: 12px 14px; }
-  .elev-chart { display: block; width: 100%; height: 120px; }
-  .elev-axis { font-size: 10px; fill: var(--muted); }
-  .elev-area { fill: rgba(67,99,216,0.15); }
-  .elev-line { fill: none; stroke: #4363d8; stroke-width: 2; }
-  .elev-summary { display: flex; gap: 16px; font-size: 12.5px; color: #475569; margin-top: 8px; }
-  .elev-summary b { color: var(--text); }
+    .search-title .brand {
+      font-weight: 700;
+      font-size: 15px;
+      color: var(--ns-blue);
+    }
 
-  /* Weather */
-  .weather-row { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px; }
-  .weather-day {
-    flex: 1 0 auto; min-width: 78px;
-    background: #f8fafc; border-radius: 10px;
-    padding: 10px 8px; text-align: center;
-  }
-  .weather-day .wd-name { font-size: 11.5px; color: var(--muted); font-weight: 600; }
-  .weather-day .wd-icon { font-size: 24px; margin: 4px 0; line-height: 1; }
-  .weather-day .wd-temp { font-size: 13px; font-weight: 700; }
-  .weather-day .wd-temp .lo { color: var(--muted); font-weight: 500; }
-  .weather-day .wd-rain { font-size: 11px; color: #2563eb; margin-top: 2px; }
-  .modal-note { font-size: 12.5px; color: var(--muted); }
+    .search-title .brand .yellow {
+      color: var(--ns-yellow);
+      background: var(--ns-blue);
+      padding: 1px 6px;
+      border-radius: 3px;
+      margin-right: 4px;
+    }
 
-  /* Sticky action bar */
-  .modal-actions {
-    position: sticky; bottom: 0;
-    display: flex; gap: 8px; flex-wrap: wrap;
-    padding: 14px 22px;
-    background: var(--bg); border-top: 1px solid var(--border);
-  }
-  .modal-actions .btn { flex: 1 1 120px; padding: 11px 12px; font-size: 13.5px; }
+    .search-title .count {
+      display: block;
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 2px;
+    }
 
-  /* Toast */
-  .toast {
-    position: fixed; left: 50%; bottom: 28px; transform: translateX(-50%);
-    z-index: 2100; background: #0f172a; color: #fff;
-    padding: 10px 18px; border-radius: 999px; font-size: 13.5px;
-    box-shadow: var(--shadow); opacity: 0; transition: opacity 0.2s;
-    pointer-events: none;
-  }
-  .toast.show { opacity: 1; }
+    .search-results {
+      max-height: min(60vh, 520px);
+      overflow-y: auto;
+      border-top: 1px solid var(--border);
+    }
 
-  .spinner {
-    width: 22px; height: 22px; border-radius: 50%;
-    border: 3px solid var(--border); border-top-color: var(--ns-blue);
-    animation: spin 0.8s linear infinite; margin: 8px auto;
-  }
-  @keyframes spin { to { transform: rotate(360deg); } }
+    .search-results:empty {
+      display: none;
+    }
 
-/* --- Mobile --- */
-  @media (max-width: 640px) {
-    .modal { max-width: 100%; }
-    .modal-hero { height: 170px; }
-    .modal-title { font-size: 19px; }
-    .detail-map { height: 240px; }
-    .modal-backdrop { padding: 12px 8px; }
-    .search-panel { left: 10px; right: 110px; width: auto; top: 10px; }
-    .leaflet-popup-content { width: 260px !important; }
-    .card-img { height: 120px; }
-    .card-title { font-size: 15px; }
-    .legend { font-size: 11.5px; padding: 10px 12px; }
-    .leaflet-touch .leaflet-bar a { width:34px; height:34px; line-height:34px; }
-    .leaflet-control.locate-btn { width:38px; height:38px; line-height:38px; font-size:20px; }
-    
-    /* View toggle button styles for mobile */
+    .result {
+      padding: 11px 14px;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      cursor: pointer;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .result:last-child {
+      border-bottom: none;
+    }
+
+    .result:hover,
+    .result.active {
+      background: #f8fafc;
+    }
+
+    .result-thumb {
+      flex: none;
+      width: 44px;
+      height: 44px;
+      border-radius: 8px;
+      background-color: #f1f5f9;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .result-body {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .result-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 2px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .result-meta {
+      font-size: 12px;
+      color: var(--muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .result-meta mark {
+      background: #fef3c7;
+      color: inherit;
+      padding: 0 1px;
+      border-radius: 2px;
+    }
+
+    /* --- Glow for route polylines --- */
+    .leaflet-routes-pane {
+      filter: drop-shadow(0 0 3px rgba(67, 99, 216, 0.35)) drop-shadow(0 0 1px rgba(0, 0, 0, 0.25));
+    }
+
+    /* --- Locate button --- */
+    .leaflet-control.locate-btn {
+      background: #fff;
+      width: 34px;
+      height: 34px;
+      line-height: 34px;
+      text-align: center;
+      font-size: 18px;
+      cursor: pointer;
+      border-radius: 6px;
+      box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+      border: none;
+      color: #333;
+    }
+
+    .leaflet-control.locate-btn:hover {
+      background: #f4f4f4;
+    }
+
+    .leaflet-control.locate-btn.active {
+      color: #4285f4;
+    }
+
+    /* --- Station labels --- */
+    .station-label {
+      background: none;
+      border: none;
+      box-shadow: none;
+      font-size: 11px;
+      color: #334155;
+      white-space: nowrap;
+      text-shadow: 0 0 2px #fff, 0 0 2px #fff, 0 0 2px #fff;
+      pointer-events: none;
+    }
+
+    /* --- Legend --- */
+    .legend {
+      background: rgba(255, 255, 255, 0.97);
+      padding: 12px 14px;
+      border-radius: 10px;
+      box-shadow: var(--shadow);
+      font-size: 12.5px;
+      color: #334155;
+      line-height: 1.7;
+    }
+
+    .legend-title {
+      font-weight: 700;
+      font-size: 13px;
+      margin-bottom: 8px;
+      color: var(--text);
+    }
+
+    .legend-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .legend-swatch {
+      flex: none;
+      width: 14px;
+      height: 14px;
+      display: inline-block;
+    }
+
+    .legend-swatch.circle {
+      border-radius: 50%;
+    }
+
+    .legend-swatch.line {
+      height: 3px;
+      width: 20px;
+      border-radius: 2px;
+    }
+
+    .legend-swatch.dashed {
+      background: repeating-linear-gradient(90deg, #94a3b8 0 4px, transparent 4px 8px);
+    }
+
+    /* --- Modern popup styling --- */
+    .leaflet-popup-content-wrapper {
+      border-radius: 14px !important;
+      padding: 0 !important;
+      box-shadow: 0 8px 32px rgba(15, 23, 42, 0.18), 0 2px 6px rgba(15, 23, 42, 0.10) !important;
+      overflow: hidden;
+    }
+
+    .leaflet-popup-content {
+      margin: 0 !important;
+      width: 300px !important;
+      font-size: 14px;
+    }
+
+    .leaflet-popup-close-button {
+      top: 8px !important;
+      right: 8px !important;
+      width: 26px !important;
+      height: 26px !important;
+      background: rgba(255, 255, 255, 0.92) !important;
+      border-radius: 50% !important;
+      font-size: 18px !important;
+      line-height: 26px !important;
+      color: #334155 !important;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    }
+
+    .leaflet-popup-tip {
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .card {
+      font-family: inherit;
+      color: var(--text);
+    }
+
+    .card-img {
+      width: 100%;
+      height: 140px;
+      background-color: #e2e8f0;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .card-body {
+      padding: 14px 16px 16px;
+    }
+
+    .card-title {
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1.25;
+      margin: 0 0 6px;
+      color: var(--text);
+    }
+
+    .card-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 10px;
+      font-size: 12.5px;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .card-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: #f1f5f9;
+      color: #334155;
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-weight: 500;
+    }
+
+    .card-desc {
+      font-size: 13.5px;
+      line-height: 1.5;
+      color: #475569;
+      margin-bottom: 14px;
+      display: -webkit-box;
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .card-actions {
+      display: flex;
+      gap: 8px;
+    }
+
+    .btn {
+      flex: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 9px 12px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      transition: background 0.15s;
+    }
+
+    .leaflet-popup-content a.btn-primary,
+    .btn-primary {
+      background: var(--ns-blue);
+      color: #fff !important;
+    }
+
+    .btn-primary:hover {
+      background: #002060;
+    }
+
+    .leaflet-popup-content a.btn-secondary,
+    .btn-secondary {
+      background: #f1f5f9;
+      color: var(--text) !important;
+    }
+
+    .btn-secondary:hover {
+      background: #e2e8f0;
+    }
+
+    /* --- View toggle --- */
     .view-toggle {
+      position: absolute;
       top: 10px;
       right: 10px;
+      z-index: 1000;
+      display: flex;
+      background: var(--bg);
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      font-size: 14px;
     }
-  }
-</style>
+
+    .view-btn {
+      flex: 1;
+      border: none;
+      background: transparent;
+      padding: 10px 12px;
+      cursor: pointer;
+      font-weight: 600;
+      color: var(--muted);
+      transition: color 0.2s;
+    }
+
+    .view-btn.active {
+      color: var(--ns-blue);
+    }
+
+    .view-btn:hover {
+      color: var(--ns-blue);
+    }
+
+    /* --- Detail modal --- */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 2000;
+      background: rgba(15, 23, 42, 0.55);
+      display: none;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 24px 16px;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .modal-backdrop.open {
+      display: flex;
+    }
+
+    .modal {
+      position: relative;
+      width: 100%;
+      max-width: 760px;
+      background: var(--bg);
+      border-radius: 16px;
+      box-shadow: 0 20px 60px rgba(15, 23, 42, 0.35);
+      overflow: hidden;
+      animation: modalIn 0.18s ease-out;
+    }
+
+    @keyframes modalIn {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    .modal-hero {
+      height: 220px;
+      background: #e2e8f0;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      width: 34px;
+      height: 34px;
+      border: none;
+      cursor: pointer;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.94);
+      color: #334155;
+      font-size: 22px;
+      line-height: 34px;
+      text-align: center;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+    }
+
+    .modal-close:hover {
+      background: #fff;
+    }
+
+    .modal-body {
+      padding: 20px 22px 0;
+    }
+
+    .modal-title {
+      font-size: 22px;
+      font-weight: 800;
+      line-height: 1.2;
+      margin: 0 0 6px;
+    }
+
+    .modal-loc {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+
+    .modal-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .modal-desc {
+      font-size: 14.5px;
+      line-height: 1.6;
+      color: #475569;
+      margin-bottom: 20px;
+    }
+
+    .modal-section {
+      margin-bottom: 20px;
+    }
+
+    .modal-section-title {
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .detail-map {
+      height: 300px;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #eef2f7;
+    }
+
+    .detail-map .leaflet-control-attribution {
+      font-size: 9px;
+    }
+
+    /* Elevation profile */
+    .elev-wrap {
+      background: #f8fafc;
+      border-radius: 12px;
+      padding: 12px 14px;
+    }
+
+    .elev-chart {
+      display: block;
+      width: 100%;
+      height: 120px;
+    }
+
+    .elev-axis {
+      font-size: 10px;
+      fill: var(--muted);
+    }
+
+    .elev-area {
+      fill: rgba(67, 99, 216, 0.15);
+    }
+
+    .elev-line {
+      fill: none;
+      stroke: #4363d8;
+      stroke-width: 2;
+    }
+
+    .elev-summary {
+      display: flex;
+      gap: 16px;
+      font-size: 12.5px;
+      color: #475569;
+      margin-top: 8px;
+    }
+
+    .elev-summary b {
+      color: var(--text);
+    }
+
+    /* Weather */
+    .weather-row {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+    }
+
+    .weather-day {
+      flex: 1 0 auto;
+      min-width: 78px;
+      background: #f8fafc;
+      border-radius: 10px;
+      padding: 10px 8px;
+      text-align: center;
+    }
+
+    .weather-day .wd-name {
+      font-size: 11.5px;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .weather-day .wd-icon {
+      font-size: 24px;
+      margin: 4px 0;
+      line-height: 1;
+    }
+
+    .weather-day .wd-temp {
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .weather-day .wd-temp .lo {
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    .weather-day .wd-rain {
+      font-size: 11px;
+      color: #2563eb;
+      margin-top: 2px;
+    }
+
+    .modal-note {
+      font-size: 12.5px;
+      color: var(--muted);
+    }
+
+    /* Sticky action bar */
+    .modal-actions {
+      position: sticky;
+      bottom: 0;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      padding: 14px 22px;
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+    }
+
+    .modal-actions .btn {
+      flex: 1 1 120px;
+      padding: 11px 12px;
+      font-size: 13.5px;
+    }
+
+    /* Toast */
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 28px;
+      transform: translateX(-50%);
+      z-index: 2100;
+      background: #0f172a;
+      color: #fff;
+      padding: 10px 18px;
+      border-radius: 999px;
+      font-size: 13.5px;
+      box-shadow: var(--shadow);
+      opacity: 0;
+      transition: opacity 0.2s;
+      pointer-events: none;
+    }
+
+    .toast.show {
+      opacity: 1;
+    }
+
+    .spinner {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      border: 3px solid var(--border);
+      border-top-color: var(--ns-blue);
+      animation: spin 0.8s linear infinite;
+      margin: 8px auto;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* --- Mobile --- */
+    @media (max-width: 640px) {
+      .modal {
+        max-width: 100%;
+      }
+
+      .modal-hero {
+        height: 170px;
+      }
+
+      .modal-title {
+        font-size: 19px;
+      }
+
+      .detail-map {
+        height: 240px;
+      }
+
+      .modal-backdrop {
+        padding: 12px 8px;
+      }
+
+      .search-panel {
+        left: 10px;
+        right: 110px;
+        width: auto;
+        top: 10px;
+      }
+
+      .leaflet-popup-content {
+        width: 260px !important;
+      }
+
+      .card-img {
+        height: 120px;
+      }
+
+      .card-title {
+        font-size: 15px;
+      }
+
+      .legend {
+        font-size: 11.5px;
+        padding: 10px 12px;
+      }
+
+      .leaflet-touch .leaflet-bar a {
+        width: 34px;
+        height: 34px;
+        line-height: 34px;
+      }
+
+      .leaflet-control.locate-btn {
+        width: 38px;
+        height: 38px;
+        line-height: 38px;
+        font-size: 20px;
+      }
+
+      /* View toggle button styles for mobile */
+      .view-toggle {
+        top: 10px;
+        right: 10px;
+      }
+    }
+  </style>
 </head>
+
 <body>
-<header class="sr-only">
-  <h1>NS Wandelingen Kaart</h1>
-  <p>
-    Interactieve kaart met alle 47 NS-wandelingen door Nederland. Elke route
-    begint en eindigt bij een NS-station, zodat je met de trein heen en terug
-    kunt. Bekijk de routes op de kaart, zie afstanden, provincies en de
-    start- en eindstations, en download de GPX-track voor elke wandeling.
-    Inclusief het NL-spoorwegnet en alle 397 treinstations.
-  </p>
-  <h2>Functies</h2>
-  <ul>
-    <li>47 NS-wandelroutes op een kaart van Nederland</li>
-    <li>Zoeken op wandeling, provincie of station</li>
-    <li>Start- en eindpunten per route</li>
-    <li>GPX-downloads voor iedere route</li>
-    <li>Alle 397 NL-stations en het spoorwegnet in beeld</li>
-    <li>Werkt op mobiel, met locatieknop</li>
-  </ul>
-  <noscript>
-    <p>Deze kaart vereist JavaScript. De onderliggende data is beschikbaar als
-    <a href="hikes.json">hikes.json</a>,
-    <a href="stations.json">stations.json</a> en
-    <a href="railways.geojson">railways.geojson</a>.</p>
-  </noscript>
-</header>
+  <header class="sr-only">
+    <h1>NS Wandelingen Kaart</h1>
+    <p>
+      Interactieve kaart met alle 47 NS-wandelingen door Nederland. Elke route
+      begint en eindigt bij een NS-station, zodat je met de trein heen en terug
+      kunt. Bekijk de routes op de kaart, zie afstanden, provincies en de
+      start- en eindstations, en download de GPX-track voor elke wandeling.
+      Inclusief het NL-spoorwegnet en alle 397 treinstations.
+    </p>
+    <h2>Functies</h2>
+    <ul>
+      <li>47 NS-wandelroutes op een kaart van Nederland</li>
+      <li>Zoeken op wandeling, provincie of station</li>
+      <li>Start- en eindpunten per route</li>
+      <li>GPX-downloads voor iedere route</li>
+      <li>Alle 397 NL-stations en het spoorwegnet in beeld</li>
+      <li>Werkt op mobiel, met locatieknop</li>
+    </ul>
+    <noscript>
+      <p>Deze kaart vereist JavaScript. De onderliggende data is beschikbaar als
+        <a href="hikes.json">hikes.json</a>,
+        <a href="stations.json">stations.json</a> en
+        <a href="railways.geojson">railways.geojson</a>.
+      </p>
+    </noscript>
+  </header>
 
-<div id="map" role="application" aria-label="Kaart van NS-wandelroutes in Nederland"></div>
+  <div id="map" role="application" aria-label="Kaart van NS-wandelroutes in Nederland"></div>
 
-<div class="view-toggle" id="viewToggle">
-  <button id="mapViewBtn" class="view-btn active" aria-label="Kaartweergave">Kaart</button>
-  <button id="tilesViewBtn" class="view-btn" aria-label="Tegelweergave">Tegels</button>
-</div>
-
-<div class="search-panel" id="searchPanel">
-  <div class="search-row">
-    <span class="search-icon">⌕</span>
-    <input id="search" class="search-input" type="search" autocomplete="off" spellcheck="false" placeholder="Zoek wandeling, provincie, station…">
-    <button id="searchClear" class="search-clear" type="button" aria-label="Wissen">×</button>
+  <div class="view-toggle" id="viewToggle">
+    <button id="mapViewBtn" class="view-btn active" aria-label="Kaartweergave">Kaart</button>
+    <button id="tilesViewBtn" class="view-btn" aria-label="Tegelweergave">Tegels</button>
   </div>
-  <div class="search-results" id="searchResults"></div>
-</div>
 
-<div class="modal-backdrop" id="detailModal" role="dialog" aria-modal="true" aria-labelledby="detailTitle">
-  <div class="modal" id="detailCard"></div>
-</div>
-<div class="toast" id="toast"></div>
+  <div class="search-panel" id="searchPanel">
+    <div class="search-row">
+      <span class="search-icon">⌕</span>
+      <input id="search" class="search-input" type="search" autocomplete="off" spellcheck="false"
+        placeholder="Zoek wandeling, provincie, station…">
+      <button id="searchClear" class="search-clear" type="button" aria-label="Wissen">×</button>
+    </div>
+    <div class="search-results" id="searchResults"></div>
+  </div>
 
-<!-- 100% privacy-first analytics -->
-<script data-collect-dnt="true" async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
-<noscript><img src="https://queue.simpleanalyticscdn.com/noscript.gif?collect-dnt=true" alt="" referrerpolicy="no-referrer-when-downgrade"/></noscript>
+  <div class="modal-backdrop" id="detailModal" role="dialog" aria-modal="true" aria-labelledby="detailTitle">
+    <div class="modal" id="detailCard"></div>
+  </div>
+  <div class="toast" id="toast"></div>
 
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0/dist/fuse.min.js"></script>
-<script>
-const map = L.map('map', { zoomControl: true, zoomSnap: 0.5 }).setView([52.1, 5.3], 8);
-// Keep zoom control on right to free up top-left for search.
-map.zoomControl.setPosition('topright');
+  <!-- 100% privacy-first analytics -->
+  <script data-collect-dnt="true" async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+  <noscript><img src="https://queue.simpleanalyticscdn.com/noscript.gif?collect-dnt=true" alt=""
+      referrerpolicy="no-referrer-when-downgrade" /></noscript>
 
-L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-  maxZoom: 20,
-  subdomains: 'abcd',
-  attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> &copy; <a href="https://carto.com/attributions">CARTO</a>'
-}).addTo(map);
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0/dist/fuse.min.js"></script>
+  <script>
+    const map = L.map('map', { zoomControl: true, zoomSnap: 0.5 }).setView([52.1, 5.3], 8);
+    // Keep zoom control on right to free up top-left for search.
+    map.zoomControl.setPosition('topright');
 
-map.createPane('railways');  map.getPane('railways').style.zIndex  = 395;
-map.createPane('stations');  map.getPane('stations').style.zIndex  = 405;
-map.createPane('routes');    map.getPane('routes').style.zIndex    = 410;
-map.createPane('endpoints'); map.getPane('endpoints').style.zIndex = 420;
-
-// Canvas renderers per heavy pane. SVG chokes on ~14.6k OSM ways + ~400 station markers.
-// Endpoints stay on SVG on purpose: their pane sits above routes, and a canvas
-// with interactive layers would intercept route-hover events across its whole area.
-const railwaysRenderer = L.canvas({ pane: 'railways' });
-const stationsRenderer = L.canvas({ pane: 'stations' });
-const routesRenderer   = L.canvas({ pane: 'routes' });
-
-const COLORS = ['#e6194b','#3cb44b','#4363d8','#f58231','#911eb4','#42d4f4','#f032e6','#bfef45','#fabed4','#469990','#dcbeff','#9a6324','#800000','#aaffc3','#808000','#ffd8b1','#000075','#a9a9a9','#ffe119','#808080'];
-
-// --- Locate control ---
-const LocateControl = L.Control.extend({
-  options: { position: 'topright' },
-  onAdd() {
-    const btn = L.DomUtil.create('button', 'leaflet-bar leaflet-control locate-btn');
-    btn.type = 'button';
-    btn.title = 'Toon mijn locatie';
-    btn.textContent = '⊙';
-    L.DomEvent.on(btn, 'click', (e) => {
-      L.DomEvent.stop(e);
-      btn.classList.add('active');
-      map.locate({ setView: true, maxZoom: 13, enableHighAccuracy: true, timeout: 10000 });
-    });
-    L.DomEvent.disableClickPropagation(btn);
-    this._btn = btn;
-    return btn;
-  },
-});
-const locateControl = new LocateControl();
-locateControl.addTo(map);
-
-let userMarker = null;
-map.on('locationfound', (e) => {
-  if (userMarker) userMarker.remove();
-  userMarker = L.circleMarker(e.latlng, {
-    radius: 7, color: '#fff', weight: 2, fillColor: '#4285f4', fillOpacity: 0.9,
-  }).addTo(map);
-  if (locateControl._btn) locateControl._btn.classList.remove('active');
-});
-map.on('locationerror', (e) => {
-  if (locateControl._btn) locateControl._btn.classList.remove('active');
-  console.warn('geolocation error', e.message);
-});
-
-// Prevent map panning when interacting with the search panel.
-(function suppressMapOnPanel() {
-  const panel = document.getElementById('searchPanel');
-  L.DomEvent.disableClickPropagation(panel);
-  L.DomEvent.disableScrollPropagation(panel);
-})();
-
-async function parseGpx(url) {
-  const xml = new DOMParser().parseFromString(await (await fetch(url)).text(), 'application/xml');
-  const pts = [];
-  xml.querySelectorAll('trkpt').forEach(p => {
-    pts.push([parseFloat(p.getAttribute('lat')), parseFloat(p.getAttribute('lon'))]);
-  });
-  return pts;
-}
-
-// =====================================================================
-//  Detail modal — route mini-map, elevation profile (Open-Meteo),
-//  weather forecast (Open-Meteo) and shareable deep links.
-// =====================================================================
-
-const TYPE_LABELS = {
-  boerenland: 'Boerenland', bos: 'Bos', duinenenstrand: 'Duinen & strand',
-  heideenzand: 'Heide & zand', landgoederen: 'Landgoederen',
-  stadenomgeving: 'Stad & omgeving', waterlandenrivieren: 'Water & rivieren',
-};
-const PROVINCE_LABELS = {
-  drenthe: 'Drenthe', friesland: 'Friesland', gelderland: 'Gelderland',
-  limburg: 'Limburg', noordbrabant: 'Noord-Brabant', noordholland: 'Noord-Holland',
-  overijssel: 'Overijssel', utrecht: 'Utrecht', zeeland: 'Zeeland', zuidholland: 'Zuid-Holland',
-};
-
-// WMO weather interpretation codes → emoji + Dutch label.
-function wmoInfo(code) {
-  const m = {
-    0: ['☀️', 'Helder'], 1: ['🌤️', 'Overw. helder'], 2: ['⛅', 'Half bewolkt'], 3: ['☁️', 'Bewolkt'],
-    45: ['🌫️', 'Mist'], 48: ['🌫️', 'Mist'],
-    51: ['🌦️', 'Motregen'], 53: ['🌦️', 'Motregen'], 55: ['🌦️', 'Motregen'],
-    56: ['🌧️', 'IJzel'], 57: ['🌧️', 'IJzel'],
-    61: ['🌧️', 'Regen'], 63: ['🌧️', 'Regen'], 65: ['🌧️', 'Regen'],
-    66: ['🌧️', 'IJzel'], 67: ['🌧️', 'IJzel'],
-    71: ['🌨️', 'Sneeuw'], 73: ['🌨️', 'Sneeuw'], 75: ['🌨️', 'Sneeuw'], 77: ['🌨️', 'Sneeuw'],
-    80: ['🌦️', 'Buien'], 81: ['🌧️', 'Buien'], 82: ['🌧️', 'Zware buien'],
-    85: ['🌨️', 'Sneeuwbuien'], 86: ['🌨️', 'Sneeuwbuien'],
-    95: ['⛈️', 'Onweer'], 96: ['⛈️', 'Onweer'], 99: ['⛈️', 'Onweer'],
-  };
-  const v = m[code] || ['🌡️', '—'];
-  return { icon: v[0], label: v[1] };
-}
-
-function esc(s) {
-  return String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
-}
-
-// Simple localStorage cache with TTL (weather is short-lived; elevation is static).
-function cacheGet(key, ttlMs) {
-  try {
-    const raw = localStorage.getItem(key);
-    if (!raw) return null;
-    const o = JSON.parse(raw);
-    if (Date.now() - o.t > ttlMs) return null;
-    return o.v;
-  } catch { return null; }
-}
-function cacheSet(key, v) {
-  try { localStorage.setItem(key, JSON.stringify({ t: Date.now(), v })); } catch { /* quota/full */ }
-}
-
-function downsample(pts, n) {
-  if (pts.length <= n) return pts.slice();
-  const out = [];
-  const step = (pts.length - 1) / (n - 1);
-  for (let i = 0; i < n; i++) out.push(pts[Math.round(i * step)]);
-  return out;
-}
-
-// Parsed GPX points, filled lazily by the route loader and reused by the modal.
-const routePtsById = {};
-async function getRoutePoints(h) {
-  if (routePtsById[h.id]) return routePtsById[h.id];
-  if (!h.gpxFile) return [];
-  const pts = await parseGpx(h.gpxFile);
-  routePtsById[h.id] = pts;
-  return pts;
-}
-
-// --- Modal DOM + state ---
-const modalEl = document.getElementById('detailModal');
-const modalCard = document.getElementById('detailCard');
-const toastEl = document.getElementById('toast');
-let detailMiniMap = null;
-let toastTimer = null;
-
-function showToast(msg) {
-  toastEl.textContent = msg;
-  toastEl.classList.add('show');
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => toastEl.classList.remove('show'), 2200);
-}
-
-function buildDetailMap(container, pts) {
-  const m = L.map(container, {
-    zoomControl: false, attributionControl: true,
-    dragging: false, touchZoom: false, doubleClickZoom: false,
-    scrollWheelZoom: false, boxZoom: false, keyboard: false, tap: false,
-  });
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-    maxZoom: 20, subdomains: 'abcd',
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
-  }).addTo(m);
-  const line = L.polyline(pts, { color: '#4363d8', weight: 4, opacity: 0.9 }).addTo(m);
-  L.circleMarker(pts[0], { radius: 6, color: '#fff', weight: 2, fillColor: '#16a34a', fillOpacity: 1 })
-    .addTo(m).bindTooltip('Start', { direction: 'top' });
-  L.circleMarker(pts[pts.length - 1], { radius: 6, color: '#fff', weight: 2, fillColor: '#dc2626', fillOpacity: 1 })
-    .addTo(m).bindTooltip('Einde', { direction: 'top' });
-  m.fitBounds(line.getBounds(), { padding: [24, 24] });
-  return m;
-}
-
-// Open-Meteo elevation API (static data → cache 30 days). Returns {dists(km), elevs(m)}.
-async function fetchElevation(h, pts) {
-  const key = 'elev:' + (h.slug || h.id);
-  const cached = cacheGet(key, 30 * 24 * 3600 * 1000);
-  if (cached) return cached;
-  const sampled = downsample(pts, 100);
-  const lat = sampled.map(p => p[0].toFixed(5)).join(',');
-  const lon = sampled.map(p => p[1].toFixed(5)).join(',');
-  const res = await fetch(`https://api.open-meteo.com/v1/elevation?latitude=${lat}&longitude=${lon}`);
-  if (!res.ok) throw new Error('elevation http ' + res.status);
-  const data = await res.json();
-  const elevs = data.elevation || [];
-  const dists = [0];
-  for (let i = 1; i < sampled.length; i++) dists.push(dists[i - 1] + distMeters(sampled[i - 1], sampled[i]) / 1000);
-  const out = { dists, elevs };
-  cacheSet(key, out);
-  return out;
-}
-
-function renderElevation(section, data) {
-  const body = section.querySelector('.elev-body');
-  const { dists, elevs } = data;
-  if (!elevs.length) { body.textContent = 'Geen hoogtegegevens beschikbaar.'; return; }
-  const W = 600, H = 120, padL = 4, padR = 4, padT = 8, padB = 8;
-  const total = dists[dists.length - 1] || 1;
-  let min = Math.min(...elevs), max = Math.max(...elevs);
-  if (max - min < 1) max = min + 1; // avoid divide-by-zero on flat routes
-  const x = d => padL + (d / total) * (W - padL - padR);
-  const y = e => padT + (1 - (e - min) / (max - min)) * (H - padT - padB);
-  const pathPts = elevs.map((e, i) => `${x(dists[i]).toFixed(1)},${y(e).toFixed(1)}`);
-  const linePath = 'M' + pathPts.join(' L');
-  const areaPath = `M${x(0).toFixed(1)},${(H - padB).toFixed(1)} L${pathPts.join(' L')} L${x(total).toFixed(1)},${(H - padB).toFixed(1)} Z`;
-  let asc = 0, desc = 0;
-  for (let i = 1; i < elevs.length; i++) { const d = elevs[i] - elevs[i - 1]; if (d > 0) asc += d; else desc -= d; }
-  body.innerHTML =
-    `<svg class="elev-chart" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" aria-hidden="true">` +
-      `<path class="elev-area" d="${areaPath}"/><path class="elev-line" d="${linePath}"/></svg>` +
-    `<div class="elev-summary">` +
-      `<span>Afstand <b>${total.toFixed(1)} km</b></span>` +
-      `<span>Stijging <b>${Math.round(asc)} m</b></span>` +
-      `<span>Daling <b>${Math.round(desc)} m</b></span>` +
-      `<span>Hoogste <b>${Math.round(max)} m</b></span>` +
-    `</div>`;
-}
-
-// Open-Meteo daily forecast (cache 10 min, keyed by rounded location).
-async function fetchWeather(lat, lon) {
-  const key = `wx:${lat.toFixed(2)},${lon.toFixed(2)}`;
-  const cached = cacheGet(key, 10 * 60 * 1000);
-  if (cached) return cached;
-  const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat.toFixed(4)}&longitude=${lon.toFixed(4)}` +
-    `&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max&timezone=auto&forecast_days=7`;
-  const res = await fetch(url);
-  if (!res.ok) throw new Error('weather http ' + res.status);
-  const data = await res.json();
-  cacheSet(key, data.daily);
-  return data.daily;
-}
-
-function renderWeather(daily) {
-  const days = (daily && daily.time) || [];
-  if (!days.length) return 'Weer niet beschikbaar.';
-  const fmt = new Intl.DateTimeFormat('nl-NL', { weekday: 'short' });
-  let html = '<div class="weather-row">';
-  days.forEach((iso, i) => {
-    const date = new Date(iso + 'T12:00:00');
-    const name = i === 0 ? 'Vandaag' : fmt.format(date);
-    const w = wmoInfo(daily.weather_code[i]);
-    const hi = Math.round(daily.temperature_2m_max[i]);
-    const lo = Math.round(daily.temperature_2m_min[i]);
-    const rain = daily.precipitation_probability_max ? daily.precipitation_probability_max[i] : null;
-    html += `<div class="weather-day" title="${esc(w.label)}">` +
-      `<div class="wd-name">${esc(name)}</div>` +
-      `<div class="wd-icon">${w.icon}</div>` +
-      `<div class="wd-temp">${hi}° <span class="lo">${lo}°</span></div>` +
-      `<div class="wd-rain">${rain != null ? '💧' + rain + '%' : ''}</div>` +
-    `</div>`;
-  });
-  return html + '</div>';
-}
-
-async function shareHike(h) {
-  const url = new URL(location.href);
-  url.searchParams.set('hike', h.slug || h.id);
-  const link = url.toString();
-  const title = h.shortTitle || h.title || 'NS Wandeling';
-  if (navigator.share) {
-    try { await navigator.share({ title, text: title, url: link }); return; }
-    catch (e) { if (e && e.name === 'AbortError') return; }
-  }
-  try { await navigator.clipboard.writeText(link); showToast('Link gekopieerd'); }
-  catch { showToast(link); }
-}
-
-function closeDetail() {
-  modalEl.classList.remove('open');
-  document.body.style.overflow = '';
-  if (detailMiniMap) { detailMiniMap.remove(); detailMiniMap = null; }
-  modalCard.innerHTML = '';
-  const url = new URL(location.href);
-  url.searchParams.delete('hike');
-  history.replaceState({}, '', url);
-}
-
-async function openDetail(h) {
-  const loc = (h.location || '').replace(/^Van\s+/, '').replace(/\s+naar\s+/, ' → ');
-  const badges = [];
-  if (h.distanceText) badges.push(h.distanceText);
-  if (h.pavedPercentage != null) badges.push(`${h.pavedPercentage}% verhard`);
-  (h.types || []).forEach(t => badges.push(TYPE_LABELS[t] || t));
-  (h.provinces || []).forEach(p => badges.push(PROVINCE_LABELS[p] || p));
-  if ((h.suitableFor || []).includes('honden')) badges.push('🐕 Honden welkom');
-
-  modalCard.innerHTML =
-    `<div class="modal-hero" style="${h.image ? `background-image:url('${esc(h.image)}')` : ''}"></div>` +
-    `<button class="modal-close" type="button" aria-label="Sluiten">×</button>` +
-    `<div class="modal-body">` +
-      `<h2 class="modal-title" id="detailTitle">${esc(h.shortTitle || h.title || '')}</h2>` +
-      `<div class="modal-loc">${esc(loc)}</div>` +
-      `<div class="modal-stats">${badges.map(b => `<span class="card-badge">${esc(b)}</span>`).join('')}</div>` +
-      (h.description ? `<div class="modal-desc">${esc(h.description)}</div>` : '') +
-      `<div class="modal-section"><div class="modal-section-title">Route</div><div class="detail-map" id="detailMap"></div></div>` +
-      `<div class="modal-section" id="elevSection"><div class="modal-section-title">Hoogteprofiel</div><div class="elev-wrap"><div class="elev-body"><div class="spinner"></div></div></div></div>` +
-      `<div class="modal-section" id="wxSection"><div class="modal-section-title">Weer komende dagen</div><div class="wx-body"><div class="spinner"></div></div></div>` +
-    `</div>` +
-    `<div class="modal-actions">` +
-      `<a class="btn btn-primary" href="${esc(h.nsUrl || '#')}" target="_blank" rel="noopener">Bekijk op ns.nl</a>` +
-      (h.gpxFile ? `<a class="btn btn-secondary" href="${esc(h.gpxFile)}" download="${esc(h.slug || 'route')}.gpx">Download GPX</a>` : '') +
-      `<button class="btn btn-secondary" type="button" id="shareBtn">Deel wandeling</button>` +
-    `</div>`;
-
-  modalEl.classList.add('open');
-  document.body.style.overflow = 'hidden';
-  modalCard.scrollTop = 0;
-  modalCard.querySelector('.modal-close').addEventListener('click', closeDetail);
-  modalCard.querySelector('#shareBtn').addEventListener('click', () => shareHike(h));
-
-  const url = new URL(location.href);
-  url.searchParams.set('hike', h.slug || h.id);
-  history.replaceState({ hike: h.slug || h.id }, '', url);
-
-  const pts = await getRoutePoints(h);
-  if (!modalEl.classList.contains('open')) return; // closed while loading
-  if (!pts.length) return;
-
-  detailMiniMap = buildDetailMap(modalCard.querySelector('#detailMap'), pts);
-  requestAnimationFrame(() => { if (detailMiniMap) detailMiniMap.invalidateSize(); });
-
-  fetchElevation(h, pts)
-    .then(d => renderElevation(modalCard.querySelector('#elevSection'), d))
-    .catch(() => { const b = modalCard.querySelector('#elevSection .elev-body'); if (b) b.textContent = 'Hoogteprofiel niet beschikbaar.'; });
-
-  const mid = pts[Math.floor(pts.length / 2)];
-  fetchWeather(mid[0], mid[1])
-    .then(daily => { const b = modalCard.querySelector('#wxSection .wx-body'); if (b) b.innerHTML = renderWeather(daily); })
-    .catch(() => { const b = modalCard.querySelector('#wxSection .wx-body'); if (b) b.textContent = 'Weer niet beschikbaar.'; });
-}
-
-modalEl.addEventListener('click', e => { if (e.target === modalEl) closeDetail(); });
-document.addEventListener('keydown', e => { if (e.key === 'Escape' && modalEl.classList.contains('open')) closeDetail(); });
-
-// --- Modern popup card ---
-function buildPopup(h) {
-  const root = document.createElement('div');
-  root.className = 'card';
-
-  if (h.image) {
-    const img = document.createElement('div');
-    img.className = 'card-img';
-    img.style.backgroundImage = `url(${JSON.stringify(h.image)})`;
-    root.appendChild(img);
-  }
-
-  const body = document.createElement('div');
-  body.className = 'card-body';
-
-  const title = document.createElement('div');
-  title.className = 'card-title';
-  title.textContent = h.shortTitle || h.title || '';
-  body.appendChild(title);
-
-  const meta = document.createElement('div');
-  meta.className = 'card-meta';
-  if (h.distanceText) {
-    const b = document.createElement('span');
-    b.className = 'card-badge';
-    b.textContent = h.distanceText;
-    meta.appendChild(b);
-  }
-  if (h.location) {
-    const b = document.createElement('span');
-    b.className = 'card-badge';
-    b.textContent = h.location.replace(/^Van\s+/, '').replace(/\s+naar\s+/, ' → ');
-    meta.appendChild(b);
-  }
-  body.appendChild(meta);
-
-  if (h.description) {
-    const desc = document.createElement('div');
-    desc.className = 'card-desc';
-    desc.textContent = h.description;
-    body.appendChild(desc);
-  }
-
-  const actions = document.createElement('div');
-  actions.className = 'card-actions';
-  const details = document.createElement('button');
-  details.type = 'button';
-  details.className = 'btn btn-primary';
-  details.textContent = 'Bekijk details';
-  details.addEventListener('click', () => openDetail(h));
-  actions.appendChild(details);
-  if (h.gpxFile) {
-    const dl = document.createElement('a');
-    dl.className = 'btn btn-secondary';
-    dl.href = h.gpxFile;
-    dl.download = (h.slug || 'route') + '.gpx';
-    dl.textContent = 'Download GPX';
-    actions.appendChild(dl);
-  }
-  body.appendChild(actions);
-
-  root.appendChild(body);
-  return root;
-}
-
-// --- Railways (static GeoJSON) ---
-async function loadRailways() {
-  try {
-    const res = await fetch('railways.geojson');
-    if (!res.ok) return 0;
-    const gj = await res.json();
-    L.geoJSON(gj, {
-      renderer: railwaysRenderer,
-      pane: 'railways',
-      interactive: false,
-      style: { color: '#94a3b8', weight: 1.4, opacity: 0.75, dashArray: '4 4', lineCap: 'round' },
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+      maxZoom: 20,
+      subdomains: 'abcd',
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> &copy; <a href="https://carto.com/attributions">CARTO</a>'
     }).addTo(map);
-    return (gj.features || []).length;
-  } catch (e) {
-    console.warn('railways.geojson not available', e);
-    return 0;
-  }
-}
 
-// --- Stations layer ---
-async function loadStations() {
-  try {
-    const stations = await (await fetch('stations.json')).json();
-    const markers = new Map();
-    const majorTypes = new Set(['MEGA_STATION', 'KNOOPPUNT_INTERCITY_STATION', 'INTERCITY_STATION']);
-    for (const s of stations) {
-      const isMajor = majorTypes.has(s.type);
-      const marker = L.circleMarker([s.lat, s.lng], {
-        renderer: stationsRenderer,
-        pane: 'stations',
-        radius: isMajor ? 4 : 2.5,
-        color: '#94a3b8',
-        weight: 1,
-        fillColor: '#cbd5e1',
-        fillOpacity: 0.9,
+    map.createPane('railways'); map.getPane('railways').style.zIndex = 395;
+    map.createPane('stations'); map.getPane('stations').style.zIndex = 405;
+    map.createPane('routes'); map.getPane('routes').style.zIndex = 410;
+    map.createPane('endpoints'); map.getPane('endpoints').style.zIndex = 420;
+
+    // Canvas renderers per heavy pane. SVG chokes on ~14.6k OSM ways + ~400 station markers.
+    // Endpoints stay on SVG on purpose: their pane sits above routes, and a canvas
+    // with interactive layers would intercept route-hover events across its whole area.
+    const railwaysRenderer = L.canvas({ pane: 'railways' });
+    const stationsRenderer = L.canvas({ pane: 'stations' });
+    const routesRenderer = L.canvas({ pane: 'routes' });
+
+    const COLORS = ['#e6194b', '#3cb44b', '#4363d8', '#f58231', '#911eb4', '#42d4f4', '#f032e6', '#bfef45', '#fabed4', '#469990', '#dcbeff', '#9a6324', '#800000', '#aaffc3', '#808000', '#ffd8b1', '#000075', '#a9a9a9', '#ffe119', '#808080'];
+
+    // --- Locate control ---
+    const LocateControl = L.Control.extend({
+      options: { position: 'topright' },
+      onAdd() {
+        const btn = L.DomUtil.create('button', 'leaflet-bar leaflet-control locate-btn');
+        btn.type = 'button';
+        btn.title = 'Toon mijn locatie';
+        btn.textContent = '⊙';
+        L.DomEvent.on(btn, 'click', (e) => {
+          L.DomEvent.stop(e);
+          btn.classList.add('active');
+          map.locate({ setView: true, maxZoom: 13, enableHighAccuracy: true, timeout: 10000 });
+        });
+        L.DomEvent.disableClickPropagation(btn);
+        this._btn = btn;
+        return btn;
+      },
+    });
+    const locateControl = new LocateControl();
+    locateControl.addTo(map);
+
+    let userMarker = null;
+    map.on('locationfound', (e) => {
+      if (userMarker) userMarker.remove();
+      userMarker = L.circleMarker(e.latlng, {
+        radius: 7, color: '#fff', weight: 2, fillColor: '#4285f4', fillOpacity: 0.9,
+      }).addTo(map);
+      if (locateControl._btn) locateControl._btn.classList.remove('active');
+    });
+    map.on('locationerror', (e) => {
+      if (locateControl._btn) locateControl._btn.classList.remove('active');
+      console.warn('geolocation error', e.message);
+    });
+
+    // Prevent map panning when interacting with the search panel.
+    (function suppressMapOnPanel() {
+      const panel = document.getElementById('searchPanel');
+      L.DomEvent.disableClickPropagation(panel);
+      L.DomEvent.disableScrollPropagation(panel);
+    })();
+
+    async function parseGpx(url) {
+      const xml = new DOMParser().parseFromString(await (await fetch(url)).text(), 'application/xml');
+      const pts = [];
+      xml.querySelectorAll('trkpt').forEach(p => {
+        pts.push([parseFloat(p.getAttribute('lat')), parseFloat(p.getAttribute('lon'))]);
       });
-      marker._major = isMajor;
-      marker._station = s;
-      const pop = document.createElement('div');
-      pop.className = 'card';
+      return pts;
+    }
+
+    // =====================================================================
+    //  Detail modal — route mini-map, elevation profile (Open-Meteo),
+    //  weather forecast (Open-Meteo) and shareable deep links.
+    // =====================================================================
+
+    const TYPE_LABELS = {
+      boerenland: 'Boerenland', bos: 'Bos', duinenenstrand: 'Duinen & strand',
+      heideenzand: 'Heide & zand', landgoederen: 'Landgoederen',
+      stadenomgeving: 'Stad & omgeving', waterlandenrivieren: 'Water & rivieren',
+    };
+    const PROVINCE_LABELS = {
+      drenthe: 'Drenthe', friesland: 'Friesland', gelderland: 'Gelderland',
+      limburg: 'Limburg', noordbrabant: 'Noord-Brabant', noordholland: 'Noord-Holland',
+      overijssel: 'Overijssel', utrecht: 'Utrecht', zeeland: 'Zeeland', zuidholland: 'Zuid-Holland',
+    };
+
+    // WMO weather interpretation codes → emoji + Dutch label.
+    function wmoInfo(code) {
+      const m = {
+        0: ['☀️', 'Helder'], 1: ['🌤️', 'Overw. helder'], 2: ['⛅', 'Half bewolkt'], 3: ['☁️', 'Bewolkt'],
+        45: ['🌫️', 'Mist'], 48: ['🌫️', 'Mist'],
+        51: ['🌦️', 'Motregen'], 53: ['🌦️', 'Motregen'], 55: ['🌦️', 'Motregen'],
+        56: ['🌧️', 'IJzel'], 57: ['🌧️', 'IJzel'],
+        61: ['🌧️', 'Regen'], 63: ['🌧️', 'Regen'], 65: ['🌧️', 'Regen'],
+        66: ['🌧️', 'IJzel'], 67: ['🌧️', 'IJzel'],
+        71: ['🌨️', 'Sneeuw'], 73: ['🌨️', 'Sneeuw'], 75: ['🌨️', 'Sneeuw'], 77: ['🌨️', 'Sneeuw'],
+        80: ['🌦️', 'Buien'], 81: ['🌧️', 'Buien'], 82: ['🌧️', 'Zware buien'],
+        85: ['🌨️', 'Sneeuwbuien'], 86: ['🌨️', 'Sneeuwbuien'],
+        95: ['⛈️', 'Onweer'], 96: ['⛈️', 'Onweer'], 99: ['⛈️', 'Onweer'],
+      };
+      const v = m[code] || ['🌡️', '—'];
+      return { icon: v[0], label: v[1] };
+    }
+
+    function esc(s) {
+      return String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+    }
+
+    // Simple localStorage cache with TTL (weather is short-lived; elevation is static).
+    function cacheGet(key, ttlMs) {
+      try {
+        const raw = localStorage.getItem(key);
+        if (!raw) return null;
+        const o = JSON.parse(raw);
+        if (Date.now() - o.t > ttlMs) return null;
+        return o.v;
+      } catch { return null; }
+    }
+    function cacheSet(key, v) {
+      try { localStorage.setItem(key, JSON.stringify({ t: Date.now(), v })); } catch { /* quota/full */ }
+    }
+
+    function downsample(pts, n) {
+      if (pts.length <= n) return pts.slice();
+      const out = [];
+      const step = (pts.length - 1) / (n - 1);
+      for (let i = 0; i < n; i++) out.push(pts[Math.round(i * step)]);
+      return out;
+    }
+
+    // Parsed GPX points, filled lazily by the route loader and reused by the modal.
+    const routePtsById = {};
+    async function getRoutePoints(h) {
+      if (routePtsById[h.id]) return routePtsById[h.id];
+      if (!h.gpxFile) return [];
+      const pts = await parseGpx(h.gpxFile);
+      routePtsById[h.id] = pts;
+      return pts;
+    }
+
+    // --- Modal DOM + state ---
+    const modalEl = document.getElementById('detailModal');
+    const modalCard = document.getElementById('detailCard');
+    const toastEl = document.getElementById('toast');
+    let detailMiniMap = null;
+    let toastTimer = null;
+
+    function showToast(msg) {
+      toastEl.textContent = msg;
+      toastEl.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toastEl.classList.remove('show'), 2200);
+    }
+
+    function buildDetailMap(container, pts) {
+      const m = L.map(container, {
+        zoomControl: false, attributionControl: true,
+        dragging: false, touchZoom: false, doubleClickZoom: false,
+        scrollWheelZoom: false, boxZoom: false, keyboard: false, tap: false,
+      });
+      L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+        maxZoom: 20, subdomains: 'abcd',
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
+      }).addTo(m);
+      const line = L.polyline(pts, { color: '#4363d8', weight: 4, opacity: 0.9 }).addTo(m);
+      L.circleMarker(pts[0], { radius: 6, color: '#fff', weight: 2, fillColor: '#16a34a', fillOpacity: 1 })
+        .addTo(m).bindTooltip('Start', { direction: 'top' });
+      L.circleMarker(pts[pts.length - 1], { radius: 6, color: '#fff', weight: 2, fillColor: '#dc2626', fillOpacity: 1 })
+        .addTo(m).bindTooltip('Einde', { direction: 'top' });
+      m.fitBounds(line.getBounds(), { padding: [24, 24] });
+      return m;
+    }
+
+    // Open-Meteo elevation API (static data → cache 30 days). Returns {dists(km), elevs(m)}.
+    async function fetchElevation(h, pts) {
+      const key = 'elev:' + (h.slug || h.id);
+      const cached = cacheGet(key, 30 * 24 * 3600 * 1000);
+      if (cached) return cached;
+      const sampled = downsample(pts, 100);
+      const lat = sampled.map(p => p[0].toFixed(5)).join(',');
+      const lon = sampled.map(p => p[1].toFixed(5)).join(',');
+      const res = await fetch(`https://api.open-meteo.com/v1/elevation?latitude=${lat}&longitude=${lon}`);
+      if (!res.ok) throw new Error('elevation http ' + res.status);
+      const data = await res.json();
+      const elevs = data.elevation || [];
+      const dists = [0];
+      for (let i = 1; i < sampled.length; i++) dists.push(dists[i - 1] + distMeters(sampled[i - 1], sampled[i]) / 1000);
+      const out = { dists, elevs };
+      cacheSet(key, out);
+      return out;
+    }
+
+    function renderElevation(section, data) {
+      const body = section.querySelector('.elev-body');
+      const { dists, elevs } = data;
+      if (!elevs.length) { body.textContent = 'Geen hoogtegegevens beschikbaar.'; return; }
+      const W = 600, H = 120, padL = 4, padR = 4, padT = 8, padB = 8;
+      const total = dists[dists.length - 1] || 1;
+      let min = Math.min(...elevs), max = Math.max(...elevs);
+      if (max - min < 1) max = min + 1; // avoid divide-by-zero on flat routes
+      const x = d => padL + (d / total) * (W - padL - padR);
+      const y = e => padT + (1 - (e - min) / (max - min)) * (H - padT - padB);
+      const pathPts = elevs.map((e, i) => `${x(dists[i]).toFixed(1)},${y(e).toFixed(1)}`);
+      const linePath = 'M' + pathPts.join(' L');
+      const areaPath = `M${x(0).toFixed(1)},${(H - padB).toFixed(1)} L${pathPts.join(' L')} L${x(total).toFixed(1)},${(H - padB).toFixed(1)} Z`;
+      let asc = 0, desc = 0;
+      for (let i = 1; i < elevs.length; i++) { const d = elevs[i] - elevs[i - 1]; if (d > 0) asc += d; else desc -= d; }
+      body.innerHTML =
+        `<svg class="elev-chart" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" aria-hidden="true">` +
+        `<path class="elev-area" d="${areaPath}"/><path class="elev-line" d="${linePath}"/></svg>` +
+        `<div class="elev-summary">` +
+        `<span>Afstand <b>${total.toFixed(1)} km</b></span>` +
+        `<span>Stijging <b>${Math.round(asc)} m</b></span>` +
+        `<span>Daling <b>${Math.round(desc)} m</b></span>` +
+        `<span>Hoogste <b>${Math.round(max)} m</b></span>` +
+        `</div>`;
+    }
+
+    // Open-Meteo daily forecast (cache 10 min, keyed by rounded location).
+    async function fetchWeather(lat, lon) {
+      const key = `wx:${lat.toFixed(2)},${lon.toFixed(2)}`;
+      const cached = cacheGet(key, 10 * 60 * 1000);
+      if (cached) return cached;
+      const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat.toFixed(4)}&longitude=${lon.toFixed(4)}` +
+        `&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max&timezone=auto&forecast_days=7`;
+      const res = await fetch(url);
+      if (!res.ok) throw new Error('weather http ' + res.status);
+      const data = await res.json();
+      cacheSet(key, data.daily);
+      return data.daily;
+    }
+
+    function renderWeather(daily) {
+      const days = (daily && daily.time) || [];
+      if (!days.length) return 'Weer niet beschikbaar.';
+      const fmt = new Intl.DateTimeFormat('nl-NL', { weekday: 'short' });
+      let html = '<div class="weather-row">';
+      days.forEach((iso, i) => {
+        const date = new Date(iso + 'T12:00:00');
+        const name = i === 0 ? 'Vandaag' : fmt.format(date);
+        const w = wmoInfo(daily.weather_code[i]);
+        const hi = Math.round(daily.temperature_2m_max[i]);
+        const lo = Math.round(daily.temperature_2m_min[i]);
+        const rain = daily.precipitation_probability_max ? daily.precipitation_probability_max[i] : null;
+        html += `<div class="weather-day" title="${esc(w.label)}">` +
+          `<div class="wd-name">${esc(name)}</div>` +
+          `<div class="wd-icon">${w.icon}</div>` +
+          `<div class="wd-temp">${hi}° <span class="lo">${lo}°</span></div>` +
+          `<div class="wd-rain">${rain != null ? '💧' + rain + '%' : ''}</div>` +
+          `</div>`;
+      });
+      return html + '</div>';
+    }
+
+    async function shareHike(h) {
+      const url = new URL(location.href);
+      url.searchParams.set('hike', h.slug || h.id);
+      const link = url.toString();
+      const title = h.shortTitle || h.title || 'NS Wandeling';
+      if (navigator.share) {
+        try { await navigator.share({ title, text: title, url: link }); return; }
+        catch (e) { if (e && e.name === 'AbortError') return; }
+      }
+      try { await navigator.clipboard.writeText(link); showToast('Link gekopieerd'); }
+      catch { showToast(link); }
+    }
+
+    function closeDetail() {
+      modalEl.classList.remove('open');
+      document.body.style.overflow = '';
+      if (detailMiniMap) { detailMiniMap.remove(); detailMiniMap = null; }
+      modalCard.innerHTML = '';
+      const url = new URL(location.href);
+      url.searchParams.delete('hike');
+      history.replaceState({}, '', url);
+    }
+
+    async function openDetail(h) {
+      const loc = (h.location || '').replace(/^Van\s+/, '').replace(/\s+naar\s+/, ' → ');
+      const badges = [];
+      if (h.distanceText) badges.push(h.distanceText);
+      if (h.pavedPercentage != null) badges.push(`${h.pavedPercentage}% verhard`);
+      (h.types || []).forEach(t => badges.push(TYPE_LABELS[t] || t));
+      (h.provinces || []).forEach(p => badges.push(PROVINCE_LABELS[p] || p));
+      if ((h.suitableFor || []).includes('honden')) badges.push('🐕 Honden welkom');
+
+      modalCard.innerHTML =
+        `<div class="modal-hero" style="${h.image ? `background-image:url('${esc(h.image)}')` : ''}"></div>` +
+        `<button class="modal-close" type="button" aria-label="Sluiten">×</button>` +
+        `<div class="modal-body">` +
+        `<h2 class="modal-title" id="detailTitle">${esc(h.shortTitle || h.title || '')}</h2>` +
+        `<div class="modal-loc">${esc(loc)}</div>` +
+        `<div class="modal-stats">${badges.map(b => `<span class="card-badge">${esc(b)}</span>`).join('')}</div>` +
+        (h.description ? `<div class="modal-desc">${esc(h.description)}</div>` : '') +
+        `<div class="modal-section"><div class="modal-section-title">Route</div><div class="detail-map" id="detailMap"></div></div>` +
+        `<div class="modal-section" id="elevSection"><div class="modal-section-title">Hoogteprofiel</div><div class="elev-wrap"><div class="elev-body"><div class="spinner"></div></div></div></div>` +
+        `<div class="modal-section" id="wxSection"><div class="modal-section-title">Weer komende dagen</div><div class="wx-body"><div class="spinner"></div></div></div>` +
+        `</div>` +
+        `<div class="modal-actions">` +
+        `<a class="btn btn-primary" href="${esc(h.nsUrl || '#')}" target="_blank" rel="noopener">Bekijk op ns.nl</a>` +
+        (h.gpxFile ? `<a class="btn btn-secondary" href="${esc(h.gpxFile)}" download="${esc(h.slug || 'route')}.gpx">Download GPX</a>` : '') +
+        `<button class="btn btn-secondary" type="button" id="shareBtn">Deel wandeling</button>` +
+        `</div>`;
+
+      modalEl.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      modalCard.scrollTop = 0;
+      modalCard.querySelector('.modal-close').addEventListener('click', closeDetail);
+      modalCard.querySelector('#shareBtn').addEventListener('click', () => shareHike(h));
+
+      const url = new URL(location.href);
+      url.searchParams.set('hike', h.slug || h.id);
+      history.replaceState({ hike: h.slug || h.id }, '', url);
+
+      const pts = await getRoutePoints(h);
+      if (!modalEl.classList.contains('open')) return; // closed while loading
+      if (!pts.length) return;
+
+      detailMiniMap = buildDetailMap(modalCard.querySelector('#detailMap'), pts);
+      requestAnimationFrame(() => { if (detailMiniMap) detailMiniMap.invalidateSize(); });
+
+      fetchElevation(h, pts)
+        .then(d => renderElevation(modalCard.querySelector('#elevSection'), d))
+        .catch(() => { const b = modalCard.querySelector('#elevSection .elev-body'); if (b) b.textContent = 'Hoogteprofiel niet beschikbaar.'; });
+
+      const mid = pts[Math.floor(pts.length / 2)];
+      fetchWeather(mid[0], mid[1])
+        .then(daily => { const b = modalCard.querySelector('#wxSection .wx-body'); if (b) b.innerHTML = renderWeather(daily); })
+        .catch(() => { const b = modalCard.querySelector('#wxSection .wx-body'); if (b) b.textContent = 'Weer niet beschikbaar.'; });
+    }
+
+    modalEl.addEventListener('click', e => { if (e.target === modalEl) closeDetail(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape' && modalEl.classList.contains('open')) closeDetail(); });
+
+    // --- Modern popup card ---
+    function buildPopup(h) {
+      const root = document.createElement('div');
+      root.className = 'card';
+
+      if (h.image) {
+        const img = document.createElement('div');
+        img.className = 'card-img';
+        img.style.backgroundImage = `url(${JSON.stringify(h.image)})`;
+        root.appendChild(img);
+      }
+
       const body = document.createElement('div');
       body.className = 'card-body';
-      body.style.padding = '12px 14px';
-      const t = document.createElement('div');
-      t.className = 'card-title';
-      t.textContent = s.name;
-      const m = document.createElement('div');
-      m.className = 'card-meta';
-      const b = document.createElement('span');
-      b.className = 'card-badge';
-      b.textContent = `Station ${s.code}`;
-      m.appendChild(b);
-      body.append(t, m);
-      pop.appendChild(body);
-      marker.bindPopup(pop);
-      marker.addTo(map);
-      markers.set(s.code, marker);
-    }
-    return { stations, markers };
-  } catch (e) {
-    console.warn('stations.json not available', e);
-    return { stations: [], markers: new Map() };
-  }
-}
 
-function styleStationUsed(marker) {
-  marker.setStyle({ color: '#003082', fillColor: '#ffc917', fillOpacity: 0.95 });
-  marker.setRadius(marker._major ? 5 : 3.5);
-  if (marker._major && !marker.getTooltip()) {
-    marker.bindTooltip(marker._station.name, {
-      permanent: true, direction: 'right', offset: [6, 0], className: 'station-label',
-    });
-  }
-}
-
-// --- Geo helpers ---
-function distMeters(a, b) {
-  const R = 6371000;
-  const toRad = x => x * Math.PI / 180;
-  const dLat = toRad(b[0] - a[0]);
-  const dLon = toRad(b[1] - a[1]);
-  const lat1 = toRad(a[0]), lat2 = toRad(b[0]);
-  const h = Math.sin(dLat/2)**2 + Math.cos(lat1)*Math.cos(lat2)*Math.sin(dLon/2)**2;
-  return 2 * R * Math.asin(Math.sqrt(h));
-}
-function nearestStation(pt, stations, maxMeters = 1200) {
-  let best = null, bestD = Infinity;
-  for (const s of stations) {
-    const d = distMeters(pt, [s.lat, s.lng]);
-    if (d < bestD) { bestD = d; best = s; }
-  }
-  return bestD <= maxMeters ? best : null;
-}
-
-// --- Legend ---
-function addLegend() {
-  const legend = L.control({ position: 'bottomright' });
-  legend.onAdd = function () {
-    const div = L.DomUtil.create('div', 'legend');
-    const rows = [
-      { type: 'title', text: 'Legenda' },
-      { swatch: 'line',   color: '#4363d8', text: 'NS-wandeling' },
-      { swatch: 'circle', color: '#16a34a', text: 'Start' },
-      { swatch: 'circle', color: '#dc2626', text: 'Einde' },
-      { swatch: 'circle', color: '#ffc917', border: '#003082', text: 'Station (met wandeling)' },
-      { swatch: 'circle', color: '#cbd5e1', border: '#94a3b8', text: 'Station (overig)' },
-      { swatch: 'dashed', text: 'Spoorlijn' },
-    ];
-    for (const r of rows) {
-      if (r.type === 'title') {
-        const t = document.createElement('div');
-        t.className = 'legend-title';
-        t.textContent = r.text;
-        div.appendChild(t);
-        continue;
-      }
-      const row = document.createElement('div');
-      row.className = 'legend-row';
-      const sw = document.createElement('span');
-      sw.className = 'legend-swatch ' + r.swatch;
-      if (r.swatch === 'circle') {
-        sw.style.background = r.color;
-        if (r.border) sw.style.border = `1px solid ${r.border}`;
-      } else if (r.swatch === 'line') {
-        sw.style.background = r.color;
-      }
-      const label = document.createElement('span');
-      label.textContent = r.text;
-      row.append(sw, label);
-      div.appendChild(row);
-    }
-    L.DomEvent.disableClickPropagation(div);
-    return div;
-  };
-  legend.addTo(map);
-}
-addLegend();
-
-// --- Main ---
-  (async () => {
-    const [hikes, stationData] = await Promise.all([
-      (await fetch('hikes.json')).json(),
-      loadRailways().then(loadStations),
-    ]);
-    const { stations, markers: stationMarkers } = stationData;
-    const usedStationCodes = new Set();
-
-    const layers = {};           // hikeId -> { line, hit, start, end, hike }
-    const allBounds = L.latLngBounds([]);
-
-    // Create layer groups for easier management
-    const routesLayerGroup = L.layerGroup();
-    const railwayLayerGroup = L.layerGroup();
-    const stationLayerGroup = L.layerGroup();
-    const endpointLayerGroup = L.layerGroup();
-
-    function setActiveHike(id) { /* hook for future highlight */ }
-
-    function focusHike(id) {
-      const rec = layers[id];
-      if (!rec) return;
-      setActiveHike(id);
-      map.fitBounds(rec.layer.getBounds(), { padding: [60, 60], maxZoom: 13 });
-      rec.hit.openPopup();
-    }
-
-    const queue = [...hikes.entries()];
-    const workers = Array.from({ length: 6 }, async () => {
-      while (queue.length) {
-        const [i, h] = queue.shift();
-        if (!h.gpxFile) continue;
-        try {
-          const pts = await parseGpx(h.gpxFile);
-          if (!pts.length) continue;
-          routePtsById[h.id] = pts;
-          const color = COLORS[i % COLORS.length];
-          const line = L.polyline(pts, { renderer: routesRenderer, pane: 'routes', color, weight: 3, opacity: 0.9, interactive: false });
-          line.addTo(routesLayerGroup);
-          const hit = L.polyline(pts, { renderer: routesRenderer, pane: 'routes', color: '#000', weight: 16, opacity: 0, interactive: true });
-          // autoPan off by default so hovering a route never shifts the map; only clicks pan it into view.
-          hit.bindPopup(buildPopup(h), { autoClose: true, closeOnClick: true, autoPan: false, maxWidth: 320, minWidth: 300, className: 'hike-popup' });
-          // Open popup raised above the cursor so the path under the pointer remains visible.
-          const raiseLatLng = (latlng, px = 36) => {
-            const p = map.latLngToContainerPoint(latlng);
-            return map.containerPointToLatLng([p.x, p.y - px]);
-          };
-          hit.on('click', (ev) => {
-            hit.getPopup().options.autoPan = true;
-            hit.openPopup(raiseLatLng(ev.latlng));
-          });
-          hit.on('mouseover', (ev) => {
-            line.setStyle({ weight: 5 });
-            hit.getPopup().options.autoPan = false;
-            hit.openPopup(raiseLatLng(ev.latlng));
-          });
-          hit.on('mouseout', () => line.setStyle({ weight: 3 }));
-          hit.addTo(routesLayerGroup);
-
-          const start = L.circleMarker(pts[0], {
-            pane: 'endpoints', radius: 4, color: '#fff', weight: 1.5,
-            fillColor: '#16a34a', fillOpacity: 1,
-          }).bindTooltip('Start', { direction: 'top' }).addTo(endpointLayerGroup);
-          const end = L.circleMarker(pts[pts.length - 1], {
-            pane: 'endpoints', radius: 4, color: '#fff', weight: 1.5,
-            fillColor: '#dc2626', fillOpacity: 1,
-          }).bindTooltip('Einde', { direction: 'top' }).addTo(endpointLayerGroup);
-
-          layers[h.id] = { layer: line, hit, start, end, hike: h };
-          allBounds.extend(line.getBounds());
-
-          for (const pt of [pts[0], pts[pts.length - 1]]) {
-            const s = nearestStation(pt, stations);
-            if (s) usedStationCodes.add(s.code);
-          }
-        } catch (e) {
-          console.warn('gpx failed', h.slug, e);
-        }
-      }
-    });
-    await Promise.all(workers);
-    if (allBounds.isValid()) map.fitBounds(allBounds, { padding: [20, 20] });
-
-    for (const code of usedStationCodes) {
-      const m = stationMarkers.get(code);
-      if (m) styleStationUsed(m);
-    }
-
-    // Open the detail modal directly when arriving via a shared ?hike=<slug> link.
-    const wanted = new URLSearchParams(location.search).get('hike');
-    if (wanted) {
-      const h = hikes.find(x => x.slug === wanted || x.id === wanted);
-      if (h) openDetail(h);
-    }
-
-    // Add all our custom layers to the appropriate groups
-    // After all data is loaded, we can add the groups to the map
-    // This will be done in the view switching functions below
-    // Store references to layer groups for management
-    routesLayerGroup.addTo(map);
-    railwayLayerGroup.addTo(map);
-    stationLayerGroup.addTo(map);
-    endpointLayerGroup.addTo(map);
-
-  // --- Fuzzy search (Fuse.js) ---
-  // Index: hikes (primary) + major stations (secondary).
-  const majorTypes = new Set(['MEGA_STATION', 'KNOOPPUNT_INTERCITY_STATION', 'INTERCITY_STATION']);
-  const indexItems = [];
-  for (const h of hikes) {
-    indexItems.push({
-      kind: 'hike',
-      id: h.id,
-      title: h.shortTitle || h.title || '',
-      subtitle: `${h.location || ''} · ${h.distanceText || ''}`,
-      image: h.image,
-      provinces: (h.provinces || []).join(' '),
-      types: (h.types || []).join(' '),
-      _hike: h,
-    });
-  }
-  for (const s of stations) {
-    if (majorTypes.has(s.type)) {
-      indexItems.push({
-        kind: 'station',
-        id: 'st:' + s.code,
-        title: s.name,
-        subtitle: `Station ${s.code}`,
-        _station: s,
-      });
-    }
-  }
-
-  const fuse = new Fuse(indexItems, {
-    keys: [
-      { name: 'title', weight: 0.6 },
-      { name: 'subtitle', weight: 0.2 },
-      { name: 'provinces', weight: 0.1 },
-      { name: 'types', weight: 0.1 },
-    ],
-    threshold: 0.4,
-    ignoreLocation: true,
-    includeMatches: true,
-    minMatchCharLength: 2,
-  });
-
-  const searchInput = document.getElementById('search');
-  const searchResults = document.getElementById('searchResults');
-  const searchClear = document.getElementById('searchClear');
-
-  function highlight(text, matches, key) {
-    if (!text) return document.createTextNode('');
-    const match = matches && matches.find(m => m.key === key);
-    if (!match) return document.createTextNode(text);
-    const frag = document.createDocumentFragment();
-    let cursor = 0;
-    for (const [start, end] of match.indices) {
-      if (start > cursor) frag.appendChild(document.createTextNode(text.slice(cursor, start)));
-      const mark = document.createElement('mark');
-      mark.textContent = text.slice(start, end + 1);
-      frag.appendChild(mark);
-      cursor = end + 1;
-    }
-    if (cursor < text.length) frag.appendChild(document.createTextNode(text.slice(cursor)));
-    return frag;
-  }
-
-  function renderResults(items, matchesByIdx = []) {
-    searchResults.textContent = '';
-    items.slice(0, 12).forEach((item, idx) => {
-      const row = document.createElement('div');
-      row.className = 'result';
-      row.dataset.kind = item.kind;
-      row.dataset.id = item.id;
-
-      const thumb = document.createElement('div');
-      thumb.className = 'result-thumb';
-      if (item.image) {
-        thumb.style.backgroundImage = `url(${JSON.stringify(item.image)})`;
-      } else if (item.kind === 'station') {
-        thumb.style.background = 'var(--ns-yellow)';
-        thumb.style.border = '2px solid var(--ns-blue)';
-      }
-      row.appendChild(thumb);
-
-      const body = document.createElement('div');
-      body.className = 'result-body';
       const title = document.createElement('div');
-      title.className = 'result-title';
-      title.appendChild(highlight(item.title, matchesByIdx[idx], 'title'));
+      title.className = 'card-title';
+      title.textContent = h.shortTitle || h.title || '';
+      body.appendChild(title);
+
       const meta = document.createElement('div');
-      meta.className = 'result-meta';
-      meta.appendChild(highlight(item.subtitle, matchesByIdx[idx], 'subtitle'));
-      body.append(title, meta);
-      row.appendChild(body);
+      meta.className = 'card-meta';
+      if (h.distanceText) {
+        const b = document.createElement('span');
+        b.className = 'card-badge';
+        b.textContent = h.distanceText;
+        meta.appendChild(b);
+      }
+      if (h.location) {
+        const b = document.createElement('span');
+        b.className = 'card-badge';
+        b.textContent = h.location.replace(/^Van\s+/, '').replace(/\s+naar\s+/, ' → ');
+        meta.appendChild(b);
+      }
+      body.appendChild(meta);
 
-      row.addEventListener('click', () => {
-        if (item.kind === 'hike') {
-          focusHike(item._hike.id);
-        } else {
-          const m = stationMarkers.get(item._station.code);
-          if (m) { map.setView([item._station.lat, item._station.lng], 14); m.openPopup(); }
-        }
-        searchInput.value = item.title;
-        searchClear.classList.add('visible');
-        searchResults.textContent = '';
-      });
-      searchResults.appendChild(row);
-    });
-  }
+      if (h.description) {
+        const desc = document.createElement('div');
+        desc.className = 'card-desc';
+        desc.textContent = h.description;
+        body.appendChild(desc);
+      }
 
-  // Empty state: show all hikes (capped) as a browseable list.
-  function showBrowseList() {
-    const items = indexItems.filter(i => i.kind === 'hike');
-    renderResults(items);
-  }
+      const actions = document.createElement('div');
+      actions.className = 'card-actions';
+      const details = document.createElement('button');
+      details.type = 'button';
+      details.className = 'btn btn-primary';
+      details.textContent = 'Bekijk details';
+      details.addEventListener('click', () => openDetail(h));
+      actions.appendChild(details);
+      if (h.gpxFile) {
+        const dl = document.createElement('a');
+        dl.className = 'btn btn-secondary';
+        dl.href = h.gpxFile;
+        dl.download = (h.slug || 'route') + '.gpx';
+        dl.textContent = 'Download GPX';
+        actions.appendChild(dl);
+      }
+      body.appendChild(actions);
 
-  searchInput.addEventListener('focus', () => {
-    if (!searchInput.value) showBrowseList();
-  });
-  searchInput.addEventListener('input', () => {
-    const q = searchInput.value.trim();
-    searchClear.classList.toggle('visible', !!q);
-    if (!q) { showBrowseList(); return; }
-    const res = fuse.search(q);
-    renderResults(res.map(r => r.item), res.map(r => r.matches));
-  });
-  searchClear.addEventListener('click', () => {
-    searchInput.value = '';
-    searchClear.classList.remove('visible');
-    showBrowseList();
-    searchInput.focus();
-  });
-  // Hide results list when clicking outside the panel.
-  document.addEventListener('click', (e) => {
-    if (!document.getElementById('searchPanel').contains(e.target)) {
-      searchResults.textContent = '';
+      root.appendChild(body);
+      return root;
     }
-  });
 
-  // --- View toggle functionality ---
-  const mapViewBtn = document.getElementById('mapViewBtn');
-  const tilesViewBtn = document.getElementById('tilesViewBtn');
-  const viewToggle = document.getElementById('viewToggle');
-  const mapDiv = document.getElementById('map');
+    // --- Railways (static GeoJSON) ---
+    async function loadRailways() {
+      try {
+        const res = await fetch('railways.geojson');
+        if (!res.ok) return 0;
+        const gj = await res.json();
+        L.geoJSON(gj, {
+          renderer: railwaysRenderer,
+          pane: 'railways',
+          interactive: false,
+          style: { color: '#94a3b8', weight: 1.4, opacity: 0.75, dashArray: '4 4', lineCap: 'round' },
+        }).addTo(map);
+        return (gj.features || []).length;
+      } catch (e) {
+        console.warn('railways.geojson not available', e);
+        return 0;
+      }
+    }
 
-  // Layer groups are the ones created at the top of this IIFE; the view
-  // functions close over them directly. (Re-declaring them here shadowed the
-  // real groups with nulls and threw a duplicate-declaration SyntaxError.)
+    // --- Stations layer ---
+    async function loadStations() {
+      try {
+        const stations = await (await fetch('stations.json')).json();
+        const markers = new Map();
+        const majorTypes = new Set(['MEGA_STATION', 'KNOOPPUNT_INTERCITY_STATION', 'INTERCITY_STATION']);
+        for (const s of stations) {
+          const isMajor = majorTypes.has(s.type);
+          const marker = L.circleMarker([s.lat, s.lng], {
+            renderer: stationsRenderer,
+            pane: 'stations',
+            radius: isMajor ? 4 : 2.5,
+            color: '#94a3b8',
+            weight: 1,
+            fillColor: '#cbd5e1',
+            fillOpacity: 0.9,
+          });
+          marker._major = isMajor;
+          marker._station = s;
+          const pop = document.createElement('div');
+          pop.className = 'card';
+          const body = document.createElement('div');
+          body.className = 'card-body';
+          body.style.padding = '12px 14px';
+          const t = document.createElement('div');
+          t.className = 'card-title';
+          t.textContent = s.name;
+          const m = document.createElement('div');
+          m.className = 'card-meta';
+          const b = document.createElement('span');
+          b.className = 'card-badge';
+          b.textContent = `Station ${s.code}`;
+          m.appendChild(b);
+          body.append(t, m);
+          pop.appendChild(body);
+          marker.bindPopup(pop);
+          marker.addTo(map);
+          markers.set(s.code, marker);
+        }
+        return { stations, markers };
+      } catch (e) {
+        console.warn('stations.json not available', e);
+        return { stations: [], markers: new Map() };
+      }
+    }
 
-  // Function to switch to map view
-  function switchToMapView() {
-    mapViewBtn.classList.add('active');
-    tilesViewBtn.classList.remove('active');
-    
-    // Show the map and all layers
-    mapDiv.style.display = 'block';
-    
-    // Add all data layers back to the map
-    if (routesLayerGroup) routesLayerGroup.addTo(map);
-    if (railwayLayerGroup) railwayLayerGroup.addTo(map);
-    if (stationLayerGroup) stationLayerGroup.addTo(map);
-    if (endpointLayerGroup) endpointLayerGroup.addTo(map);
-  }
+    function styleStationUsed(marker) {
+      marker.setStyle({ color: '#003082', fillColor: '#ffc917', fillOpacity: 0.95 });
+      marker.setRadius(marker._major ? 5 : 3.5);
+      if (marker._major && !marker.getTooltip()) {
+        marker.bindTooltip(marker._station.name, {
+          permanent: true, direction: 'right', offset: [6, 0], className: 'station-label',
+        });
+      }
+    }
 
-  // Function to switch to tiles view
-  function switchToTilesView() {
-    tilesViewBtn.classList.add('active');
-    mapViewBtn.classList.remove('active');
-    
-    // Hide the map div
-    mapDiv.style.display = 'none';
-    
-    // For tiles view, we would normally show just the base tiles
-    // But since we need to keep map functionality, we'll just hide the overlays
-    if (routesLayerGroup) map.removeLayer(routesLayerGroup);
-    if (railwayLayerGroup) map.removeLayer(railwayLayerGroup);
-    if (stationLayerGroup) map.removeLayer(stationLayerGroup);
-    if (endpointLayerGroup) map.removeLayer(endpointLayerGroup);
-    
-    // Show the base map tiles only
-    // (This is a simplified version - in a full implementation
-    // we might create a separate tiles-only map)
-  }
+    // --- Geo helpers ---
+    function distMeters(a, b) {
+      const R = 6371000;
+      const toRad = x => x * Math.PI / 180;
+      const dLat = toRad(b[0] - a[0]);
+      const dLon = toRad(b[1] - a[1]);
+      const lat1 = toRad(a[0]), lat2 = toRad(b[0]);
+      const h = Math.sin(dLat / 2) ** 2 + Math.cos(lat1) * Math.cos(lat2) * Math.sin(dLon / 2) ** 2;
+      return 2 * R * Math.asin(Math.sqrt(h));
+    }
+    function nearestStation(pt, stations, maxMeters = 1200) {
+      let best = null, bestD = Infinity;
+      for (const s of stations) {
+        const d = distMeters(pt, [s.lat, s.lng]);
+        if (d < bestD) { bestD = d; best = s; }
+      }
+      return bestD <= maxMeters ? best : null;
+    }
 
-  // Add event listeners to view buttons
-  mapViewBtn.addEventListener('click', switchToMapView);
-  tilesViewBtn.addEventListener('click', switchToTilesView);
+    // --- Legend ---
+    function addLegend() {
+      const legend = L.control({ position: 'bottomright' });
+      legend.onAdd = function () {
+        const div = L.DomUtil.create('div', 'legend');
+        const rows = [
+          { type: 'title', text: 'Legenda' },
+          { swatch: 'line', color: '#4363d8', text: 'NS-wandeling' },
+          { swatch: 'circle', color: '#16a34a', text: 'Start' },
+          { swatch: 'circle', color: '#dc2626', text: 'Einde' },
+          { swatch: 'circle', color: '#ffc917', border: '#003082', text: 'Station (met wandeling)' },
+          { swatch: 'circle', color: '#cbd5e1', border: '#94a3b8', text: 'Station (overig)' },
+          { swatch: 'dashed', text: 'Spoorlijn' },
+        ];
+        for (const r of rows) {
+          if (r.type === 'title') {
+            const t = document.createElement('div');
+            t.className = 'legend-title';
+            t.textContent = r.text;
+            div.appendChild(t);
+            continue;
+          }
+          const row = document.createElement('div');
+          row.className = 'legend-row';
+          const sw = document.createElement('span');
+          sw.className = 'legend-swatch ' + r.swatch;
+          if (r.swatch === 'circle') {
+            sw.style.background = r.color;
+            if (r.border) sw.style.border = `1px solid ${r.border}`;
+          } else if (r.swatch === 'line') {
+            sw.style.background = r.color;
+          }
+          const label = document.createElement('span');
+          label.textContent = r.text;
+          row.append(sw, label);
+          div.appendChild(row);
+        }
+        L.DomEvent.disableClickPropagation(div);
+        return div;
+      };
+      legend.addTo(map);
+    }
+    addLegend();
 
-  // Initialize view to map view
-  switchToMapView();
-})();
-</script>
+    // --- Main ---
+    (async () => {
+      const [hikes, stationData] = await Promise.all([
+        (await fetch('hikes.json')).json(),
+        loadRailways().then(loadStations),
+      ]);
+      const { stations, markers: stationMarkers } = stationData;
+      const usedStationCodes = new Set();
+
+      const layers = {};           // hikeId -> { line, hit, start, end, hike }
+      const allBounds = L.latLngBounds([]);
+
+      // Create layer groups for easier management
+      const routesLayerGroup = L.layerGroup();
+      const railwayLayerGroup = L.layerGroup();
+      const stationLayerGroup = L.layerGroup();
+      const endpointLayerGroup = L.layerGroup();
+
+      function setActiveHike(id) { /* hook for future highlight */ }
+
+      function focusHike(id) {
+        const rec = layers[id];
+        if (!rec) return;
+        setActiveHike(id);
+        map.fitBounds(rec.layer.getBounds(), { padding: [60, 60], maxZoom: 13 });
+        rec.hit.openPopup();
+      }
+
+      const queue = [...hikes.entries()];
+      const workers = Array.from({ length: 6 }, async () => {
+        while (queue.length) {
+          const [i, h] = queue.shift();
+          if (!h.gpxFile) continue;
+          try {
+            const pts = await parseGpx(h.gpxFile);
+            if (!pts.length) continue;
+            routePtsById[h.id] = pts;
+            const color = COLORS[i % COLORS.length];
+            const line = L.polyline(pts, { renderer: routesRenderer, pane: 'routes', color, weight: 3, opacity: 0.9, interactive: false });
+            line.addTo(routesLayerGroup);
+            const hit = L.polyline(pts, { renderer: routesRenderer, pane: 'routes', color: '#000', weight: 16, opacity: 0, interactive: true });
+            // autoPan off by default so hovering a route never shifts the map; only clicks pan it into view.
+            hit.bindPopup(buildPopup(h), { autoClose: true, closeOnClick: true, autoPan: false, maxWidth: 320, minWidth: 300, className: 'hike-popup' });
+            // Open popup raised above the cursor so the path under the pointer remains visible.
+            const raiseLatLng = (latlng, px = 36) => {
+              const p = map.latLngToContainerPoint(latlng);
+              return map.containerPointToLatLng([p.x, p.y - px]);
+            };
+            hit.on('click', (ev) => {
+              hit.getPopup().options.autoPan = true;
+              hit.openPopup(raiseLatLng(ev.latlng));
+            });
+            hit.on('mouseover', (ev) => {
+              line.setStyle({ weight: 5 });
+              hit.getPopup().options.autoPan = false;
+              hit.openPopup(raiseLatLng(ev.latlng));
+            });
+            hit.on('mouseout', () => line.setStyle({ weight: 3 }));
+            hit.addTo(routesLayerGroup);
+
+            const start = L.circleMarker(pts[0], {
+              pane: 'endpoints', radius: 4, color: '#fff', weight: 1.5,
+              fillColor: '#16a34a', fillOpacity: 1,
+            }).bindTooltip('Start', { direction: 'top' }).addTo(endpointLayerGroup);
+            const end = L.circleMarker(pts[pts.length - 1], {
+              pane: 'endpoints', radius: 4, color: '#fff', weight: 1.5,
+              fillColor: '#dc2626', fillOpacity: 1,
+            }).bindTooltip('Einde', { direction: 'top' }).addTo(endpointLayerGroup);
+
+            layers[h.id] = { layer: line, hit, start, end, hike: h };
+            allBounds.extend(line.getBounds());
+
+            for (const pt of [pts[0], pts[pts.length - 1]]) {
+              const s = nearestStation(pt, stations);
+              if (s) usedStationCodes.add(s.code);
+            }
+          } catch (e) {
+            console.warn('gpx failed', h.slug, e);
+          }
+        }
+      });
+      await Promise.all(workers);
+      if (allBounds.isValid()) map.fitBounds(allBounds, { padding: [20, 20] });
+
+      for (const code of usedStationCodes) {
+        const m = stationMarkers.get(code);
+        if (m) styleStationUsed(m);
+      }
+
+      // Open the detail modal directly when arriving via a shared ?hike=<slug> link.
+      const wanted = new URLSearchParams(location.search).get('hike');
+      if (wanted) {
+        const h = hikes.find(x => x.slug === wanted || x.id === wanted);
+        if (h) openDetail(h);
+      }
+
+      // Add all our custom layers to the appropriate groups
+      // After all data is loaded, we can add the groups to the map
+      // This will be done in the view switching functions below
+      // Store references to layer groups for management
+      routesLayerGroup.addTo(map);
+      railwayLayerGroup.addTo(map);
+      stationLayerGroup.addTo(map);
+      endpointLayerGroup.addTo(map);
+
+      // --- Fuzzy search (Fuse.js) ---
+      // Index: hikes (primary) + major stations (secondary).
+      const majorTypes = new Set(['MEGA_STATION', 'KNOOPPUNT_INTERCITY_STATION', 'INTERCITY_STATION']);
+      const indexItems = [];
+      for (const h of hikes) {
+        indexItems.push({
+          kind: 'hike',
+          id: h.id,
+          title: h.shortTitle || h.title || '',
+          subtitle: `${h.location || ''} · ${h.distanceText || ''}`,
+          image: h.image,
+          provinces: (h.provinces || []).join(' '),
+          types: (h.types || []).join(' '),
+          _hike: h,
+        });
+      }
+      for (const s of stations) {
+        if (majorTypes.has(s.type)) {
+          indexItems.push({
+            kind: 'station',
+            id: 'st:' + s.code,
+            title: s.name,
+            subtitle: `Station ${s.code}`,
+            _station: s,
+          });
+        }
+      }
+
+      const fuse = new Fuse(indexItems, {
+        keys: [
+          { name: 'title', weight: 0.6 },
+          { name: 'subtitle', weight: 0.2 },
+          { name: 'provinces', weight: 0.1 },
+          { name: 'types', weight: 0.1 },
+        ],
+        threshold: 0.4,
+        ignoreLocation: true,
+        includeMatches: true,
+        minMatchCharLength: 2,
+      });
+
+      const searchInput = document.getElementById('search');
+      const searchResults = document.getElementById('searchResults');
+      const searchClear = document.getElementById('searchClear');
+
+      function highlight(text, matches, key) {
+        if (!text) return document.createTextNode('');
+        const match = matches && matches.find(m => m.key === key);
+        if (!match) return document.createTextNode(text);
+        const frag = document.createDocumentFragment();
+        let cursor = 0;
+        for (const [start, end] of match.indices) {
+          if (start > cursor) frag.appendChild(document.createTextNode(text.slice(cursor, start)));
+          const mark = document.createElement('mark');
+          mark.textContent = text.slice(start, end + 1);
+          frag.appendChild(mark);
+          cursor = end + 1;
+        }
+        if (cursor < text.length) frag.appendChild(document.createTextNode(text.slice(cursor)));
+        return frag;
+      }
+
+      function renderResults(items, matchesByIdx = []) {
+        searchResults.textContent = '';
+        items.slice(0, 12).forEach((item, idx) => {
+          const row = document.createElement('div');
+          row.className = 'result';
+          row.dataset.kind = item.kind;
+          row.dataset.id = item.id;
+
+          const thumb = document.createElement('div');
+          thumb.className = 'result-thumb';
+          if (item.image) {
+            thumb.style.backgroundImage = `url(${JSON.stringify(item.image)})`;
+          } else if (item.kind === 'station') {
+            thumb.style.background = 'var(--ns-yellow)';
+            thumb.style.border = '2px solid var(--ns-blue)';
+          }
+          row.appendChild(thumb);
+
+          const body = document.createElement('div');
+          body.className = 'result-body';
+          const title = document.createElement('div');
+          title.className = 'result-title';
+          title.appendChild(highlight(item.title, matchesByIdx[idx], 'title'));
+          const meta = document.createElement('div');
+          meta.className = 'result-meta';
+          meta.appendChild(highlight(item.subtitle, matchesByIdx[idx], 'subtitle'));
+          body.append(title, meta);
+          row.appendChild(body);
+
+          row.addEventListener('click', () => {
+            if (item.kind === 'hike') {
+              focusHike(item._hike.id);
+            } else {
+              const m = stationMarkers.get(item._station.code);
+              if (m) { map.setView([item._station.lat, item._station.lng], 14); m.openPopup(); }
+            }
+            searchInput.value = item.title;
+            searchClear.classList.add('visible');
+            searchResults.textContent = '';
+          });
+          searchResults.appendChild(row);
+        });
+      }
+
+      // Empty state: show all hikes (capped) as a browseable list.
+      function showBrowseList() {
+        const items = indexItems.filter(i => i.kind === 'hike');
+        renderResults(items);
+      }
+
+      searchInput.addEventListener('focus', () => {
+        if (!searchInput.value) showBrowseList();
+      });
+      searchInput.addEventListener('input', () => {
+        const q = searchInput.value.trim();
+        searchClear.classList.toggle('visible', !!q);
+        if (!q) { showBrowseList(); return; }
+        const res = fuse.search(q);
+        renderResults(res.map(r => r.item), res.map(r => r.matches));
+      });
+      searchClear.addEventListener('click', () => {
+        searchInput.value = '';
+        searchClear.classList.remove('visible');
+        showBrowseList();
+        searchInput.focus();
+      });
+      // Hide results list when clicking outside the panel.
+      document.addEventListener('click', (e) => {
+        if (!document.getElementById('searchPanel').contains(e.target)) {
+          searchResults.textContent = '';
+        }
+      });
+
+      // --- View toggle functionality ---
+      const mapViewBtn = document.getElementById('mapViewBtn');
+      const tilesViewBtn = document.getElementById('tilesViewBtn');
+      const viewToggle = document.getElementById('viewToggle');
+      const mapDiv = document.getElementById('map');
+
+      // Layer groups are the ones created at the top of this IIFE; the view
+      // functions close over them directly. (Re-declaring them here shadowed the
+      // real groups with nulls and threw a duplicate-declaration SyntaxError.)
+
+      // Function to switch to map view
+      function switchToMapView() {
+        mapViewBtn.classList.add('active');
+        tilesViewBtn.classList.remove('active');
+
+        // Show the map and all layers
+        mapDiv.style.display = 'block';
+
+        // Add all data layers back to the map
+        if (routesLayerGroup) routesLayerGroup.addTo(map);
+        if (railwayLayerGroup) railwayLayerGroup.addTo(map);
+        if (stationLayerGroup) stationLayerGroup.addTo(map);
+        if (endpointLayerGroup) endpointLayerGroup.addTo(map);
+      }
+
+      // Function to switch to tiles view
+      function switchToTilesView() {
+        tilesViewBtn.classList.add('active');
+        mapViewBtn.classList.remove('active');
+
+        // Hide the map div
+        mapDiv.style.display = 'none';
+
+        // For tiles view, we would normally show just the base tiles
+        // But since we need to keep map functionality, we'll just hide the overlays
+        if (routesLayerGroup) map.removeLayer(routesLayerGroup);
+        if (railwayLayerGroup) map.removeLayer(railwayLayerGroup);
+        if (stationLayerGroup) map.removeLayer(stationLayerGroup);
+        if (endpointLayerGroup) map.removeLayer(endpointLayerGroup);
+
+        // Show the base map tiles only
+        // (This is a simplified version - in a full implementation
+        // we might create a separate tiles-only map)
+      }
+
+      // Add event listeners to view buttons
+      mapViewBtn.addEventListener('click', switchToMapView);
+      tilesViewBtn.addEventListener('click', switchToTilesView);
+
+      // Initialize view to map view
+      switchToMapView();
+    })();
+  </script>
 </body>
+
 </html>
