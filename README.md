@@ -108,7 +108,7 @@ Hosted on **Cloudflare Pages**, deployed automatically on every push to
 ## Stack
 
 - [Leaflet](https://leafletjs.com/) 1.9 for the map
-- [CARTO Positron](https://carto.com/basemaps/) tiles (minimal basemap)
+- [CARTO Voyager](https://carto.com/basemaps/) tiles (API key required, free to 5M tile requests/month)
 - [Fuse.js](https://fusejs.io/) 7 for fuzzy search
 - [Simple Analytics](https://www.simpleanalytics.com/) for privacy-first stats
 - Python 3 (stdlib only) for the data pipeline

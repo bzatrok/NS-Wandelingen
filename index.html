@@ -901,14 +901,21 @@
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0/dist/fuse.min.js"></script>
   <script>
+    // CARTO basemaps require an API key since 2025; keyless tiles come back watermarked.
+    // Free up to 5M tile requests/month -- keys at https://carto.com/basemaps/apikey/
+    // Public by design (client-side basemap); the key is domain-locked in the CARTO dashboard.
+    const CARTO_KEY = 'cb1_34j7_1_945ae986d3630bbdb6d58185';
+    const CARTO_TILE_URL = `https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png?key=${CARTO_KEY}`;
+    const CARTO_ATTRIBUTION = '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> &copy; <a href="https://carto.com/attributions">CARTO</a>';
+
     const map = L.map('map', { zoomControl: true, zoomSnap: 0.5 }).setView([52.1, 5.3], 8);
     // Keep zoom control on right to free up top-left for search.
     map.zoomControl.setPosition('topright');
 
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+    L.tileLayer(CARTO_TILE_URL, {
       maxZoom: 20,
       subdomains: 'abcd',
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> &copy; <a href="https://carto.com/attributions">CARTO</a>'
+      attribution: CARTO_ATTRIBUTION
     }).addTo(map);
 
     map.createPane('railways'); map.getPane('railways').style.zIndex = 395;
@@ -1065,9 +1072,9 @@
         dragging: false, touchZoom: false, doubleClickZoom: false,
         scrollWheelZoom: false, boxZoom: false, keyboard: false, tap: false,
       });
-      L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+      L.tileLayer(CARTO_TILE_URL, {
         maxZoom: 20, subdomains: 'abcd',
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
+        attribution: CARTO_ATTRIBUTION,
       }).addTo(m);
       const line = L.polyline(pts, { color: '#4363d8', weight: 4, opacity: 0.9 }).addTo(m);
       L.circleMarker(pts[0], { radius: 6, color: '#fff', weight: 2, fillColor: '#16a34a', fillOpacity: 1 })
