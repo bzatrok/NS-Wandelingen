@@ -110,13 +110,29 @@
     }
 
     /* --- Search control (Google-Maps style, top-left) --- */
-    .search-panel {
+    /* Search box and view toggle share one row, so no width can make them overlap.
+       The bar itself is click-through; only its children take pointer events, which
+       keeps the map draggable in the gap between them. */
+    .top-bar {
       position: absolute;
-      top: 12px;
-      left: 12px;
+      top: 10px;
+      left: 10px;
+      right: 10px;
       z-index: 1000;
-      width: 360px;
-      max-width: calc(100vw - 24px);
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      pointer-events: none;
+    }
+
+    .top-bar>* {
+      pointer-events: auto;
+    }
+
+    .search-panel {
+      flex: 0 1 360px;
+      min-width: 0;
+      max-width: 100%;
       background: var(--bg);
       border-radius: 12px;
       box-shadow: var(--shadow);
@@ -143,7 +159,9 @@
       border: none;
       outline: none;
       background: transparent;
-      font-size: 15px;
+      /* Must stay >=16px: iOS Safari zooms the whole page when a smaller input
+         gains focus, which breaks map pinch-zoom and shifts the layout. */
+      font-size: 16px;
       color: var(--text);
       min-width: 0;
       font-family: inherit;
@@ -474,10 +492,8 @@
 
     /* --- View toggle --- */
     .view-toggle {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      z-index: 1000;
+      flex: none;
+      margin-left: auto;
       display: flex;
       background: var(--bg);
       border-radius: 12px;
@@ -798,10 +814,7 @@
       }
 
       .search-panel {
-        left: 10px;
-        right: 110px;
-        width: auto;
-        top: 10px;
+        flex: 1 1 auto;
       }
 
       .leaflet-popup-content {
@@ -834,11 +847,6 @@
         font-size: 20px;
       }
 
-      /* View toggle button styles for mobile */
-      .view-toggle {
-        top: 10px;
-        right: 10px;
-      }
     }
   </style>
 </head>
@@ -873,19 +881,21 @@
 
   <div id="map" role="application" aria-label="Kaart van NS-wandelroutes in Nederland"></div>
 
-  <div class="view-toggle" id="viewToggle">
-    <button id="mapViewBtn" class="view-btn active" aria-label="Kaartweergave">Kaart</button>
-    <button id="tilesViewBtn" class="view-btn" aria-label="Tegelweergave">Tegels</button>
-  </div>
-
-  <div class="search-panel" id="searchPanel">
-    <div class="search-row">
-      <span class="search-icon">⌕</span>
-      <input id="search" class="search-input" type="search" autocomplete="off" spellcheck="false"
-        placeholder="Zoek wandeling, provincie, station…">
-      <button id="searchClear" class="search-clear" type="button" aria-label="Wissen">×</button>
+  <div class="top-bar">
+    <div class="search-panel" id="searchPanel">
+      <div class="search-row">
+        <span class="search-icon">⌕</span>
+        <input id="search" class="search-input" type="search" autocomplete="off" spellcheck="false"
+          placeholder="Zoek wandeling, provincie, station…">
+        <button id="searchClear" class="search-clear" type="button" aria-label="Wissen">×</button>
+      </div>
+      <div class="search-results" id="searchResults"></div>
     </div>
-    <div class="search-results" id="searchResults"></div>
+
+    <div class="view-toggle" id="viewToggle">
+      <button id="mapViewBtn" class="view-btn active" aria-label="Kaartweergave">Kaart</button>
+      <button id="tilesViewBtn" class="view-btn" aria-label="Tegelweergave">Tegels</button>
+    </div>
   </div>
 
   <div class="modal-backdrop" id="detailModal" role="dialog" aria-modal="true" aria-labelledby="detailTitle">
