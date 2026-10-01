@@ -34,6 +34,11 @@ hikes.json        47 routes with metadata
 stations.json     397 NL stations (code, name, lat/lng, type)
 railways.geojson  NL main+branch rail lines
 gpx/*.gpx         47 downloaded GPX tracks
+build_pages.py    generates the static SEO pages below from hikes.json + gpx/
+wandeling/        generated: one page per route + /wandeling/ overview
+assets/pages.css  styles for the generated pages
+sitemap.xml       generated: map, overview and all route pages
+og-image.jpg      1200x630 social share image
 ```
 
 All route/station data is baked at build time by `fetch.py`. The only
@@ -67,6 +72,18 @@ Each output file (`hikes.json`, `stations.json`, `railways.geojson`,
 refresh.
 
 Get a free NS API key at <https://apiportal.ns.nl>.
+
+## Static route pages (`build_pages.py`)
+
+The map is one JavaScript page, so search engines only see one URL. 
+`build_pages.py` (stdlib only) writes a crawlable page per route to
+`wandeling/<slug>/index.html`, an overview at `wandeling/index.html` and
+`sitemap.xml`. Run it after changing `hikes.json` or the GPX files, and
+commit the output — Cloudflare Pages has no build step:
+
+```bash
+python3 build_pages.py
+```
 
 ## Local development
 
