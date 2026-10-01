@@ -791,6 +791,43 @@
       }
     }
 
+    /* --- Bottom sheet (touch / narrow screens replace the route popup with this) --- */
+    .sheet {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 1500;
+      max-height: 65vh;
+      overflow-y: auto;
+      background: var(--bg);
+      border-radius: 16px 16px 0 0;
+      box-shadow: 0 -8px 32px rgba(15, 23, 42, 0.18);
+      padding-bottom: env(safe-area-inset-bottom);
+      transform: translateY(100%);
+      transition: transform 0.2s ease-out;
+    }
+
+    .sheet.open {
+      transform: translateY(0);
+    }
+
+    .sheet-close {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      width: 30px;
+      height: 30px;
+      border: none;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.92);
+      color: #334155;
+      font-size: 20px;
+      line-height: 30px;
+      cursor: pointer;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    }
+
     /* --- Mobile --- */
     @media (max-width: 640px) {
       .modal {
@@ -902,6 +939,10 @@
     <div class="modal" id="detailCard"></div>
   </div>
   <div class="toast" id="toast"></div>
+  <div class="sheet" id="hikeSheet" role="dialog" aria-label="Wandeling">
+    <button class="sheet-close" id="sheetClose" type="button" aria-label="Sluiten">×</button>
+    <div id="sheetBody"></div>
+  </div>
 
   <!-- 100% privacy-first analytics -->
   <script data-collect-dnt="true" async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
@@ -1479,12 +1520,55 @@
 
       function setActiveHike(id) { /* hook for future highlight */ }
 
+      // --- Route card: Leaflet popup on desktop, bottom sheet on touch / narrow screens ---
+      const sheetLayout = window.matchMedia('(hover: none), (max-width: 640px)');
+      const sheetEl = document.getElementById('hikeSheet');
+      const sheetBody = document.getElementById('sheetBody');
+
+      // Space the floating UI covers, so panning keeps the route out from under it.
+      function topBarInset() {
+        return document.querySelector('.top-bar').getBoundingClientRect().bottom + 12;
+      }
+
+      function closeSheet() { sheetEl.classList.remove('open'); }
+      document.getElementById('sheetClose').addEventListener('click', closeSheet);
+      document.addEventListener('keydown', e => { if (e.key === 'Escape') closeSheet(); });
+      map.on('click', closeSheet);
+
+      function openHikeCard(rec, latlng) {
+        if (sheetLayout.matches) {
+          sheetBody.replaceChildren(buildPopup(rec.hike));
+          sheetEl.scrollTop = 0;
+          sheetEl.classList.add('open');
+          map.panInside(latlng, {
+            paddingTopLeft: [16, topBarInset()],
+            paddingBottomRight: [16, sheetEl.offsetHeight + 16],
+          });
+          return;
+        }
+        // Re-open so Leaflet runs autoPan even when hover already opened this popup.
+        rec.popup.options.autoPanPaddingTopLeft = L.point(16, topBarInset());
+        rec.popup.options.autoPan = true;
+        map.closePopup(rec.popup);
+        rec.popup.setLatLng(latlng).openOn(map);
+      }
+
       function focusHike(id) {
         const rec = layers[id];
         if (!rec) return;
         setActiveHike(id);
+        if (sheetLayout.matches) {
+          // Open the sheet first so the route can be fitted into the map area left above it.
+          openHikeCard(rec, rec.layer.getCenter());
+          map.fitBounds(rec.layer.getBounds(), {
+            paddingTopLeft: [24, topBarInset()],
+            paddingBottomRight: [24, sheetEl.offsetHeight + 24],
+            maxZoom: 13,
+          });
+          return;
+        }
         map.fitBounds(rec.layer.getBounds(), { padding: [60, 60], maxZoom: 13 });
-        rec.hit.openPopup();
+        openHikeCard(rec, rec.layer.getCenter());
       }
 
       const queue = [...hikes.entries()];
@@ -1500,21 +1584,26 @@
             const line = L.polyline(pts, { renderer: routesRenderer, pane: 'routes', color, weight: 3, opacity: 0.9, interactive: false });
             line.addTo(routesLayerGroup);
             const hit = L.polyline(pts, { renderer: routesRenderer, pane: 'routes', color: '#000', weight: 16, opacity: 0, interactive: true });
+            // Popup is opened by hand (not bindPopup) so touch layouts can use the bottom sheet instead.
             // autoPan off by default so hovering a route never shifts the map; only clicks pan it into view.
-            hit.bindPopup(buildPopup(h), { autoClose: true, closeOnClick: true, autoPan: false, maxWidth: 320, minWidth: 300, className: 'hike-popup' });
+            const popup = L.popup({ autoClose: true, closeOnClick: true, autoPan: false, maxWidth: 320, minWidth: 300, className: 'hike-popup' })
+              .setContent(buildPopup(h));
+            const rec = { layer: line, hit, popup, hike: h };
             // Open popup raised above the cursor so the path under the pointer remains visible.
             const raiseLatLng = (latlng, px = 36) => {
               const p = map.latLngToContainerPoint(latlng);
               return map.containerPointToLatLng([p.x, p.y - px]);
             };
             hit.on('click', (ev) => {
-              hit.getPopup().options.autoPan = true;
-              hit.openPopup(raiseLatLng(ev.latlng));
+              L.DomEvent.stopPropagation(ev); // keep the map click from closing the sheet again
+              openHikeCard(rec, sheetLayout.matches ? ev.latlng : raiseLatLng(ev.latlng));
             });
             hit.on('mouseover', (ev) => {
               line.setStyle({ weight: 5 });
-              hit.getPopup().options.autoPan = false;
-              hit.openPopup(raiseLatLng(ev.latlng));
+              // Touch browsers fire a synthetic hover before the tap; ignore it there.
+              if (sheetLayout.matches) return;
+              popup.options.autoPan = false;
+              popup.setLatLng(raiseLatLng(ev.latlng)).openOn(map);
             });
             hit.on('mouseout', () => line.setStyle({ weight: 3 }));
             hit.addTo(routesLayerGroup);
@@ -1528,7 +1617,7 @@
               fillColor: '#dc2626', fillOpacity: 1,
             }).bindTooltip('Einde', { direction: 'top' }).addTo(endpointLayerGroup);
 
-            layers[h.id] = { layer: line, hit, start, end, hike: h };
+            layers[h.id] = Object.assign(rec, { start, end });
             allBounds.extend(line.getBounds());
 
             for (const pt of [pts[0], pts[pts.length - 1]]) {
