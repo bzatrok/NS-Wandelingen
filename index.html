@@ -812,6 +812,24 @@
       transform: translateY(0);
     }
 
+    /* While a finger drags the sheet, follow it directly instead of animating. */
+    .sheet.dragging {
+      transition: none;
+    }
+
+    .sheet-handle {
+      position: absolute;
+      top: 6px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 40px;
+      height: 5px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.85);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+      z-index: 1;
+    }
+
     .sheet-close {
       position: absolute;
       top: 8px;
@@ -940,6 +958,7 @@
   </div>
   <div class="toast" id="toast"></div>
   <div class="sheet" id="hikeSheet" role="dialog" aria-label="Wandeling">
+    <div class="sheet-handle" aria-hidden="true"></div>
     <button class="sheet-close" id="sheetClose" type="button" aria-label="Sluiten">×</button>
     <div id="sheetBody"></div>
   </div>
@@ -1534,6 +1553,31 @@
       document.getElementById('sheetClose').addEventListener('click', closeSheet);
       document.addEventListener('keydown', e => { if (e.key === 'Escape') closeSheet(); });
       map.on('click', closeSheet);
+
+      // Swipe down to dismiss. Only starts when the sheet is scrolled to the top,
+      // so scrolling a long card back up never closes it by accident.
+      const SWIPE_CLOSE_PX = 80;
+      let dragStartY = null;
+      let dragDy = 0;
+      sheetEl.addEventListener('touchstart', e => {
+        if (sheetEl.scrollTop > 0) return;
+        dragStartY = e.touches[0].clientY;
+        dragDy = 0;
+      }, { passive: true });
+      sheetEl.addEventListener('touchmove', e => {
+        if (dragStartY === null) return;
+        dragDy = Math.max(0, e.touches[0].clientY - dragStartY);
+        if (dragDy === 0) return;
+        sheetEl.classList.add('dragging');
+        sheetEl.style.transform = `translateY(${dragDy}px)`;
+      }, { passive: true });
+      sheetEl.addEventListener('touchend', () => {
+        if (dragStartY === null) return;
+        sheetEl.classList.remove('dragging');
+        sheetEl.style.transform = '';
+        if (dragDy > SWIPE_CLOSE_PX) closeSheet();
+        dragStartY = null;
+      });
 
       function openHikeCard(rec, latlng) {
         if (sheetLayout.matches) {
