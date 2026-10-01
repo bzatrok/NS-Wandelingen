@@ -898,8 +898,22 @@
       box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
     }
 
+    /* Top-right map controls start below the search/view-toggle bar instead of under it. */
+    .leaflet-top.leaflet-right {
+      top: 56px;
+    }
+
     /* --- Mobile --- */
     @media (max-width: 640px) {
+      /* Keep the route sheet to about a third of the screen; "Bekijk details" has the full text. */
+      .sheet .card-img {
+        height: 110px;
+      }
+
+      .sheet .card-desc {
+        -webkit-line-clamp: 2;
+      }
+
       .modal {
         max-width: 100%;
       }
